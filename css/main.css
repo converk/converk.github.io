@@ -275,6 +275,7 @@ h6 {
 }
 p {
   margin: 0 0 20px 0;
+  font-size: 16px;
 }
 a {
   color: #555;
@@ -445,7 +446,7 @@ body {
 .header-inner {
   margin: 0 auto;
   padding: 100px 0 10px;
-  width: 830px;
+  width: 900px;
 }
 @media (min-width: 1600px) {
   .container .header-inner {
@@ -457,7 +458,7 @@ body {
 }
 .main-inner {
   margin: 0 auto;
-  width: 830px;
+  width: 900px;
 }
 @media (min-width: 1600px) {
   .container .main-inner {
@@ -474,7 +475,7 @@ body {
 .footer-inner {
   box-sizing: border-box;
   margin: 20px auto;
-  width: 830px;
+  width: 900px;
 }
 @media (min-width: 1600px) {
   .container .footer-inner {
@@ -1849,7 +1850,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ffd4f9;
+  background: #f5faff;
 }
 .links-of-blogroll {
   font-size: 13px;
