@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="笔记,Data Structure," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
+<meta name="keywords" content="笔记,Data Structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/09/26/hello-world/index.html">
+<meta property="og:title" content="C语言多重链表">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/多重链表(少)/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-09-26T00:50:52.784Z">
+<meta property="og:updated_time" content="2018-12-18T07:49:02.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="C语言多重链表">
+<meta name="twitter:description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/26/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/多重链表(少)/"/>
 
 
 
 
 
-  <title>Hello World | converk</title>
+  <title>C语言多重链表 | converk</title>
   
 
 
@@ -252,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/26/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/多重链表(少)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -269,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">C语言多重链表</h1>
         
 
         <div class="post-meta">
@@ -281,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-26T08:50:52+08:00">
-                2018-09-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
+                2018-12-18
               </time>
             
 
@@ -292,6 +293,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -300,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/26/hello-world/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/18/多重链表(少)/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/26/hello-world/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/18/多重链表(少)/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -330,15 +353,26 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="多重链表"><a href="#多重链表" class="headerlink" title="多重链表"></a>多重链表</h1><p><strong>多重链表</strong>: 链表中的节点可能同时属于多个链</p>
+<ul>
+<li>多重链表的指针域可能会有多个</li>
+<li>但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表</li>
+</ul>
+<p>多重链表有广泛的用途:<br>基本上像<strong>树,图</strong>这样复杂的数据结构都可以使用多重链表来存储</p>
+<h2 id="矩阵的存储"><a href="#矩阵的存储" class="headerlink" title="矩阵的存储"></a>矩阵的存储</h2><p>矩阵可以使用二维数组表示,但数组表示有两个缺点:</p>
+<ul>
+<li>数组的大小必须事先知道</li>
+<li>对于<strong>稀疏矩阵</strong>,会造成大量的空间浪费</li>
+</ul>
+<p>采用一种典型的多重链表—-<strong>十字链表</strong>来存储稀疏矩阵</p>
+<ul>
+<li>只存储矩阵非0元素项. 节点的<strong>数据域</strong>: 行坐标Row,列坐标: Col, 数值: Value</li>
+<li>每个节点通过两个指针域把同行和同列连接起来<ul>
+<li>行指针(从左指向右):Right</li>
+<li>列指针(从上到下):Down</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -372,7 +406,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/09/26/hello-world/" title="Hello World">http://yoursite.com/2018/09/26/hello-world/</a>
+    <a href="http://yoursite.com/2018/12/18/多重链表(少)/" title="C语言多重链表">http://yoursite.com/2018/12/18/多重链表(少)/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -390,7 +424,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/09/26/hello-world/" title="Hello World">2018/09/26/hello-world/</a>
+    <a href="/2018/12/18/多重链表(少)/" title="C语言多重链表">2018/12/18/多重链表(少)/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -405,6 +439,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+          
+        </div>
+      
 
       
       
@@ -414,14 +456,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/18/预处理器/" rel="next" title="C语言中的预处理器基本概念">
+                <i class="fa fa-chevron-left"></i> C语言中的预处理器基本概念
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/28/git-1/" rel="prev" title="git学习记录">
-                git学习记录 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/typedef和复杂声明和函数指针/" rel="prev" title="C语言中typedef的使用">
+                C语言中typedef的使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -513,7 +559,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -524,7 +570,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -535,7 +581,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -590,7 +636,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多重链表"><span class="nav-number">1.</span> <span class="nav-text">多重链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的存储"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵的存储</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -638,7 +684,7 @@
 
 
 <div class="theme-info">
-  <span class="post-count">博客全站共1.4k字</span>
+  <span class="post-count">博客全站共7.4k字</span>
 </div>
 
         
@@ -770,9 +816,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/09/26/hello-world/';
-          this.page.identifier = '2018/09/26/hello-world/';
-          this.page.title = 'Hello World';
+          this.page.url = 'http://yoursite.com/2018/12/18/多重链表(少)/';
+          this.page.identifier = '2018/12/18/多重链表(少)/';
+          this.page.title = 'C语言多重链表';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

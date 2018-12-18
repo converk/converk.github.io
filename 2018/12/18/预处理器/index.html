@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,git," />
+  <meta name="keywords" content="C语言,笔记," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
-<meta name="keywords" content="笔记,git">
+<meta name="description" content="C语言里的预处理器C预处理器在程序执行之前查看程序,根据程序中的预处理指令,预处理器把符号缩写替换成表示的内容 明示常量:#define基本知识ANIS和后来的标准都允许#前面有空格或制表符,而且还允许#和指令的其他部分之间有空格.指令可以出现在源文件里的任何地方,直到文件末尾结束我们使用大量#define来定义明示常量(符号常量)   每个#define都有三部分组成  第一部分是#define">
+<meta name="keywords" content="C语言,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/git-1/index.html">
+<meta property="og:title" content="C语言中的预处理器基本概念">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/预处理器/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta property="og:description" content="C语言里的预处理器C预处理器在程序执行之前查看程序,根据程序中的预处理指令,预处理器把符号缩写替换成表示的内容 明示常量:#define基本知识ANIS和后来的标准都允许#前面有空格或制表符,而且还允许#和指令的其他部分之间有空格.指令可以出现在源文件里的任何地方,直到文件末尾结束我们使用大量#define来定义明示常量(符号常量)   每个#define都有三部分组成  第一部分是#define">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:38:39.675Z">
+<meta property="og:updated_time" content="2018-12-18T07:50:53.864Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习">
-<meta name="twitter:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta name="twitter:title" content="C语言中的预处理器基本概念">
+<meta name="twitter:description" content="C语言里的预处理器C预处理器在程序执行之前查看程序,根据程序中的预处理指令,预处理器把符号缩写替换成表示的内容 明示常量:#define基本知识ANIS和后来的标准都允许#前面有空格或制表符,而且还允许#和指令的其他部分之间有空格.指令可以出现在源文件里的任何地方,直到文件末尾结束我们使用大量#define来定义明示常量(符号常量)   每个#define都有三部分组成  第一部分是#define">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/git-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/预处理器/"/>
 
 
 
 
 
-  <title>git学习 | converk</title>
+  <title>C语言中的预处理器基本概念 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/git-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/预处理器/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git学习</h1>
+          <h1 class="post-title" itemprop="name headline">C语言中的预处理器基本概念</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T10:41:00+08:00">
-                2018-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
+                2018-12-18
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/28/git-1/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/18/预处理器/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/28/git-1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/18/预处理器/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,30 +353,36 @@
       
 
       
-        <h1 id="本文主要记录一些笔者在学习过程中的困难"><a href="#本文主要记录一些笔者在学习过程中的困难" class="headerlink" title="本文主要记录一些笔者在学习过程中的困难"></a>本文主要记录一些笔者在学习过程中的困难</h1><hr>
-<p><code>git diff</code>    #是工作区(work dict)和暂存区(stage)的比较<br><code>git diff --cached</code>    #是暂存区(stage)和分支(master)的比较</p>
-<p>命令<code>git checkout -- readme.txt</code>意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
-<ol>
-<li><p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
+        <h1 id="C语言里的预处理器"><a href="#C语言里的预处理器" class="headerlink" title="C语言里的预处理器"></a>C语言里的预处理器</h1><p>C预处理器在程序执行之前查看程序,根据程序中的预处理指令,预处理器把符号缩写替换成表示的内容</p>
+<h2 id="明示常量-define"><a href="#明示常量-define" class="headerlink" title="明示常量:#define"></a>明示常量:#define</h2><h3 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h3><p>ANIS和后来的标准都允许#前面有空格或制表符,而且还允许#和指令的其他部分之间有空格.<br>指令可以出现在源文件里的任何地方,直到文件末尾结束<br>我们使用大量<code>#define</code>来定义<strong>明示常量</strong>(符号常量)  </p>
+<p>每个<code>#define</code>都有三部分组成</p>
+<ul>
+<li>第一部分是#define本身</li>
+<li>第二部分是选定的缩写,也称为<strong>宏</strong>,宏的名称不允许有空格,而且必须遵循C变量的命名规则,  宏又可以分为<strong>类对象宏</strong>和<strong>类函数宏</strong></li>
+<li><p>第三部分称为<strong>替换列表</strong>或<strong>替换体</strong>. 一旦预处理器在程序中找到宏的实例后,就会用替换体代替该宏,但是也有例外,当宏名被当做字符串的时候不会替换</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define FOUR 4</span><br><span class="line">printf(&quot;FOUR&quot;)</span><br></pre></td></tr></table></figure>
+<p>  这时会输出FOUR而不是4  </p>
 </li>
-<li><p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-</li>
-</ol>
-<p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
-<p>用命令<code>git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区</p>
-<p>一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>创建名为div的分支：　<code>git branch div</code><br>切换到这个分支：<code>git checkout div</code><br>查看所有分支：<code>git branch</code><br>之后可以进行修改工作，在div这个分支上进行提交  </p>
-<p>切换回master: <code>git checkout master</code><br>合并ｄｉｖ分支到当前分支：<code>git merge div</code><br>删除分支：<code>git branch -d div</code>  </p>
-<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>当新建一个分支f1的时候,在这个分支上修改文件并提交,<br>之后切换回<code>master</code>分支,再在<code>master</code>上修改并提交,<br>当合并两个分支的时候会出现冲突,这个是因为当只有一个领先时,却在两个分支上有两个状态,所以无法合并.<br>当再次修改并提交时<code>master</code>分支上比初始领先了两个提交,f1分支也可以再通过一次修改和提交来达到这时的状态,所以通过再一次修改和提交来解决冲突,从而合并两个分支.</p>
-<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p>在合并分支的时候,默认使用 <code>Fast forward</code> 方式,合并后会丢失分支的信息，<br>在<code>--no-ff</code>方式下使用<code>git merge</code>,会禁用Fast forward 方式，不会删除分支的信息<br>但git会生成一个新的commit<br>命令大概如下 git merge –no-ff -m “merge with no-ff” dev(dev为分支名称)<br>可以用git log –graph –pretty=oneline –abbrev-commit来查看分支历史  </p>
-<h2 id="利用分支来修改bug"><a href="#利用分支来修改bug" class="headerlink" title="利用分支来修改bug"></a>利用分支来修改bug</h2><p>当你正在dev分支上进行工作,这时候已经发布的版本出现了一个bug,你需要去改正这个bug,这时候你就需要保存dev分支下的工作进度<br>Git还提供了一个<code>stash</code>功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：<code>git stash</code><br>切换到拎一个分支进行修改bug:  <code>git checkout master</code><br>新建一个分支: <code>git checkout -b bug-1</code><br>在这个分支下进行修改bug,改完之后切换回master:<br><code>git checkout master</code><br>之后将修改的结果与master进行合并并删除这个分支:<br><code>git merge --no-ff -m &quot;merged bug fix 101&quot; issue-101</code><br>回到dev进行未完成的工作<br><code>git checkout dev</code><br>利用命令 <code>git stash pop</code>来恢复现场  </p>
-<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p><code>git remote</code>用来查看远程库的信息<br><code>git remote -v</code> 用来查看远程库的详细信息,<br>如果要推送其他分支,比如dev，就改成：<code>git push origin dev</code><br>对于几个分支的区别和是否推送:</p>
+</ul>
+<p>从宏变成最终替换文本的过程叫做宏展开,预处理器不会对替换文本做任何处理,也不对表达式求值.  </p>
+<h3 id="define的使用"><a href="#define的使用" class="headerlink" title="#define的使用"></a>#define的使用</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;stdio.h&gt;</span><br><span class="line">#define TWO 2</span><br><span class="line">#define OW &quot; Consistency is the unimagina\</span><br><span class="line">tive. - Oscar  //反斜杠把该定义延续到下一行</span><br><span class="line">#define FOUR TWO*TWO</span><br><span class="line">#define PX printf(&quot;X is %d.\n&quot;,n)</span><br><span class="line">#define FMT &quot;X is %d.\n&quot;</span><br><span class="line"></span><br><span class="line">int main(void)&#123;</span><br><span class="line">    int x=TWO;</span><br><span class="line">    PX;</span><br><span class="line">    x=FOUR;</span><br><span class="line">    printf(FMT,x);</span><br><span class="line">    printf(&quot;%s\n&quot;, OW);</span><br><span class="line">    printf(&quot;TWO:OW\n&quot;);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">X is 2.</span><br><span class="line">X is 4.</span><br><span class="line">Consistency is the unimaginative. - Oscar</span><br><span class="line">TWO:OW</span><br></pre></td></tr></table></figure>
+<p>宏常量还可以用来指定标准数组的大小和const变量的初始值.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#define LIMIT 20</span><br><span class="line">const int LIM=30;</span><br><span class="line">static int data1[LIMIT]; //有效</span><br><span class="line">static int data2[LIM];   //无效</span><br><span class="line">const int LIM2=2*LIMIT;  //有效</span><br><span class="line">const int LIM3=2*LIM;    //无效</span><br></pre></td></tr></table></figure>
+<p>关于上述无效的说明:</p>
 <blockquote>
-<p><code>master</code>分支是主分支，因此要时刻与远程同步；<br><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；<br><code>bug</code>分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；<br><code>feature</code>分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。  </p>
+<p>在C中,非自动数组的大小应该是整数常量的表达式,数组大小必须是整数常量的组合(如5),枚举常量和sizeof表达式,但是const声明的值不算</p>
 </blockquote>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="当有人在这个电脑的另一个目录下clone下了远程仓库"><a href="#当有人在这个电脑的另一个目录下clone下了远程仓库" class="headerlink" title="当有人在这个电脑的另一个目录下clone下了远程仓库"></a>当有人在这个电脑的另一个目录下clone下了远程仓库</h3><p><code>git clone &lt;https://github.com/converk/learn_git.git&gt;</code><br>但是当他<code>git branch</code> 时只能看到master一个分支,<br>如果想在dev分支上进行开发,<code>就必须创建远程的origin/dev分支到本地</code>,使用下面这个命令:<code>git checkout -b origin/dev dev.</code><br>这时他就可以在dev分支上进行修改并推送到远程仓库.  </p>
-<p>在那个人向远程仓库推送结束后,你在dev分支上对文件也做了修改,在推送到远程仓库的时候会报错,因为你的小伙伴的最新提交和你试图推送的提交有冲突.<br>这时使用命令:<code>git pull</code>将最新的提交从<code>origin/dev</code>上抓下来,然后合并,再推送.<br>当git pull也失败了，<strong>原因是没有指定本地dev分支与远程origin/dev分支的链接</strong>，<br>根据提示，设置dev和origin/dev的链接  :<code>git branch --set-upstream-to=origin/dev dev</code><br>然后再git pull,之后再git commit和git push就行了  </p>
-<h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><p>首先要切换到要打标签的分支上,然后使用<code>git tag v1.0</code>打上标签 v1.0是标签名,<br>可以用<code>git tag</code>来查看所有标签,<br>可以用<code>git show v1.0</code>来查看标签的详细信息<br>也可以用<code>git tag v0.9 sgu7824</code>来找相应的commit号来打上标签<br>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息</p>
+<h3 id="记号与重定义"><a href="#记号与重定义" class="headerlink" title="记号与重定义"></a>记号与重定义</h3><p>从技术的角度来看,可以把宏的替换体看作是记号型字符串,而不是字符型字符串.<br><strong>当做记号型字符串来处理:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define FOUR 2*2</span><br></pre></td></tr></table></figure>
+<p>该宏定义有一个记号: 2*2序列</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define FOUR 2 * 2</span><br></pre></td></tr></table></figure>
+<p>该宏定义有三个记号 2,*,2  </p>
+<p>当编译器解释为字符型字符串的时候,把空格视为替换体的一部分;<br>解释为记号型字符串时,把字符串视为分割各个记号的分隔符</p>
+<p>重定义宏的时候如果旧的定义与新定义不一样编译器会放出错误:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define FOUR 2 * 2  //三个记号</span><br><span class="line">#define FOUR 2*2    //一个记号,二者不同</span><br></pre></td></tr></table></figure>
+<p>真的要重定义的话要使用<code>#undef</code></p>
 
       
     </div>
@@ -410,7 +416,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/09/28/git-1/" title="git学习">http://yoursite.com/2018/09/28/git-1/</a>
+    <a href="http://yoursite.com/2018/12/18/预处理器/" title="C语言中的预处理器基本概念">http://yoursite.com/2018/12/18/预处理器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -428,7 +434,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/09/28/git-1/" title="git学习">2018/09/28/git-1/</a>
+    <a href="/2018/12/18/预处理器/" title="C语言中的预处理器基本概念">2018/12/18/预处理器/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -445,9 +451,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
           
-            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
         </div>
       
@@ -460,14 +466,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/18/C-touch/" rel="next" title="C语言实现touch命令">
+                <i class="fa fa-chevron-left"></i> C语言实现touch命令
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/C-touch/" rel="prev" title="C语言实现touch命令">
-                C语言实现touch命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/多重链表(少)/" rel="prev" title="C语言多重链表">
+                C语言多重链表 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +646,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本文主要记录一些笔者在学习过程中的困难"><span class="nav-number">1.</span> <span class="nav-text">本文主要记录一些笔者在学习过程中的困难</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">1.1.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决冲突"><span class="nav-number">1.2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用分支来修改bug"><span class="nav-number">1.4.</span> <span class="nav-text">利用分支来修改bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多人协作"><span class="nav-number">1.5.</span> <span class="nav-text">多人协作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.6.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当有人在这个电脑的另一个目录下clone下了远程仓库"><span class="nav-number">1.6.1.</span> <span class="nav-text">当有人在这个电脑的另一个目录下clone下了远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打标签"><span class="nav-number">1.6.2.</span> <span class="nav-text">打标签</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言里的预处理器"><span class="nav-number">1.</span> <span class="nav-text">C语言里的预处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#明示常量-define"><span class="nav-number">1.1.</span> <span class="nav-text">明示常量:#define</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本知识"><span class="nav-number">1.1.1.</span> <span class="nav-text">基本知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#define的使用"><span class="nav-number">1.1.2.</span> <span class="nav-text">#define的使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#记号与重定义"><span class="nav-number">1.1.3.</span> <span class="nav-text">记号与重定义</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -816,9 +826,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/09/28/git-1/';
-          this.page.identifier = '2018/09/28/git-1/';
-          this.page.title = 'git学习';
+          this.page.url = 'http://yoursite.com/2018/12/18/预处理器/';
+          this.page.identifier = '2018/12/18/预处理器/';
+          this.page.title = 'C语言中的预处理器基本概念';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

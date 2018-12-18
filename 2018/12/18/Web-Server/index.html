@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,git," />
+  <meta name="keywords" content="笔记,Python," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
-<meta name="keywords" content="笔记,git">
+<meta name="description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
+<meta name="keywords" content="笔记,Python">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/git-1/index.html">
+<meta property="og:title" content="Python实现一个web服务器">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/Web-Server/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta property="og:description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:38:39.675Z">
+<meta property="og:updated_time" content="2018-12-18T07:50:32.660Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习">
-<meta name="twitter:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta name="twitter:title" content="Python实现一个web服务器">
+<meta name="twitter:description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/git-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/Web-Server/"/>
 
 
 
 
 
-  <title>git学习 | converk</title>
+  <title>Python实现一个web服务器 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/git-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/Web-Server/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git学习</h1>
+          <h1 class="post-title" itemprop="name headline">Python实现一个web服务器</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T10:41:00+08:00">
-                2018-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
+                2018-12-18
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/28/git-1/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/18/Web-Server/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/28/git-1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/18/Web-Server/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,30 +353,32 @@
       
 
       
-        <h1 id="本文主要记录一些笔者在学习过程中的困难"><a href="#本文主要记录一些笔者在学习过程中的困难" class="headerlink" title="本文主要记录一些笔者在学习过程中的困难"></a>本文主要记录一些笔者在学习过程中的困难</h1><hr>
-<p><code>git diff</code>    #是工作区(work dict)和暂存区(stage)的比较<br><code>git diff --cached</code>    #是暂存区(stage)和分支(master)的比较</p>
-<p>命令<code>git checkout -- readme.txt</code>意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
+        <h1 id="Python3实现一个简易web服务器"><a href="#Python3实现一个简易web服务器" class="headerlink" title="Python3实现一个简易web服务器"></a>Python3实现一个简易web服务器</h1><h2 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h2><h2 id="了解CGI与FastCGI"><a href="#了解CGI与FastCGI" class="headerlink" title="了解CGI与FastCGI"></a>了解CGI与FastCGI</h2><p><strong>CGI</strong>是外部应用程序(CGI程序)与web服务器之间的接口,是在<strong>CGI程序</strong>和<strong>Web服务器</strong>之间传递信息的规程<br><strong>CGI</strong>让wb服务器执行外部程序,并把结果发送给<strong>web浏览器</strong><br>CGI就是一座桥,把把网页和web服务器中的执行程序连接起来<br>CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完后结束这个子进程。这就是fork-and-execute模式。所以用cgi方式的服务器有多少连接请求就会有多少cgi子进程<br>工作流程:</p>
 <ol>
-<li><p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-</li>
-<li><p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-</li>
+<li>浏览器通过HTML表单或超链接请求指向一个CGI应用程序的URL。</li>
+<li>服务器收发到请求。</li>
+<li>服务器执行所指定的CGI应用程序。</li>
+<li>CGI应用程序执行所需要的操作，通常是基于浏览者输入的内容。</li>
+<li>CGI应用程序把结果格式化为网络服务器和浏览器能够理解的文档（通常是HTML网页）。</li>
+<li>网络服务器把结果返回到浏览器中。</li>
 </ol>
-<p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
-<p>用命令<code>git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区</p>
-<p>一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>创建名为div的分支：　<code>git branch div</code><br>切换到这个分支：<code>git checkout div</code><br>查看所有分支：<code>git branch</code><br>之后可以进行修改工作，在div这个分支上进行提交  </p>
-<p>切换回master: <code>git checkout master</code><br>合并ｄｉｖ分支到当前分支：<code>git merge div</code><br>删除分支：<code>git branch -d div</code>  </p>
-<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>当新建一个分支f1的时候,在这个分支上修改文件并提交,<br>之后切换回<code>master</code>分支,再在<code>master</code>上修改并提交,<br>当合并两个分支的时候会出现冲突,这个是因为当只有一个领先时,却在两个分支上有两个状态,所以无法合并.<br>当再次修改并提交时<code>master</code>分支上比初始领先了两个提交,f1分支也可以再通过一次修改和提交来达到这时的状态,所以通过再一次修改和提交来解决冲突,从而合并两个分支.</p>
-<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p>在合并分支的时候,默认使用 <code>Fast forward</code> 方式,合并后会丢失分支的信息，<br>在<code>--no-ff</code>方式下使用<code>git merge</code>,会禁用Fast forward 方式，不会删除分支的信息<br>但git会生成一个新的commit<br>命令大概如下 git merge –no-ff -m “merge with no-ff” dev(dev为分支名称)<br>可以用git log –graph –pretty=oneline –abbrev-commit来查看分支历史  </p>
-<h2 id="利用分支来修改bug"><a href="#利用分支来修改bug" class="headerlink" title="利用分支来修改bug"></a>利用分支来修改bug</h2><p>当你正在dev分支上进行工作,这时候已经发布的版本出现了一个bug,你需要去改正这个bug,这时候你就需要保存dev分支下的工作进度<br>Git还提供了一个<code>stash</code>功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：<code>git stash</code><br>切换到拎一个分支进行修改bug:  <code>git checkout master</code><br>新建一个分支: <code>git checkout -b bug-1</code><br>在这个分支下进行修改bug,改完之后切换回master:<br><code>git checkout master</code><br>之后将修改的结果与master进行合并并删除这个分支:<br><code>git merge --no-ff -m &quot;merged bug fix 101&quot; issue-101</code><br>回到dev进行未完成的工作<br><code>git checkout dev</code><br>利用命令 <code>git stash pop</code>来恢复现场  </p>
-<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p><code>git remote</code>用来查看远程库的信息<br><code>git remote -v</code> 用来查看远程库的详细信息,<br>如果要推送其他分支,比如dev，就改成：<code>git push origin dev</code><br>对于几个分支的区别和是否推送:</p>
-<blockquote>
-<p><code>master</code>分支是主分支，因此要时刻与远程同步；<br><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；<br><code>bug</code>分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；<br><code>feature</code>分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。  </p>
-</blockquote>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="当有人在这个电脑的另一个目录下clone下了远程仓库"><a href="#当有人在这个电脑的另一个目录下clone下了远程仓库" class="headerlink" title="当有人在这个电脑的另一个目录下clone下了远程仓库"></a>当有人在这个电脑的另一个目录下clone下了远程仓库</h3><p><code>git clone &lt;https://github.com/converk/learn_git.git&gt;</code><br>但是当他<code>git branch</code> 时只能看到master一个分支,<br>如果想在dev分支上进行开发,<code>就必须创建远程的origin/dev分支到本地</code>,使用下面这个命令:<code>git checkout -b origin/dev dev.</code><br>这时他就可以在dev分支上进行修改并推送到远程仓库.  </p>
-<p>在那个人向远程仓库推送结束后,你在dev分支上对文件也做了修改,在推送到远程仓库的时候会报错,因为你的小伙伴的最新提交和你试图推送的提交有冲突.<br>这时使用命令:<code>git pull</code>将最新的提交从<code>origin/dev</code>上抓下来,然后合并,再推送.<br>当git pull也失败了，<strong>原因是没有指定本地dev分支与远程origin/dev分支的链接</strong>，<br>根据提示，设置dev和origin/dev的链接  :<code>git branch --set-upstream-to=origin/dev dev</code><br>然后再git pull,之后再git commit和git push就行了  </p>
-<h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><p>首先要切换到要打标签的分支上,然后使用<code>git tag v1.0</code>打上标签 v1.0是标签名,<br>可以用<code>git tag</code>来查看所有标签,<br>可以用<code>git show v1.0</code>来查看标签的详细信息<br>也可以用<code>git tag v0.9 sgu7824</code>来找相应的commit号来打上标签<br>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息</p>
+<p><strong>FastCGI</strong>是一个可伸缩地、高速地在HTTP server和动态脚本语言间通信的接口<br>FastCGI是从CGI发展改进而来的。传统CGI接口方式的主要缺点是性能很差，因为每次HTTP服务器遇到动态程序时都需要重新启动脚本解析器来执行解析，然后结果被返回给HTTP服务器。这在处理高并发访问时，几乎是不可用的。FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次(这是CGI最为人诟病的fork-and-execute 模式)。CGI 就是所谓的短生存期应用程序，FastCGI 就是所谓的长生存期应用程序。由于 FastCGI 程序并不需要不断的产生新进程，可以大大降低服务器的压力并且产生较高的应用效率</p>
+<p>FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail-Over特性等等。FastCGI接口方式采用C/S结构，可以将HTTP服务器和脚本解析服务器分开，同时在脚本解析服务器上启动一个或者多个脚本解析守护进程。当HTTP服务器每次遇到动态程序时，可以将其直接交付给FastCGI进程来执行，然后将得到的结果返回给浏览器。这种方式可以让HTTP服务器专一地处理静态请求或者将动态脚本服务器的结果返回给客户端，这在很大程度上提高了整个应用系统的性能。</p>
+<p>FastCGI的工作流程:</p>
+<p>Web Server启动时载入FastCGI进程管理器（PHP-CGI或者PHP-FPM或者spawn-cgi)<br>FastCGI进程管理器自身初始化，启动多个CGI解释器进程(可见多个php-cgi)并等待来自Web Server的连接。<br>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi。<br>FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当FastCGI子进程关闭连接时，请求便告处理完成。FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web Server中)的下一个连接。 在CGI模式中，php-cgi在此便退出。</p>
+<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
+<li>等待某个人连接我们的服务器并向我们发送一个HTTP请求</li>
+<li>解析该请求</li>
+<li>了解该请求希望请求的内容</li>
+<li>服务器根据请求抓取需要的数据（从服务器本地文件中读取或者程序动态生成）</li>
+<li>将数据格式化为请求需要的格式</li>
+<li>返回HTTP响应</li>
+</ol>
+<p>对于步骤1,2,6,对于所有的web应用都是一样的,这部分内容Python标准库中的 <code>BaseHTTPServer</code> 模块可以帮助我们处理</p>
+<h2 id="BaseHTTPServer模块"><a href="#BaseHTTPServer模块" class="headerlink" title="BaseHTTPServer模块"></a>BaseHTTPServer模块</h2><p><code>BaseHTTPServer</code>：提供基本的Web服务和处理器类，分别是HTTPServer及BaseHTTPRequestHandler；</p>
+<h3 id="BaseHTTPRequestHandler"><a href="#BaseHTTPRequestHandler" class="headerlink" title="BaseHTTPRequestHandler"></a>BaseHTTPRequestHandler</h3><p><code>BaseHTTPRequestHandler</code>在HTTP请求到达时进行处理，但其自身并不能对请求作出相应，由另一个<strong>派生类</strong>来处理每一个请求方法。<code>BaseHTTPRequestHandler</code>为子集提供许多类<strong>变量、实例变量和方法</strong>，其分析请求对象和请求头部，并根据请求类型调用相应的方法。一般这个模块不被直接使用，而是被用来作为构建功能性Web服务器的一个<code>基类</code>。</p>
+<h4 id="一些常用的方法和属性"><a href="#一些常用的方法和属性" class="headerlink" title="一些常用的方法和属性"></a>一些常用的方法和属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BaseHTTPRequestHandler.path                    #包含的请求路径和GET请求的数据</span><br><span class="line">BaseHTTPRequestHandler.command                 #请求类型GET、POST...</span><br><span class="line">BaseHTTPRequestHandler.client_address          #为客户端的主机地址和端口号</span><br><span class="line">BaseHTTPRequestHandler.date_time_string()      #请求发送时间</span><br><span class="line">BaseHTTPRequestHandler.request_version         #请求的协议类型HTTP/1.0、HTTP/1.1</span><br><span class="line">BaseHTTPRequestHandler.headers                 #请求的头</span><br><span class="line">BaseHTTPRequestHandler.responses               #HTTP错误代码及对应错误信息的字典</span><br><span class="line">BaseHTTPRequestHandler.handle()                #用于处理某一连接对象的请求，调用handle_one_request方法处理</span><br><span class="line">BaseHTTPRequestHandler.handle_one_request()    #根据请求类型调用do_XXX()方法，XXX为请求类型</span><br><span class="line">BaseHTTPRequestHandler.do_XXX()                #处理请求</span><br><span class="line">BaseHTTPRequestHandler.send_error()            #发送并记录一个完整的错误回复到客户端,内部调用send_response()方法实现</span><br><span class="line">BaseHTTPRequestHandler.send_response()         #发送一个响应头并记录已接收的请求</span><br><span class="line">BaseHTTPRequestHandler.send_header()           #发送一个指定的HTTP头到输出流。 keyword 应该指定头关键字，value 指定它的值</span><br><span class="line">BaseHTTPRequestHandler.end_headers()           #发送一个空白行，标识发送HTTP头部结束</span><br><span class="line">BaseHTTPRequestHandler.wfile    #self.connection.makefile(&apos;rb&apos;, self.wbufsize) self.wbufsize = -1 应答的HTTP文本流对象，可写入应答信息</span><br><span class="line">BaseHTTPRequestHandler.rfile    #self.connection.makefile(&apos;wb&apos;, self.rbufsize) self.rbufsize = 0  请求的HTTP文本流对象，可读取请求信息</span><br></pre></td></tr></table></figure>
+<h2 id="处理静态页面"><a href="#处理静态页面" class="headerlink" title="处理静态页面"></a>处理静态页面</h2><p>处理静态页面就是根据请求的页面名得到磁盘上的页面文件并返回<br>没有找到相应的文件返回<code>error</code>界面也是在这里完成</p>
 
       
     </div>
@@ -410,7 +412,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/09/28/git-1/" title="git学习">http://yoursite.com/2018/09/28/git-1/</a>
+    <a href="http://yoursite.com/2018/12/18/Web-Server/" title="Python实现一个web服务器">http://yoursite.com/2018/12/18/Web-Server/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -428,7 +430,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/09/28/git-1/" title="git学习">2018/09/28/git-1/</a>
+    <a href="/2018/12/18/Web-Server/" title="Python实现一个web服务器">2018/12/18/Web-Server/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -447,7 +449,7 @@
           
             <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
-            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+            <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           
         </div>
       
@@ -460,14 +462,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/18/typedef和复杂声明和函数指针/" rel="next" title="C语言中typedef的使用">
+                <i class="fa fa-chevron-left"></i> C语言中typedef的使用
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/C-touch/" rel="prev" title="C语言实现touch命令">
-                C语言实现touch命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/Tree/" rel="prev" title="Tree笔记">
+                Tree笔记 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +642,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本文主要记录一些笔者在学习过程中的困难"><span class="nav-number">1.</span> <span class="nav-text">本文主要记录一些笔者在学习过程中的困难</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">1.1.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决冲突"><span class="nav-number">1.2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用分支来修改bug"><span class="nav-number">1.4.</span> <span class="nav-text">利用分支来修改bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多人协作"><span class="nav-number">1.5.</span> <span class="nav-text">多人协作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.6.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当有人在这个电脑的另一个目录下clone下了远程仓库"><span class="nav-number">1.6.1.</span> <span class="nav-text">当有人在这个电脑的另一个目录下clone下了远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打标签"><span class="nav-number">1.6.2.</span> <span class="nav-text">打标签</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3实现一个简易web服务器"><span class="nav-number">1.</span> <span class="nav-text">Python3实现一个简易web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解HTTP"><span class="nav-number">1.1.</span> <span class="nav-text">了解HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解CGI与FastCGI"><span class="nav-number">1.2.</span> <span class="nav-text">了解CGI与FastCGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">1.3.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BaseHTTPServer模块"><span class="nav-number">1.4.</span> <span class="nav-text">BaseHTTPServer模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BaseHTTPRequestHandler"><span class="nav-number">1.4.1.</span> <span class="nav-text">BaseHTTPRequestHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些常用的方法和属性"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">一些常用的方法和属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理静态页面"><span class="nav-number">1.5.</span> <span class="nav-text">处理静态页面</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -816,9 +822,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/09/28/git-1/';
-          this.page.identifier = '2018/09/28/git-1/';
-          this.page.title = 'git学习';
+          this.page.url = 'http://yoursite.com/2018/12/18/Web-Server/';
+          this.page.identifier = '2018/12/18/Web-Server/';
+          this.page.title = 'Python实现一个web服务器';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

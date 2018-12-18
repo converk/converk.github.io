@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,git," />
+  <meta name="keywords" content="C语言,笔记," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
-<meta name="keywords" content="笔记,git">
+<meta name="description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
+<meta name="keywords" content="C语言,笔记">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git学习">
-<meta property="og:url" content="http://yoursite.com/2018/09/28/git-1/index.html">
+<meta property="og:title" content="C语言中typedef的使用">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta property="og:description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:38:39.675Z">
+<meta property="og:updated_time" content="2018-12-18T07:49:58.227Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git学习">
-<meta name="twitter:description" content="本文主要记录一些笔者在学习过程中的困难 git diff    #是工作区(work dict)和暂存区(stage)的比较git diff --cached    #是暂存区(stage)和分支(master)的比较 命令git checkout -- readme.txt意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：  一种是readme.txt自修改后还没有被放">
+<meta name="twitter:title" content="C语言中typedef的使用">
+<meta name="twitter:description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/28/git-1/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/"/>
 
 
 
 
 
-  <title>git学习 | converk</title>
+  <title>C语言中typedef的使用 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/28/git-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">git学习</h1>
+          <h1 class="post-title" itemprop="name headline">C语言中typedef的使用</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-28T10:41:00+08:00">
-                2018-09-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
+                2018-12-18
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Git/" itemprop="url" rel="index">
-                    <span itemprop="name">Git</span>
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/09/28/git-1/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/18/typedef和复杂声明和函数指针/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/09/28/git-1/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/18/typedef和复杂声明和函数指针/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,30 +353,77 @@
       
 
       
-        <h1 id="本文主要记录一些笔者在学习过程中的困难"><a href="#本文主要记录一些笔者在学习过程中的困难" class="headerlink" title="本文主要记录一些笔者在学习过程中的困难"></a>本文主要记录一些笔者在学习过程中的困难</h1><hr>
-<p><code>git diff</code>    #是工作区(work dict)和暂存区(stage)的比较<br><code>git diff --cached</code>    #是暂存区(stage)和分支(master)的比较</p>
-<p>命令<code>git checkout -- readme.txt</code>意思就是，把readme.txt文件在工作区的修改全部撤销，这里有两种情况：</p>
-<ol>
-<li><p>一种是readme.txt自修改后还没有被放到暂存区，现在，撤销修改就回到和版本库一模一样的状态；</p>
-</li>
-<li><p>一种是readme.txt已经添加到暂存区后，又作了修改，现在，撤销修改就回到添加到暂存区后的状态。</p>
-</li>
-</ol>
-<p>总之，就是让这个文件回到最近一次git commit或git add时的状态。</p>
-<p>用命令<code>git reset HEAD &lt;file&gt;</code>可以把暂存区的修改撤销掉（unstage），重新放回工作区</p>
-<p>一是确实要从版本库中删除该文件，那就用命令git rm删掉，并且git commit：</p>
-<h2 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h2><p>创建名为div的分支：　<code>git branch div</code><br>切换到这个分支：<code>git checkout div</code><br>查看所有分支：<code>git branch</code><br>之后可以进行修改工作，在div这个分支上进行提交  </p>
-<p>切换回master: <code>git checkout master</code><br>合并ｄｉｖ分支到当前分支：<code>git merge div</code><br>删除分支：<code>git branch -d div</code>  </p>
-<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>当新建一个分支f1的时候,在这个分支上修改文件并提交,<br>之后切换回<code>master</code>分支,再在<code>master</code>上修改并提交,<br>当合并两个分支的时候会出现冲突,这个是因为当只有一个领先时,却在两个分支上有两个状态,所以无法合并.<br>当再次修改并提交时<code>master</code>分支上比初始领先了两个提交,f1分支也可以再通过一次修改和提交来达到这时的状态,所以通过再一次修改和提交来解决冲突,从而合并两个分支.</p>
-<h2 id="分支管理策略"><a href="#分支管理策略" class="headerlink" title="分支管理策略"></a>分支管理策略</h2><p>在合并分支的时候,默认使用 <code>Fast forward</code> 方式,合并后会丢失分支的信息，<br>在<code>--no-ff</code>方式下使用<code>git merge</code>,会禁用Fast forward 方式，不会删除分支的信息<br>但git会生成一个新的commit<br>命令大概如下 git merge –no-ff -m “merge with no-ff” dev(dev为分支名称)<br>可以用git log –graph –pretty=oneline –abbrev-commit来查看分支历史  </p>
-<h2 id="利用分支来修改bug"><a href="#利用分支来修改bug" class="headerlink" title="利用分支来修改bug"></a>利用分支来修改bug</h2><p>当你正在dev分支上进行工作,这时候已经发布的版本出现了一个bug,你需要去改正这个bug,这时候你就需要保存dev分支下的工作进度<br>Git还提供了一个<code>stash</code>功能，可以把当前工作现场“储藏”起来，等以后恢复现场后继续工作：<code>git stash</code><br>切换到拎一个分支进行修改bug:  <code>git checkout master</code><br>新建一个分支: <code>git checkout -b bug-1</code><br>在这个分支下进行修改bug,改完之后切换回master:<br><code>git checkout master</code><br>之后将修改的结果与master进行合并并删除这个分支:<br><code>git merge --no-ff -m &quot;merged bug fix 101&quot; issue-101</code><br>回到dev进行未完成的工作<br><code>git checkout dev</code><br>利用命令 <code>git stash pop</code>来恢复现场  </p>
-<h2 id="多人协作"><a href="#多人协作" class="headerlink" title="多人协作"></a>多人协作</h2><p><code>git remote</code>用来查看远程库的信息<br><code>git remote -v</code> 用来查看远程库的详细信息,<br>如果要推送其他分支,比如dev，就改成：<code>git push origin dev</code><br>对于几个分支的区别和是否推送:</p>
+        <h1 id="typedef-复杂声明-函数和指针"><a href="#typedef-复杂声明-函数和指针" class="headerlink" title="typedef,复杂声明,函数和指针"></a>typedef,复杂声明,函数和指针</h1><h2 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h2><p>利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:</p>
+<ul>
+<li>与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值</li>
+<li>typedef 由编译器解释,不是预处理</li>
+<li>比#define 灵活</li>
+</ul>
+<h3 id="typedef的一般使用"><a href="#typedef的一般使用" class="headerlink" title="typedef的一般使用"></a>typedef的一般使用</h3><p>typedef 使用例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef unsigned char BYTE</span><br></pre></td></tr></table></figure>
+<p>随后可以使用 BYTE 来定义<code>unsigned char</code>类型的变量:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BYTE x,y[10],*z;</span><br></pre></td></tr></table></figure>
+<p>typedef 的一些功能与<code>#define</code>重合:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define BYTE unsign char</span><br></pre></td></tr></table></figure>
+<p>这使得预处理器用<code>BYTE</code>替换 <code>unsign char</code>.<br><strong>注意以下两种方式的区别</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typedef char * STRING;</span><br><span class="line">STRING name,sign;</span><br></pre></td></tr></table></figure>
+<p>相当于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *name,*sign;</span><br></pre></td></tr></table></figure>
+<p><code>name</code>和<code>sign</code>都是<code>char</code>类型的指针<br>而对于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define STRING char *</span><br><span class="line">STRING name,sign</span><br></pre></td></tr></table></figure>
+<p>相当于:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char * name,sign;</span><br></pre></td></tr></table></figure>
+<p>只有<code>name</code>才是指针, <code>sign</code>只是一个char类型的变量</p>
+<h3 id="typedef用于结构"><a href="#typedef用于结构" class="headerlink" title="typedef用于结构"></a>typedef用于结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct complex&#123;</span><br><span class="line">    float real;</span><br><span class="line">    float imag;</span><br><span class="line">&#125; COMPLEX</span><br></pre></td></tr></table></figure>
+<p>然后就可以使用COMPLEX来代替complex来表示复数<br>使用typedef来定义结构的时候,可以忽略该结构的标签,例如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tyoedef struct &#123;double x;double y;&#125; rect;</span><br><span class="line">rect r1=&#123;3.0,6.0&#125;;</span><br><span class="line">rect r2;</span><br></pre></td></tr></table></figure>
+<p>上面的代码被翻译成</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;double x;double y;&#125; r1=&#123;3.0,6.0&#125;;</span><br><span class="line">struct &#123;double x;double y;&#125; r2;</span><br></pre></td></tr></table></figure>
+<p>可以看做声明了两个结构变量,r1和r2的成员完全相同,所以<code>r2=r1</code>是有效的操作.</p>
+<p>使用typedef的两个好处</p>
+<ul>
+<li>为经常出现的类型创建一个方便的类型名</li>
+<li>下面写复杂声明的时候再讨论  </li>
+</ul>
+<h2 id="其他复杂声明"><a href="#其他复杂声明" class="headerlink" title="其他复杂声明"></a>其他复杂声明</h2><h3 id="一般的复杂声明"><a href="#一般的复杂声明" class="headerlink" title="一般的复杂声明"></a>一般的复杂声明</h3><p>在C语言里面,一些复杂声明会用到下面的符号,如下表所示:</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>*</td>
+<td style="text-align:center">表示一个指针</td>
+<td></td>
+</tr>
+<tr>
+<td>[]</td>
+<td style="text-align:center">表示一个数组</td>
+<td></td>
+</tr>
+<tr>
+<td>()</td>
+<td style="text-align:center">表示一个函数</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>下面是一些复杂函数声明的实例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int board[8][8]  //声明一个8*8的二维数组</span><br><span class="line">int ** ptr      // 声明一个指向指针的指针</span><br><span class="line">int * risks[10] // 声明一个有10个元素的数组,每个元素都是一个int型的指针</span><br><span class="line">int (* risks)[10]  //声明一个指针,指向一个含有10个int型元素的数组</span><br><span class="line">int * oof[3][4]  //声明一个3*4的数组,每个元素都是指向int的指针</span><br><span class="line">int (* oof)[3][4]  //声明一个指针,指向一个3*4的int型数组</span><br><span class="line">int (* oof[3])[4]  //声明一个有三个元素的数组,每个元素都是一个指针,每个元素都指向,一个长度为4的int型数组</span><br></pre></td></tr></table></figure>
+<p>在看上面的几项复杂生命的时候要注意以下几条规则</p>
 <blockquote>
-<p><code>master</code>分支是主分支，因此要时刻与远程同步；<br><code>dev</code>分支是开发分支，团队所有成员都需要在上面工作，所以也需要与远程同步；<br><code>bug</code>分支只用于在本地修复bug，就没必要推到远程了，除非老板要看看你每周到底修复了几个bug；<br><code>feature</code>分支是否推到远程，取决于你是否和你的小伙伴合作在上面开发。  </p>
+<ol>
+<li>数组名后面的[]和函数名后面的()有相同的优先级,他们的优先级都比*高</li>
+<li>()和[]都是从左往右结合</li>
+</ol>
 </blockquote>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="当有人在这个电脑的另一个目录下clone下了远程仓库"><a href="#当有人在这个电脑的另一个目录下clone下了远程仓库" class="headerlink" title="当有人在这个电脑的另一个目录下clone下了远程仓库"></a>当有人在这个电脑的另一个目录下clone下了远程仓库</h3><p><code>git clone &lt;https://github.com/converk/learn_git.git&gt;</code><br>但是当他<code>git branch</code> 时只能看到master一个分支,<br>如果想在dev分支上进行开发,<code>就必须创建远程的origin/dev分支到本地</code>,使用下面这个命令:<code>git checkout -b origin/dev dev.</code><br>这时他就可以在dev分支上进行修改并推送到远程仓库.  </p>
-<p>在那个人向远程仓库推送结束后,你在dev分支上对文件也做了修改,在推送到远程仓库的时候会报错,因为你的小伙伴的最新提交和你试图推送的提交有冲突.<br>这时使用命令:<code>git pull</code>将最新的提交从<code>origin/dev</code>上抓下来,然后合并,再推送.<br>当git pull也失败了，<strong>原因是没有指定本地dev分支与远程origin/dev分支的链接</strong>，<br>根据提示，设置dev和origin/dev的链接  :<code>git branch --set-upstream-to=origin/dev dev</code><br>然后再git pull,之后再git commit和git push就行了  </p>
-<h3 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a>打标签</h3><p>首先要切换到要打标签的分支上,然后使用<code>git tag v1.0</code>打上标签 v1.0是标签名,<br>可以用<code>git tag</code>来查看所有标签,<br>可以用<code>git show v1.0</code>来查看标签的详细信息<br>也可以用<code>git tag v0.9 sgu7824</code>来找相应的commit号来打上标签<br>命令<code>git tag -a &lt;tagname&gt; -m &quot;blablabla...&quot;</code>可以指定标签信息</p>
+<p>根据上面的规则,还可以声明下面更复杂的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char * function(int);  //声明一个返回类型为char *的函数</span><br><span class="line">char (* function)(int);  //声明一个指向函数的指针,函数的返回类型为char</span><br><span class="line">char (* function[3])(int)  //声明一个有三个元素的数组,每个元素指向一个返回类型为char的函数</span><br></pre></td></tr></table></figure>
+<h3 id="与typedef结合的声明"><a href="#与typedef结合的声明" class="headerlink" title="与typedef结合的声明"></a>与typedef结合的声明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef int arr5[5]</span><br><span class="line">typedef arr5 * ptr</span><br><span class="line">typedef ptr arr10[10]</span><br><span class="line"></span><br><span class="line">arr5 togs  //togs是里面含有5个int型值的数组</span><br><span class="line">ptr p1     // p1是一个指向数组的指针,该数组里面有5个int型元素</span><br><span class="line">arr10 ap   //ap是一个含有10个元素的数组,每个元素都是指向一个含有5个元素的int型数组</span><br></pre></td></tr></table></figure>
+<p>由于与typedef结合的声明有点复杂,应用的话,这里不再讨论</p>
 
       
     </div>
@@ -410,7 +457,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/09/28/git-1/" title="git学习">http://yoursite.com/2018/09/28/git-1/</a>
+    <a href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/" title="C语言中typedef的使用">http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -428,7 +475,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/09/28/git-1/" title="git学习">2018/09/28/git-1/</a>
+    <a href="/2018/12/18/typedef和复杂声明和函数指针/" title="C语言中typedef的使用">2018/12/18/typedef和复杂声明和函数指针/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -445,9 +492,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
           
-            <a href="/tags/git/" rel="tag"><i class="fa fa-tag"></i> git</a>
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
         </div>
       
@@ -460,14 +507,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/12/18/多重链表(少)/" rel="next" title="C语言多重链表">
+                <i class="fa fa-chevron-left"></i> C语言多重链表
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/C-touch/" rel="prev" title="C语言实现touch命令">
-                C语言实现touch命令 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/18/Web-Server/" rel="prev" title="Python实现一个web服务器">
+                Python实现一个web服务器 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -636,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本文主要记录一些笔者在学习过程中的困难"><span class="nav-number">1.</span> <span class="nav-text">本文主要记录一些笔者在学习过程中的困难</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理"><span class="nav-number">1.1.</span> <span class="nav-text">分支管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决冲突"><span class="nav-number">1.2.</span> <span class="nav-text">解决冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分支管理策略"><span class="nav-number">1.3.</span> <span class="nav-text">分支管理策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用分支来修改bug"><span class="nav-number">1.4.</span> <span class="nav-text">利用分支来修改bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多人协作"><span class="nav-number">1.5.</span> <span class="nav-text">多人协作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他"><span class="nav-number">1.6.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#当有人在这个电脑的另一个目录下clone下了远程仓库"><span class="nav-number">1.6.1.</span> <span class="nav-text">当有人在这个电脑的另一个目录下clone下了远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打标签"><span class="nav-number">1.6.2.</span> <span class="nav-text">打标签</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typedef-复杂声明-函数和指针"><span class="nav-number">1.</span> <span class="nav-text">typedef,复杂声明,函数和指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#typedef"><span class="nav-number">1.1.</span> <span class="nav-text">typedef</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef的一般使用"><span class="nav-number">1.1.1.</span> <span class="nav-text">typedef的一般使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef用于结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">typedef用于结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他复杂声明"><span class="nav-number">1.2.</span> <span class="nav-text">其他复杂声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般的复杂声明"><span class="nav-number">1.2.1.</span> <span class="nav-text">一般的复杂声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与typedef结合的声明"><span class="nav-number">1.2.2.</span> <span class="nav-text">与typedef结合的声明</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -816,9 +867,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/09/28/git-1/';
-          this.page.identifier = '2018/09/28/git-1/';
-          this.page.title = 'git学习';
+          this.page.url = 'http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/';
+          this.page.identifier = '2018/12/18/typedef和复杂声明和函数指针/';
+          this.page.title = 'C语言中typedef的使用';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';
