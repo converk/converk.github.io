@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,C语言," />
+  <meta name="keywords" content="笔记,Data Structure,C语言," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
-<meta name="keywords" content="笔记,C语言">
+<meta name="description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
+<meta name="keywords" content="笔记,Data Structure,C语言">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言中typedef的使用">
-<meta property="og:url" content="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/index.html">
+<meta property="og:title" content="哈希表详解">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/哈希表详解/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
+<meta property="og:description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:49:58.227Z">
+<meta property="og:updated_time" content="2019-01-11T04:53:11.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言中typedef的使用">
-<meta name="twitter:description" content="typedef,复杂声明,函数和指针typedef利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:  与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值 typedef 由编译器解释,不是预处理 比#define 灵活  typedef的一般使用typedef 使用例子: 1typedef unsigned char BY">
+<meta name="twitter:title" content="哈希表详解">
+<meta name="twitter:description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/哈希表详解/"/>
 
 
 
 
 
-  <title>C语言中typedef的使用 | converk</title>
+  <title>哈希表详解 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/哈希表详解/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C语言中typedef的使用</h1>
+          <h1 class="post-title" itemprop="name headline">哈希表详解</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
-                2018-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T12:43:45+08:00">
+                2019-01-11
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/18/typedef和复杂声明和函数指针/#comments" itemprop="discussionUrl">
+                <a href="/2019/01/11/哈希表详解/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/18/typedef和复杂声明和函数指针/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/01/11/哈希表详解/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,77 +353,38 @@
       
 
       
-        <h1 id="typedef-复杂声明-函数和指针"><a href="#typedef-复杂声明-函数和指针" class="headerlink" title="typedef,复杂声明,函数和指针"></a>typedef,复杂声明,函数和指针</h1><h2 id="typedef"><a href="#typedef" class="headerlink" title="typedef"></a>typedef</h2><p>利用 typedef 可以为某一类型自定义名称,这方面与#define 类似,但有几处不同:</p>
-<ul>
-<li>与#define 不同,typedef 创建的符号命名只受限于类型,不能用于定义值</li>
-<li>typedef 由编译器解释,不是预处理</li>
-<li>比#define 灵活</li>
-</ul>
-<h3 id="typedef的一般使用"><a href="#typedef的一般使用" class="headerlink" title="typedef的一般使用"></a>typedef的一般使用</h3><p>typedef 使用例子:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef unsigned char BYTE</span><br></pre></td></tr></table></figure>
-<p>随后可以使用 BYTE 来定义<code>unsigned char</code>类型的变量:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BYTE x,y[10],*z;</span><br></pre></td></tr></table></figure>
-<p>typedef 的一些功能与<code>#define</code>重合:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">#define BYTE unsign char</span><br></pre></td></tr></table></figure>
-<p>这使得预处理器用<code>BYTE</code>替换 <code>unsign char</code>.<br><strong>注意以下两种方式的区别</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">typedef char * STRING;</span><br><span class="line">STRING name,sign;</span><br></pre></td></tr></table></figure>
-<p>相当于:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *name,*sign;</span><br></pre></td></tr></table></figure>
-<p><code>name</code>和<code>sign</code>都是<code>char</code>类型的指针<br>而对于:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#define STRING char *</span><br><span class="line">STRING name,sign</span><br></pre></td></tr></table></figure>
-<p>相当于:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char * name,sign;</span><br></pre></td></tr></table></figure>
-<p>只有<code>name</code>才是指针, <code>sign</code>只是一个char类型的变量</p>
-<h3 id="typedef用于结构"><a href="#typedef用于结构" class="headerlink" title="typedef用于结构"></a>typedef用于结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">typedef struct complex&#123;</span><br><span class="line">    float real;</span><br><span class="line">    float imag;</span><br><span class="line">&#125; COMPLEX</span><br></pre></td></tr></table></figure>
-<p>然后就可以使用COMPLEX来代替complex来表示复数<br>使用typedef来定义结构的时候,可以忽略该结构的标签,例如:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tyoedef struct &#123;double x;double y;&#125; rect;</span><br><span class="line">rect r1=&#123;3.0,6.0&#125;;</span><br><span class="line">rect r2;</span><br></pre></td></tr></table></figure>
-<p>上面的代码被翻译成</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct &#123;double x;double y;&#125; r1=&#123;3.0,6.0&#125;;</span><br><span class="line">struct &#123;double x;double y;&#125; r2;</span><br></pre></td></tr></table></figure>
-<p>可以看做声明了两个结构变量,r1和r2的成员完全相同,所以<code>r2=r1</code>是有效的操作.</p>
-<p>使用typedef的两个好处</p>
-<ul>
-<li>为经常出现的类型创建一个方便的类型名</li>
-<li>下面写复杂声明的时候再讨论  </li>
-</ul>
-<h2 id="其他复杂声明"><a href="#其他复杂声明" class="headerlink" title="其他复杂声明"></a>其他复杂声明</h2><h3 id="一般的复杂声明"><a href="#一般的复杂声明" class="headerlink" title="一般的复杂声明"></a>一般的复杂声明</h3><p>在C语言里面,一些复杂声明会用到下面的符号,如下表所示:</p>
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>*</td>
-<td style="text-align:center">表示一个指针</td>
-<td></td>
-</tr>
-<tr>
-<td>[]</td>
-<td style="text-align:center">表示一个数组</td>
-<td></td>
-</tr>
-<tr>
-<td>()</td>
-<td style="text-align:center">表示一个函数</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>下面是一些复杂函数声明的实例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int board[8][8]  //声明一个8*8的二维数组</span><br><span class="line">int ** ptr      // 声明一个指向指针的指针</span><br><span class="line">int * risks[10] // 声明一个有10个元素的数组,每个元素都是一个int型的指针</span><br><span class="line">int (* risks)[10]  //声明一个指针,指向一个含有10个int型元素的数组</span><br><span class="line">int * oof[3][4]  //声明一个3*4的数组,每个元素都是指向int的指针</span><br><span class="line">int (* oof)[3][4]  //声明一个指针,指向一个3*4的int型数组</span><br><span class="line">int (* oof[3])[4]  //声明一个有三个元素的数组,每个元素都是一个指针,每个元素都指向,一个长度为4的int型数组</span><br></pre></td></tr></table></figure>
-<p>在看上面的几项复杂生命的时候要注意以下几条规则</p>
-<blockquote>
+        <h1 id="散列-哈希表"><a href="#散列-哈希表" class="headerlink" title="散列(哈希表)"></a>散列(哈希表)</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>理想的散列表数据结构只不过是一个包含有<em><strong>关键字</strong></em>的具有固定大小的<strong>数组</strong>(假大小为tableSize)<br>每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做<em><strong>散列函数</strong></em>,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字<br>当两个关键字映射到同一个位置的时候,这种情况称为<em><strong>冲突</strong></em></p>
+<h2 id="散列函数-哈希函数"><a href="#散列函数-哈希函数" class="headerlink" title="散列函数(哈希函数)"></a>散列函数(哈希函数)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef unsigned int Index</span><br></pre></td></tr></table></figure>
+<p>几种常见的哈希函数</p>
 <ol>
-<li>数组名后面的[]和函数名后面的()有相同的优先级,他们的优先级都比*高</li>
-<li>()和[]都是从左往右结合</li>
+<li>如果关键字是数字,一般可以将<strong>key mod tablesize</strong>来作为该关键词的索引,但是这样和容易重复和空间浪费</li>
+<li><p>如果关键词是字符串,那么可以讲字符串各个字符的ascii码值加在一起然后 mod tablesize, 但是这种哈希函数的缺点是如果表特别大,不会很好的分配关键字,</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Index Hash(const char *str, int tablesize)&#123;</span><br><span class="line">    unsigned int HashVal=0;</span><br><span class="line"></span><br><span class="line">    while(*str!=&apos;\0)</span><br><span class="line">        HashVal+=*str++;</span><br><span class="line">    return HashVal % tablesize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>设计一个散列函数涉及到关键字的所有字符,并且可以分布的很好(但不一定是分布的最好的),但下面这种情况,如果关键字过长可以不使用全部字符,比如只使用奇数字</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Index Hash(const char *str, int tablesize)&#123;</span><br><span class="line">    unsigned int HashVal=0;</span><br><span class="line"></span><br><span class="line">    while(*str!=&apos;\0)</span><br><span class="line">        HashVal=(HashVal&lt;&lt;5)+*str++;</span><br><span class="line">    return HashVal % tablesize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
 </ol>
-</blockquote>
-<p>根据上面的规则,还可以声明下面更复杂的:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">char * function(int);  //声明一个返回类型为char *的函数</span><br><span class="line">char (* function)(int);  //声明一个指向函数的指针,函数的返回类型为char</span><br><span class="line">char (* function[3])(int)  //声明一个有三个元素的数组,每个元素指向一个返回类型为char的函数</span><br></pre></td></tr></table></figure>
-<h3 id="与typedef结合的声明"><a href="#与typedef结合的声明" class="headerlink" title="与typedef结合的声明"></a>与typedef结合的声明</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typedef int arr5[5]</span><br><span class="line">typedef arr5 * ptr</span><br><span class="line">typedef ptr arr10[10]</span><br><span class="line"></span><br><span class="line">arr5 togs  //togs是里面含有5个int型值的数组</span><br><span class="line">ptr p1     // p1是一个指向数组的指针,该数组里面有5个int型元素</span><br><span class="line">arr10 ap   //ap是一个含有10个元素的数组,每个元素都是指向一个含有5个元素的int型数组</span><br></pre></td></tr></table></figure>
-<p>由于与typedef结合的声明有点复杂,应用的话,这里不再讨论</p>
+<p>剩下的问题就是解决当一个元素插入的时候,另外一个元素已经存在(两个元素的散列值相同),那么就产生一个冲突,冲突解决有两种方法:<strong>分离链接法和开放定址法</strong></p>
+<h2 id="分离链接法"><a href="#分离链接法" class="headerlink" title="分离链接法"></a>分离链接法</h2><p>做法是将散列值相同的元素都保存到一个表里面,这些表是 _链表_,这些表都有表头,<br>为了执行find:使用哈希函数找出应该查找哪个链表<br>为了执行insert:使用Insert链表的方法,可以将新元素插入到一个链表的末位或者最前面,一般插入在最前面,因为最近插入的元素有可能最先被访问<br>除了使用链表来解决冲突,还可以使用<strong>二叉查找树</strong>或者另外一个<strong>哈希表</strong></p>
+<h3 id="装填因子"><a href="#装填因子" class="headerlink" title="装填因子"></a>装填因子</h3><p>我们定义散列表的元素个数和散列表的大小的比值为装填因子(k),其实也就是哈希表每一个位置的<strong>链表的平均长度</strong>,<br>一次成功的查找花费的时间为(k/2)+1<br>一次不成功的查找花费时间为k,<br>也就是说明链表的长度并不重要,装填因子才是最重要的,一般让<strong>k尽可能等于1</strong>才是最好的,因为这样查找的时间变得很短,而又不至于哈希表里有大量的空位,节省了空间<br>其实也就是尽可能做到哈希表里面的元素尽可能<strong>均匀分布</strong></p>
+<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p>分离链接法的主要缺点是需要用到指针,给指针分配空间会消耗时间,减慢算法速度<br>所以这时就需要一个新的方法来解决冲突–开放定址法<br>在这个方法里面,所有的数据都要存放在表里面,而不像上面那个方法,可以另外开一个链表,因此需要的空间很大<br>对于这种方法,装添因子的大小应该低于k=0.5  </p>
+<h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>一个关键字在哈希表里面的索引值: h(X)=(Hash(X)+F(i)) mod tablesize<br>Hash(X)是哈希函数<br>F(i)就是解决冲突的办法,下面来讨论几种</p>
+<h3 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h3><p>也就是F(i)是i的线性函数,最简单的就是H(i)=i,<br>如果要插入的地方已经有元素,那么一直往这个索引后面的索引找(当查找到末尾的时候返回到最开始),直到找到一个不为空的位置,然后插入,虽然这样总能找到一个空单元去插入,但是所消耗的时间很多,并且如果表很空,那么元素所占据的单元也只会集中在很小的一块,这叫做 <em>一次聚集</em>,<br><strong>随机冲突解决</strong>: 对于查找,一次成功的查找消耗的时间比一次不成功查找消耗的时间要少,一次成功的查找可以看做是插入这个元素的时候一次不成功的查找,当一个哈希表从空一直插入的时候,装填因子是一直在上升的,随着装填因子的上升,后面的元素进行查找也就越来越难,哈希表里面空所占的比例为1-k,那么查找一个空单元预计的探测次数为1/(1-k),然后通过积分求平均的方式来得到平均值,<br>对比随机冲突解决和线性探测法可以发现,线性探测法一般都要比随机冲突解决消耗的时间要更大</p>
+<h3 id="平方探测法"><a href="#平方探测法" class="headerlink" title="平方探测法"></a>平方探测法</h3><p>F(i)=i*i,对于线性探测,让表填满不是一个好主意,因为k越大,后面的查找和插入操作也就消耗的更长的时间,对于平方探测,当表的元素不是素数的时候,一旦表被填超过一半,平方探测可能找不到一个空位去插入,因此就有了下面的定理<br><strong>定理</strong>:如果使用平方探测,并且表的大小是<strong>素数</strong>,那么当表<strong>至少有一半是空</strong>的时候,我们总能找到一个空位去插入<br>对于这种解决冲突的方法,删除不能够用一般的删除,因为这个位置可能已经引起过其他元素的冲突,其他元素绕过他存在了别处,如果按照一般的删除,对于那些绕过他的元素查找就会出现问题,所以这里对于一个元素的删除是<strong>懒惰删除</strong></p>
+<h3 id="双散列"><a href="#双散列" class="headerlink" title="双散列"></a>双散列</h3><p>就是把一个哈希表的散列函数应用到另外一个哈希表里面,即<code>F(i)=i*hash2(X)</code>,也就是下一步探测的是加上i乘以关键字在另外一个哈希函数上的返回值<br>在这种情况下,散列表的大小是<strong>素数</strong>很关键,</p>
+<ul>
+<li>因为要保证所有单元都可以被检测到,</li>
+<li>保证当一个位置产生冲突后,备选的位置不止一个</li>
+</ul>
+<p>一个好的第二个哈希函数的例子是:<code>hash(X)=R-(X mod R)</code>,R可以取整数</p>
+<h2 id="再散列"><a href="#再散列" class="headerlink" title="再散列"></a>再散列</h2><p>对于使用平方探测法的开放定址散列法,如果哈希表过满(填充超过一半),那么插入一个元素就有可能不成功,或者花费的时间过长  </p>
+<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>我们可以建立一个大小是原来两倍的哈希表(这里的两倍指的是原来表大小两倍后的第一个素数,因为要保证表的大小是一个素数),然后遍历原来的表,并计算原来表中所有未删除的值在新表中的散列值(使用新表的散列函数),然后将这些元素放进新的表中,这个过程就叫做<strong>再散列</strong><br>这个算法的运行时间大约为O(N),因为有N个元素要再散列(考虑原始表的最大值)<br>还有在再散列之前,已经对老表进行了N/2次插入,这之后,将老表的元素添加到新表里面的时候,每个元素所消耗的时间大约都是常数时间,因为TableSize变大,可能造成的冲突被减少了<br><strong>有三种选择进行再散列</strong></p>
+<ul>
+<li>当一次插入失败的时候</li>
+<li>当插入到表元素一半的时候</li>
+<li>当装填因子k达到某个值的时候</li>
+</ul>
 
       
     </div>
@@ -457,7 +418,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/" title="C语言中typedef的使用">http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/</a>
+    <a href="http://yoursite.com/2019/01/11/哈希表详解/" title="哈希表详解">http://yoursite.com/2019/01/11/哈希表详解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -475,7 +436,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/12/18/typedef和复杂声明和函数指针/" title="C语言中typedef的使用">2018/12/18/typedef和复杂声明和函数指针/</a>
+    <a href="/2019/01/11/哈希表详解/" title="哈希表详解">2019/01/11/哈希表详解/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -494,6 +455,8 @@
           
             <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
+            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+          
             <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
           
         </div>
@@ -507,8 +470,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/Tree/" rel="next" title="Tree笔记">
-                <i class="fa fa-chevron-left"></i> Tree笔记
+              <a href="/2019/01/11/Rust学习笔记-二/" rel="next" title="Rust学习笔记(二)">
+                <i class="fa fa-chevron-left"></i> Rust学习笔记(二)
               </a>
             
           </div>
@@ -517,8 +480,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/Rust学习笔记-一/" rel="prev" title="Rust学习笔记(一)">
-                Rust学习笔记(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/11/python面向对象理解-一/" rel="prev" title="python面向对象理解(一)">
+                python面向对象理解(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -687,7 +650,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#typedef-复杂声明-函数和指针"><span class="nav-number">1.</span> <span class="nav-text">typedef,复杂声明,函数和指针</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#typedef"><span class="nav-number">1.1.</span> <span class="nav-text">typedef</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef的一般使用"><span class="nav-number">1.1.1.</span> <span class="nav-text">typedef的一般使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#typedef用于结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">typedef用于结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其他复杂声明"><span class="nav-number">1.2.</span> <span class="nav-text">其他复杂声明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一般的复杂声明"><span class="nav-number">1.2.1.</span> <span class="nav-text">一般的复杂声明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与typedef结合的声明"><span class="nav-number">1.2.2.</span> <span class="nav-text">与typedef结合的声明</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#散列-哈希表"><span class="nav-number">1.</span> <span class="nav-text">散列(哈希表)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散列函数-哈希函数"><span class="nav-number">1.2.</span> <span class="nav-text">散列函数(哈希函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分离链接法"><span class="nav-number">1.3.</span> <span class="nav-text">分离链接法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#装填因子"><span class="nav-number">1.3.1.</span> <span class="nav-text">装填因子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开放定址法"><span class="nav-number">1.4.</span> <span class="nav-text">开放定址法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">计算方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性探测法"><span class="nav-number">1.4.2.</span> <span class="nav-text">线性探测法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平方探测法"><span class="nav-number">1.4.3.</span> <span class="nav-text">平方探测法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双散列"><span class="nav-number">1.4.4.</span> <span class="nav-text">双散列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再散列"><span class="nav-number">1.5.</span> <span class="nav-text">再散列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.5.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -867,9 +830,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/12/18/typedef和复杂声明和函数指针/';
-          this.page.identifier = '2018/12/18/typedef和复杂声明和函数指针/';
-          this.page.title = 'C语言中typedef的使用';
+          this.page.url = 'http://yoursite.com/2019/01/11/哈希表详解/';
+          this.page.identifier = '2019/01/11/哈希表详解/';
+          this.page.title = '哈希表详解';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

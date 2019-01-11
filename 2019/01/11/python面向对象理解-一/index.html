@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="笔记,Python," />
+  <meta name="keywords" content="笔记,Python,面向对象,想法," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
-<meta name="keywords" content="笔记,Python">
+<meta name="description" content="面向对象设计隐藏细节并且创建公共接口在面向对象设计中模块化一个对象的主要目的是决定该对象的公共接口接口是其他对象可以和该对象交互的属性和方法的集合例子:  我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器">
+<meta name="keywords" content="笔记,Python,面向对象,想法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Python实现一个web服务器">
-<meta property="og:url" content="http://yoursite.com/2018/12/18/Web-Server/index.html">
+<meta property="og:title" content="python面向对象理解(一)">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/python面向对象理解-一/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
+<meta property="og:description" content="面向对象设计隐藏细节并且创建公共接口在面向对象设计中模块化一个对象的主要目的是决定该对象的公共接口接口是其他对象可以和该对象交互的属性和方法的集合例子:  我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:50:32.660Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/国际象棋.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/棋子.jpg">
+<meta property="og:updated_time" content="2019-01-11T04:51:29.747Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Python实现一个web服务器">
-<meta name="twitter:description" content="Python3实现一个简易web服务器了解HTTP了解CGI与FastCGICGI是外部应用程序(CGI程序)与web服务器之间的接口,是在CGI程序和Web服务器之间传递信息的规程CGI让wb服务器执行外部程序,并把结果发送给web浏览器CGI就是一座桥,把把网页和web服务器中的执行程序连接起来CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完">
+<meta name="twitter:title" content="python面向对象理解(一)">
+<meta name="twitter:description" content="面向对象设计隐藏细节并且创建公共接口在面向对象设计中模块化一个对象的主要目的是决定该对象的公共接口接口是其他对象可以和该对象交互的属性和方法的集合例子:  我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/国际象棋.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/18/Web-Server/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/python面向对象理解-一/"/>
 
 
 
 
 
-  <title>Python实现一个web服务器 | converk</title>
+  <title>python面向对象理解(一) | converk</title>
   
 
 
@@ -253,7 +256,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/Web-Server/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/python面向对象理解-一/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +273,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Python实现一个web服务器</h1>
+          <h1 class="post-title" itemprop="name headline">python面向对象理解(一)</h1>
         
 
         <div class="post-meta">
@@ -282,8 +285,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
-                2018-12-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T12:46:04+08:00">
+                2019-01-11
               </time>
             
 
@@ -323,9 +326,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/18/Web-Server/#comments" itemprop="discussionUrl">
+                <a href="/2019/01/11/python面向对象理解-一/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/18/Web-Server/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/01/11/python面向对象理解-一/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,32 +356,31 @@
       
 
       
-        <h1 id="Python3实现一个简易web服务器"><a href="#Python3实现一个简易web服务器" class="headerlink" title="Python3实现一个简易web服务器"></a>Python3实现一个简易web服务器</h1><h2 id="了解HTTP"><a href="#了解HTTP" class="headerlink" title="了解HTTP"></a>了解HTTP</h2><h2 id="了解CGI与FastCGI"><a href="#了解CGI与FastCGI" class="headerlink" title="了解CGI与FastCGI"></a>了解CGI与FastCGI</h2><p><strong>CGI</strong>是外部应用程序(CGI程序)与web服务器之间的接口,是在<strong>CGI程序</strong>和<strong>Web服务器</strong>之间传递信息的规程<br><strong>CGI</strong>让wb服务器执行外部程序,并把结果发送给<strong>web浏览器</strong><br>CGI就是一座桥,把把网页和web服务器中的执行程序连接起来<br>CGI方式在遇到连接请求（用户请求）先要创建cgi的子进程，激活一个CGI进程，然后处理请求，处理完后结束这个子进程。这就是fork-and-execute模式。所以用cgi方式的服务器有多少连接请求就会有多少cgi子进程<br>工作流程:</p>
-<ol>
-<li>浏览器通过HTML表单或超链接请求指向一个CGI应用程序的URL。</li>
-<li>服务器收发到请求。</li>
-<li>服务器执行所指定的CGI应用程序。</li>
-<li>CGI应用程序执行所需要的操作，通常是基于浏览者输入的内容。</li>
-<li>CGI应用程序把结果格式化为网络服务器和浏览器能够理解的文档（通常是HTML网页）。</li>
-<li>网络服务器把结果返回到浏览器中。</li>
-</ol>
-<p><strong>FastCGI</strong>是一个可伸缩地、高速地在HTTP server和动态脚本语言间通信的接口<br>FastCGI是从CGI发展改进而来的。传统CGI接口方式的主要缺点是性能很差，因为每次HTTP服务器遇到动态程序时都需要重新启动脚本解析器来执行解析，然后结果被返回给HTTP服务器。这在处理高并发访问时，几乎是不可用的。FastCGI像是一个常驻(long-live)型的CGI，它可以一直执行着，只要激活后，不会每次都要花费时间去fork一次(这是CGI最为人诟病的fork-and-execute 模式)。CGI 就是所谓的短生存期应用程序，FastCGI 就是所谓的长生存期应用程序。由于 FastCGI 程序并不需要不断的产生新进程，可以大大降低服务器的压力并且产生较高的应用效率</p>
-<p>FastCGI是语言无关的、可伸缩架构的CGI开放扩展，其主要行为是将CGI解释器进程保持在内存中并因此获得较高的性能。众所周知，CGI解释器的反复加载是CGI性能低下的主要原因，如果CGI解释器保持在内存中并接受FastCGI进程管理器调度，则可以提供良好的性能、伸缩性、Fail-Over特性等等。FastCGI接口方式采用C/S结构，可以将HTTP服务器和脚本解析服务器分开，同时在脚本解析服务器上启动一个或者多个脚本解析守护进程。当HTTP服务器每次遇到动态程序时，可以将其直接交付给FastCGI进程来执行，然后将得到的结果返回给浏览器。这种方式可以让HTTP服务器专一地处理静态请求或者将动态脚本服务器的结果返回给客户端，这在很大程度上提高了整个应用系统的性能。</p>
-<p>FastCGI的工作流程:</p>
-<p>Web Server启动时载入FastCGI进程管理器（PHP-CGI或者PHP-FPM或者spawn-cgi)<br>FastCGI进程管理器自身初始化，启动多个CGI解释器进程(可见多个php-cgi)并等待来自Web Server的连接。<br>当客户端请求到达Web Server时，FastCGI进程管理器选择并连接到一个CGI解释器。Web server将CGI环境变量和标准输入发送到FastCGI子进程php-cgi。<br>FastCGI子进程完成处理后将标准输出和错误信息从同一连接返回Web Server。当FastCGI子进程关闭连接时，请求便告处理完成。FastCGI子进程接着等待并处理来自FastCGI进程管理器(运行在Web Server中)的下一个连接。 在CGI模式中，php-cgi在此便退出。</p>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><ol>
-<li>等待某个人连接我们的服务器并向我们发送一个HTTP请求</li>
-<li>解析该请求</li>
-<li>了解该请求希望请求的内容</li>
-<li>服务器根据请求抓取需要的数据（从服务器本地文件中读取或者程序动态生成）</li>
-<li>将数据格式化为请求需要的格式</li>
-<li>返回HTTP响应</li>
-</ol>
-<p>对于步骤1,2,6,对于所有的web应用都是一样的,这部分内容Python标准库中的 <code>BaseHTTPServer</code> 模块可以帮助我们处理</p>
-<h2 id="BaseHTTPServer模块"><a href="#BaseHTTPServer模块" class="headerlink" title="BaseHTTPServer模块"></a>BaseHTTPServer模块</h2><p><code>BaseHTTPServer</code>：提供基本的Web服务和处理器类，分别是HTTPServer及BaseHTTPRequestHandler；</p>
-<h3 id="BaseHTTPRequestHandler"><a href="#BaseHTTPRequestHandler" class="headerlink" title="BaseHTTPRequestHandler"></a>BaseHTTPRequestHandler</h3><p><code>BaseHTTPRequestHandler</code>在HTTP请求到达时进行处理，但其自身并不能对请求作出相应，由另一个<strong>派生类</strong>来处理每一个请求方法。<code>BaseHTTPRequestHandler</code>为子集提供许多类<strong>变量、实例变量和方法</strong>，其分析请求对象和请求头部，并根据请求类型调用相应的方法。一般这个模块不被直接使用，而是被用来作为构建功能性Web服务器的一个<code>基类</code>。</p>
-<h4 id="一些常用的方法和属性"><a href="#一些常用的方法和属性" class="headerlink" title="一些常用的方法和属性"></a>一些常用的方法和属性</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">BaseHTTPRequestHandler.path                    #包含的请求路径和GET请求的数据</span><br><span class="line">BaseHTTPRequestHandler.command                 #请求类型GET、POST...</span><br><span class="line">BaseHTTPRequestHandler.client_address          #为客户端的主机地址和端口号</span><br><span class="line">BaseHTTPRequestHandler.date_time_string()      #请求发送时间</span><br><span class="line">BaseHTTPRequestHandler.request_version         #请求的协议类型HTTP/1.0、HTTP/1.1</span><br><span class="line">BaseHTTPRequestHandler.headers                 #请求的头</span><br><span class="line">BaseHTTPRequestHandler.responses               #HTTP错误代码及对应错误信息的字典</span><br><span class="line">BaseHTTPRequestHandler.handle()                #用于处理某一连接对象的请求，调用handle_one_request方法处理</span><br><span class="line">BaseHTTPRequestHandler.handle_one_request()    #根据请求类型调用do_XXX()方法，XXX为请求类型</span><br><span class="line">BaseHTTPRequestHandler.do_XXX()                #处理请求</span><br><span class="line">BaseHTTPRequestHandler.send_error()            #发送并记录一个完整的错误回复到客户端,内部调用send_response()方法实现</span><br><span class="line">BaseHTTPRequestHandler.send_response()         #发送一个响应头并记录已接收的请求</span><br><span class="line">BaseHTTPRequestHandler.send_header()           #发送一个指定的HTTP头到输出流。 keyword 应该指定头关键字，value 指定它的值</span><br><span class="line">BaseHTTPRequestHandler.end_headers()           #发送一个空白行，标识发送HTTP头部结束</span><br><span class="line">BaseHTTPRequestHandler.wfile    #self.connection.makefile(&apos;rb&apos;, self.wbufsize) self.wbufsize = -1 应答的HTTP文本流对象，可写入应答信息</span><br><span class="line">BaseHTTPRequestHandler.rfile    #self.connection.makefile(&apos;wb&apos;, self.rbufsize) self.rbufsize = 0  请求的HTTP文本流对象，可读取请求信息</span><br></pre></td></tr></table></figure>
-<h2 id="处理静态页面"><a href="#处理静态页面" class="headerlink" title="处理静态页面"></a>处理静态页面</h2><p>处理静态页面就是根据请求的页面名得到磁盘上的页面文件并返回<br>没有找到相应的文件返回<code>error</code>界面也是在这里完成</p>
+        <h1 id="面向对象设计"><a href="#面向对象设计" class="headerlink" title="面向对象设计"></a>面向对象设计</h1><h2 id="隐藏细节并且创建公共接口"><a href="#隐藏细节并且创建公共接口" class="headerlink" title="隐藏细节并且创建公共接口"></a>隐藏细节并且创建公共接口</h2><p>在面向对象设计中模块化一个对象的主要目的是决定该对象的<strong>公共接口</strong><br><strong>接口</strong>是其他对象可以和该对象交互的属性和方法的集合<br>例子:</p>
+<blockquote>
+<p>我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器还是耳机。如果我们打开电视访问它的内部T作,例如将输出信号分为去往外部扬声器以及耳机,我们的保修就失效了</p>
+</blockquote>
+<h3 id="隐藏细节"><a href="#隐藏细节" class="headerlink" title="隐藏细节"></a>隐藏细节</h3><p>隐藏一个对象实现或者功能细节的过程,通常称为信息隐藏。它有时也被称为封装,但是实际封装是一个更加包罗万象的术语。封装数据并不一定是隐藏,但是二者的区别并不重要(一般不进行区分)<br>封装(Encapsulation)是面向对象的三大特征之一(在这里也可以叫做隐藏).它指的是将对象的状态信息隐藏在对应内部.不允许外部程序直接访问对象内部信息.而是通过<strong>该类所提供的方法</strong>来实现对内部信息的操作和访问</p>
+<h3 id="公共接口"><a href="#公共接口" class="headerlink" title="公共接口"></a>公共接口</h3><p>公共接口是非常重要的。因为在将来很难改变它,所以需要精心设计。改变接口会导致中断任意客户对象对它的调用。我们可以随意改变内部机制,如果我们通过改变公共访问的属性名字,或者改变一个方法可以接收的参数名字或类来改变接口,那么所有客户对象也将必须修改</p>
+<h3 id="抽象"><a href="#抽象" class="headerlink" title="抽象"></a>抽象</h3><p><strong>抽象意味着要对一个给定任务以最合适的水平来处理细节。它是一个把公共接口从内部细节里抽取的过程</strong>。  </p>
+<ul>
+<li>一辆车的司机需要与方向盘、油门和刹车交互。而电动机、传动系统以及制动子系统的工作原理对于司机来讲是无关紧要的,</li>
+<li>另一方面,对丁机械师,优化引擎以及刹车就会有不同水平的抽象</li>
+</ul>
+<p>上面两种情况是对一个对象在不同水平上的抽象,最后提供了不同的公共接口</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>抽象就是通过把公共和私有接口分开而封装信息的过程.<br>私有接口可以用于信息隐藏(私有接口就是对象内部互相调用使用的接口)</p>
+<h3 id="组合和继承"><a href="#组合和继承" class="headerlink" title="组合和继承"></a>组合和继承</h3><p>组合和继承是设计模式所依赖的两个基本原则,我们通过设计模式来创建一个对象的不同抽象层次,与对象的每一次交互都是在不同的抽上层次上进行</p>
+<h4 id="组合与聚合"><a href="#组合与聚合" class="headerlink" title="组合与聚合"></a>组合与聚合</h4><p><strong>组合</strong>:是把一些对象收集在一起组成一个新对象。当一个对象是另一个对象的一部分的时候,组合是一个好的选择<br><strong>聚合</strong>: 象棋是由一个棋盘和32个棋子组成的。棋盘进一步由64个位置组成。你可能会争论说,棋子不是象棋的一部分,因为你可以在象棋里用其他一副棋子把棋子替换掉。虽然在一个计算机版本的象棋里,这是不可能的,但是它给我们引人了聚合。聚合几乎和组合一样,不同的地方是,<strong>聚合对象可以独立存在</strong>。把一个位置和不同的象棋棋盘相关联是不可能的,所以我们说,象棋棋盘是由位置组成的。但是对于棋子,它可以独立于象棋而存在,而被认为和一套象棋是一种聚合关系</p>
+<h5 id="区分组合与聚合的方法"><a href="#区分组合与聚合的方法" class="headerlink" title="区分组合与聚合的方法"></a>区分组合与聚合的方法</h5><p>当(内部)创建和销毁相应对象(比如:棋盘里一个位置)的时候,如果组合(外部)对象(比如:棋盘)控制着它们,那么组合就是最合适的。如果可以独立于组合对象去创建相关对象(比如:棋子),或者可以对比对象,一个聚合关系可能会有意义;<br>聚合是组合的—个更一般的形式。任何组合关系同时也是聚合关系</p>
+<p>下面来看一下一个国际象棋的UML图</p>
+<p><img src="./img/国际象棋.jpg" alt="国际象棋"></p>
+<p>Player:玩家对象<br>Plece:棋子对象<br>Chess Set;象棋对象<br>Position:棋盘里面每个位置对象<br>Board:棋盘对象</p>
+<p>在UML图里 , <strong>一 个实心菱形</strong>代表了组合关系。<strong>空心菱形</strong>代了聚合关系。你会注意到棋盘和棋子作为象棋的一部分来存储,它们的引用也以同样的方式作为一个属性存储在象棋里</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>上面对于国际象棋的定义还不够完善,比如,没有定义什么是玩家,我们不能把一个玩家和一个人关联,或者人工智能是玩家对象的一部分,我们想做到的是: 能够说“深蓝是一位玩家”或者“加里•卡斯帕罗夫是一位玩家”.这是一种由继承形成的关系。继承是众所周知最著名的用于面向对象编程的一种关系</p>
+<h5 id="一个继承的例子"><a href="#一个继承的例子" class="headerlink" title="一个继承的例子"></a>一个继承的例子</h5><p><strong>32个棋子中不同棋子有不同的形状,移动方式,都可以从基类继承</strong><br>在我们的象棋中有32个棋子,但是只有6种不同的类型(兵、车、象、马、王和后),每种类型当它们移动的时候会有不同的行为。所有这些棋子都有如颜色、属于哪副棋的厲性,但是它们在棋盘上也有独特的形状、不同的移动。看一下这6种棋子如何从一个Piece类继承:</p>
+<p><img src="./img/棋子.jpg" alt="棋子"></p>
+<p>空心箭头指明从<code>Piece类</code><strong>继承</strong>来的单个棋子类。所有子类都会自动从基类继承一个<code>chess_set</code>和<code>color</code>厲性。每一个棋子提供了一个不同的形状属性(当渲染棋盘时会在屏幕上画出这个形状),以及一个不同的<code>move</code>方法,每一轮在棋盘上移动这个棋子到一个新的位置.<br>我们可以在Piece类里创建一个虚拟的移动方法来实现。子类可以用更具体的实现来<strong>重写</strong>这个方法.例如,默认的实现可能会弹出一个错误消息,提示<strong>这个棋子不能移动</strong>(这个在基类里面实现)。在子类里重写方法允许实现强大的面向对象的系统<br>如果要实现一个带有人T:智能的<br>玩家类,我们可能需要提供一个叫<code>calculate_move</code>的方法,这个方法<strong>接收一个棋盘对象</strong>,然后决定哪个棋子要移动到哪里去。一个非常基础的类可能会随机地选择一个棋子和方向(比如上面的piece类),然后移动。然后我们可以在子类里重写这个方法,来实现深蓝。第一个类可能比较适合跟初学选手比赛.其后的可以挑战一位大师(每一个子类的移动方法)</p>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p><code>多态</code>是依据一个类的不同子类的实现而区别对待这个类的能力<br>我们可能会看到棋盘对象可以从玩家那里接收一个移动请求,并且调用这个棋子的 <code>move</code> 函数。棋盘不需要知道与之交互的棋子是什么类型的。它所需要做的只是调用 <code>move</code> 方法,然后适当的子类会去考虑是要按照车还是兵移动它<br>在 Python 中这种多态性通常称为<code>鸭子类型</code>: “如果它像鸭子一样走路,像鸭子一样游泳,那么它就是一只鸭子”。我们不关心它是否真的是一只鸭子(继承),只要它可以游泳或者走路。鹅和天鹅很容易能够提供我们正在寻找的像鸭子那样的行为。这允许未来的设计师可以创建新种类的鸟,而不需要真正指定水生鸟类的继承层次结构。这也允许他们创建完全不同的插人式行为,这些行为传统的设计师从没有计划过。例如,未来的设计师可能可以创建一个能走路游泳的企鹅,它具有和鸭子相同的接口而不需要任何建议</p>
 
       
     </div>
@@ -412,7 +414,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/12/18/Web-Server/" title="Python实现一个web服务器">http://yoursite.com/2018/12/18/Web-Server/</a>
+    <a href="http://yoursite.com/2019/01/11/python面向对象理解-一/" title="python面向对象理解(一)">http://yoursite.com/2019/01/11/python面向对象理解-一/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -430,7 +432,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/12/18/Web-Server/" title="Python实现一个web服务器">2018/12/18/Web-Server/</a>
+    <a href="/2019/01/11/python面向对象理解-一/" title="python面向对象理解(一)">2019/01/11/python面向对象理解-一/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -451,6 +453,10 @@
           
             <a href="/tags/Python/" rel="tag"><i class="fa fa-tag"></i> Python</a>
           
+            <a href="/tags/面向对象/" rel="tag"><i class="fa fa-tag"></i> 面向对象</a>
+          
+            <a href="/tags/想法/" rel="tag"><i class="fa fa-tag"></i> 想法</a>
+          
         </div>
       
 
@@ -462,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/18/多重链表(少)/" rel="next" title="C语言多重链表">
-                <i class="fa fa-chevron-left"></i> C语言多重链表
+              <a href="/2019/01/11/哈希表详解/" rel="next" title="哈希表详解">
+                <i class="fa fa-chevron-left"></i> 哈希表详解
               </a>
             
           </div>
@@ -471,10 +477,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/18/Tree/" rel="prev" title="Tree笔记">
-                Tree笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -642,7 +644,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Python3实现一个简易web服务器"><span class="nav-number">1.</span> <span class="nav-text">Python3实现一个简易web服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#了解HTTP"><span class="nav-number">1.1.</span> <span class="nav-text">了解HTTP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#了解CGI与FastCGI"><span class="nav-number">1.2.</span> <span class="nav-text">了解CGI与FastCGI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#步骤"><span class="nav-number">1.3.</span> <span class="nav-text">步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BaseHTTPServer模块"><span class="nav-number">1.4.</span> <span class="nav-text">BaseHTTPServer模块</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#BaseHTTPRequestHandler"><span class="nav-number">1.4.1.</span> <span class="nav-text">BaseHTTPRequestHandler</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一些常用的方法和属性"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">一些常用的方法和属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理静态页面"><span class="nav-number">1.5.</span> <span class="nav-text">处理静态页面</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#面向对象设计"><span class="nav-number">1.</span> <span class="nav-text">面向对象设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#隐藏细节并且创建公共接口"><span class="nav-number">1.1.</span> <span class="nav-text">隐藏细节并且创建公共接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏细节"><span class="nav-number">1.1.1.</span> <span class="nav-text">隐藏细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#公共接口"><span class="nav-number">1.1.2.</span> <span class="nav-text">公共接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象"><span class="nav-number">1.1.3.</span> <span class="nav-text">抽象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.1.4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合和继承"><span class="nav-number">1.1.5.</span> <span class="nav-text">组合和继承</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组合与聚合"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">组合与聚合</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区分组合与聚合的方法"><span class="nav-number">1.1.5.1.1.</span> <span class="nav-text">区分组合与聚合的方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一个继承的例子"><span class="nav-number">1.1.5.2.1.</span> <span class="nav-text">一个继承的例子</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多态"><span class="nav-number">1.1.5.3.</span> <span class="nav-text">多态</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -822,9 +824,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/12/18/Web-Server/';
-          this.page.identifier = '2018/12/18/Web-Server/';
-          this.page.title = 'Python实现一个web服务器';
+          this.page.url = 'http://yoursite.com/2019/01/11/python面向对象理解-一/';
+          this.page.identifier = '2019/01/11/python面向对象理解-一/';
+          this.page.title = 'python面向对象理解(一)';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

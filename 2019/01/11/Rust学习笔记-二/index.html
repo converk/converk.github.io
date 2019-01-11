@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记,兴趣,Rust," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Rust学习笔记–第2天变量与可变性Rust里面变量默认是不可变的,即如果有以下代码 123456fn main() &amp;#123;    let x = 5;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;&amp;quot;, x);    x = 6;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;">
+<meta name="keywords" content="笔记,兴趣,Rust">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust学习笔记(二)">
+<meta property="og:url" content="http://yoursite.com/2019/01/11/Rust学习笔记-二/index.html">
+<meta property="og:site_name" content="converk">
+<meta property="og:description" content="Rust学习笔记–第2天变量与可变性Rust里面变量默认是不可变的,即如果有以下代码 123456fn main() &amp;#123;    let x = 5;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;&amp;quot;, x);    x = 6;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-11T04:49:04.327Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rust学习笔记(二)">
+<meta name="twitter:description" content="Rust学习笔记–第2天变量与可变性Rust里面变量默认是不可变的,即如果有以下代码 123456fn main() &amp;#123;    let x = 5;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;&amp;quot;, x);    x = 6;    println!(&amp;quot;The value of x is: &amp;#123;&amp;#125;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/11/Rust学习笔记-二/"/>
+
+
+
+
+
+  <title>Rust学习笔记(二) | converk</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">converk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要努力学习啊!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/Rust学习笔记-二/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="converk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="converk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Rust学习笔记(二)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T12:42:44+08:00">
+                2019-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/11/Rust学习笔记-二/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/11/Rust学习笔记-二/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Rust学习笔记–第2天"><a href="#Rust学习笔记–第2天" class="headerlink" title="Rust学习笔记–第2天"></a>Rust学习笔记–第2天</h1><h2 id="变量与可变性"><a href="#变量与可变性" class="headerlink" title="变量与可变性"></a>变量与可变性</h2><p>Rust里面变量默认是不可变的,即如果有以下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let x = 5;</span><br><span class="line">    println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">    x = 6;</span><br><span class="line">    println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>那么就会报错说<code>cannot assign twice to immutable variable</code>, 不可以对变量二次赋值, 可以通过使用<code>mut</code>来使得变量可变  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let x = 5;</span><br><span class="line">    println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">    x = 6;</span><br><span class="line">    println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="变量与常量"><a href="#变量与常量" class="headerlink" title="变量与常量"></a>变量与常量</h3><p>对于常量而言,不是默认不可变,而是一直都不可变,也不能使用<code>mut</code>关键字,<br>常量使用关键字<code>const</code>来定义,<strong>而且在声明的时候一定要标明常量的类型</strong>,常量可以在任意作用域中声明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">const MAXSIZE: u32 = 10000;</span><br></pre></td></tr></table></figure>
+<p>常量只能被设置为常量表达式，而不能是函数调用的结果，或任何其他<strong>只能在运行时计算出的值</strong>。<br>在声明它的作用域之中，常量在整个程序生命周期中都有效</p>
+<h3 id="隐藏"><a href="#隐藏" class="headerlink" title="隐藏"></a>隐藏</h3><p>我们可以定义一个与之前变量同名的新变量，而新变量会 <strong>隐藏</strong> 之前的变量,这意味着使用这个变量时会看到第二个值。可以用相同变量名称来隐藏一个变量，以及重复使用 <code>let</code> 关键字来多次隐藏  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    let x=5;</span><br><span class="line">    let x=x+1;</span><br><span class="line">    let x=x*x;</span><br><span class="line">    println!(&quot;x: &#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="隐藏与mut的区别"><a href="#隐藏与mut的区别" class="headerlink" title="隐藏与mut的区别"></a>隐藏与mut的区别</h4><p>看起来二者都可以改变变量的值,</p>
+<ol>
+<li>但是对于<strong>隐藏</strong>来说改变之后x的值依然是不可变的,对于<code>mut</code>来说,依旧是可变的</li>
+<li><p>而且使用隐藏可以改变一个变量的类型,因为使用了<code>let</code>,相当于重新定义了一个名字相同的变量</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let spaces=&quot;    &quot;;</span><br><span class="line">let spaces=spaces.len();</span><br></pre></td></tr></table></figure>
+<p> 第一个<code>spaces</code>的类型是字符串,第二个的类型是整形<br> 但是对于<code>mut</code>来说,当一个变量定义之后类型就确定了,就算声明了<code>mut</code>也不可改变类型</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let mut spaces = &quot;   &quot;;</span><br><span class="line">spaces = spaces.len();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>两大数据类型集合:<code>标量</code>和<code>复合</code><br>Rust 是 静态类型（statically typed）语言，也就是说在编译时就必须知道所有变量的类型。  </p>
+<h3 id="标量"><a href="#标量" class="headerlink" title="标量"></a>标量</h3><p>标量有四种:<strong>整形,浮点型,布尔型,字符串</strong></p>
+<h4 id="整形"><a href="#整形" class="headerlink" title="整形"></a>整形</h4><table>
+<thead>
+<tr>
+<th>长度(bit)</th>
+<th>有符号</th>
+<th>无符号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td> 8</td>
+<td>i8</td>
+<td>u8</td>
+</tr>
+<tr>
+<td> 16</td>
+<td>i16</td>
+<td>u16</td>
+</tr>
+<tr>
+<td> 32</td>
+<td>i32</td>
+<td>u32</td>
+</tr>
+<tr>
+<td> 64</td>
+<td>i64</td>
+<td>u64</td>
+</tr>
+<tr>
+<td> arch</td>
+<td>isize</td>
+<td>usize</td>
+</tr>
+</tbody>
+</table>
+<p>每一个有符号的变体可以储存包含从 <strong>-(2^n - 1)</strong> 到 <strong>2^(n - 1) - 1</strong> 在内的数字，这里 n 是变体使用的位数。所以 i8 可以储存从 -(2^7) 到 2^7 - 1 在内的数字，也就是从 -128 到 127。无符号的变体可以储存从 0 到 <code>2^n - 1</code> 的数字，所以 u8 可以储存从 0 到 <code>2^8 - 1</code> 的数字，也就是从 0 到 255。<br> <code>isize</code> 和 <code>usize</code> 类型依赖运行程序的计算机架构：64 位架构上它们是 64 位的， 32 位架构上它们是 32 位的<br> 数字类型默认是 <code>i32</code>：它通常是最快的，甚至在 64 位系统上也是</p>
+<h5 id="溢出"><a href="#溢出" class="headerlink" title="溢出"></a>溢出</h5><p>如果一个数的类型是u8,那么它最多存储255,但如果你把256赋给它,那么就称为<strong>溢出</strong></p>
+<h4 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h4><p>Rust里面有两个浮点数类型,<code>f32</code>和<code>f64</code>,<strong>默认类型是f64</strong><br><code>f32</code> 是单精度浮点数，<code>f64</code> 是双精度浮点数<br>声明一个浮点类型,可以指定其类型(通过使用<code>:</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let x: f32=3.1;</span><br></pre></td></tr></table></figure>
+<h4 id="布尔值"><a href="#布尔值" class="headerlink" title="布尔值"></a>布尔值</h4><p>也是有<code>true</code>和<code>false</code>两种,一般用于流程控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let t = true;</span><br><span class="line">    let f: bool = false; // 显式指定类型注解</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h4><p>Rust 也支持字母。Rust 的 <code>char</code> 类型是语言中最原生的字母类型，如下代码展示了如何使用它。（注意 char 由<strong>单引号</strong>指定，不同于<strong>字符串使用双引号</strong>。）<br>Rust 的 char 类型代表了一个 <code>Unicode</code> 标量值（Unicode Scalar Value），这意味着它可以比 ASCII 表示更多内容。在 Rust 中，<strong>拼音字母（Accented letters），中文、日文、韩文等字符，emoji（绘文字）以及零长度的空白字符</strong>都是有效的 <code>char</code> 值</p>
+<h3 id="复合"><a href="#复合" class="headerlink" title="复合"></a>复合</h3><p>顾名思义,就是把几种类型组合在一起<br>只有两种类型  <code>元组</code>和<code>数组</code></p>
+<h4 id="元组"><a href="#元组" class="headerlink" title="元组"></a>元组</h4><p>元组是一个将多个其他类型的值组合进一个复合类型的主要方式。我们使用包含在圆括号中的逗号分隔的值列表来创建一个元组。元组中的每一个位置都有一个类型，而且这些不同值的类型也不必是相同的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let tup: (i32,f64,u8)=(32,6.4,8);  //根据每个位置对应的类型来进行赋值</span><br></pre></td></tr></table></figure>
+<p>对于元组类型,也必须要加上mut才能改变他里面元素的值,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let mut tup=(64.32.1);</span><br><span class="line">tup.0=5;</span><br></pre></td></tr></table></figure>
+<p>变量tup被绑定到整个元祖上,因为tup是一个复合类型,<br>如果我们需要从元组里面获取单个元素,可以<strong>使用模式匹配来解构</strong>,也可以使用点号 <strong>(.)</strong> 后跟值的索引来直接访问它们</p>
+<ol>
+<li><p>模式匹配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    let tup=(32,6.4,8);</span><br><span class="line">    let (x,y,z)=tup;</span><br><span class="line">    println!(&quot;y:&#123;&#125;&quot;,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>索引</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> fn main()&#123;</span><br><span class="line">    let tup=(32,6.4,8);</span><br><span class="line">    let x=tup.0;</span><br><span class="line">    println!(&quot;y:&#123;&#125;&quot;,x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><p>与在C语言里面一样,<strong>数组的每个成员的数据类型都必须相同</strong>,并且数组的长度一旦声明就不可改变,也就是静态数组<br>声明一个数组</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fn main()&#123;</span><br><span class="line">    let a=[1,2,3,4,5];</span><br><span class="line"></span><br><span class="line">    //可以直接声明数组里面的元素类型和元素个数,也可以省略</span><br><span class="line">    //两个之间使用分号分割</span><br><span class="line">    let b:[i32; 5]=[1,2,3,4,5];  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>访问数组和无效的索引</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let a = [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">    let first = a[0];</span><br><span class="line">    let second = a[1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果一个索引是无效的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let a = [1, 2, 3, 4, 5];</span><br><span class="line"></span><br><span class="line">    //Rust会对索引进行检查,一旦发现索引超过长度,那么就会退出</span><br><span class="line">    //不像C语言那样,会访问到外界的数据</span><br><span class="line">    let first = a[10];  </span><br><span class="line">    println!(&quot;&#123;&#125;&quot;,first);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><p>一个函数的定义在引用这个函数前或者后都行,只要定义了就行</p>
+<h3 id="函数的参数"><a href="#函数的参数" class="headerlink" title="函数的参数"></a>函数的参数</h3><p>给函数传递参数的时候,必须要声明每个参数的类型,当一个函数有多个参数的时候,使用逗号分隔开,<br>而且要求给函数传递参数的时候,类型一定要对,不存在形参的类型是整形,传进去实参是浮点型,编译器不会进行强制类型转换,而是会跑出错误,程序无法运行,同样,形参是浮点型,实参是整形也不行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    another_fn(5, 6.1);</span><br><span class="line">    another_fn(5, 7.1);</span><br><span class="line">&#125;</span><br><span class="line">fn another_fn(x: i32, y: f64) &#123;</span><br><span class="line">    println!(&quot;The value of x is: &#123;&#125;&quot;, x);</span><br><span class="line">    println!(&quot;The value of y is: &#123;&#125;&quot;, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="包含语句和表达式的函数体-有点重要-理解一下"><a href="#包含语句和表达式的函数体-有点重要-理解一下" class="headerlink" title="包含语句和表达式的函数体(有点重要,理解一下)"></a>包含语句和表达式的函数体(有点重要,理解一下)</h3><p>函数体由一系列的<strong>语句</strong>和一个可选的结尾<strong>表达式</strong>构成<br>Rust 是一门<strong>基于表达式</strong>（expression-based）的语言，这是一个需要理解的（不同于其他语言）重要区别<br><strong>语句</strong>: 语句是执行一些操作但<strong>不返回值</strong>的指令<br><strong>表达式</strong>: 表达式计算并产生一个值  </p>
+<h4 id="语句"><a href="#语句" class="headerlink" title="语句"></a>语句</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let y = 6;  //这是一个语句而不是一个表达式,因为它没有返回值</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的整个<strong>main</strong>函数就是一个语句,没有返回值,<br>由于<code>let y=6</code>没有返回值,那么<code>let x = (let y = 6);</code>就是不对的</p>
+<h4 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h4><p>表达式会计算出一些值，并且你将编写的大部分 Rust 代码是由表达式组成的。考虑一个简单的数学运算，比如 <code>5 + 6</code>，这是一个表达式并计算出值 11。语句 <code>let y = 6</code>; 中的 <code>6</code> 是一个表达式，它计算出的值是 6。函数调用是一个表达式。宏调用是一个表达式。我们用来创建<strong>新作用域</strong>的大括号（代码块），<code>{}</code>，也是一个表达式.一个例子:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let x = 3;</span><br><span class="line">    let y = &#123;  //这个大括号里面是一个新的作用域里面的x不会对外面的x造成影响</span><br><span class="line">        let x = 3;</span><br><span class="line">        x + 1</span><br><span class="line">    &#125;;</span><br><span class="line">    println!(&quot;x: &#123;&#125;&quot;, x);</span><br><span class="line">    println!(&quot;y: &#123;&#125;&quot;, y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    let x = 3;</span><br><span class="line">    x + 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是一个代码块，它的值是 4。这个值作为 <code>let</code> 语句的一部分被绑定到 <code>y</code> 上。注意结尾没有分号的那一行 <code>x+1</code>，与你见过的大部分代码行不同。表达式的结尾没有分号。如果在表达式的结尾加上分号，它就变成了语句，而语句不会返回值</p>
+<h4 id="具有返回值的函数"><a href="#具有返回值的函数" class="headerlink" title="具有返回值的函数"></a>具有返回值的函数</h4><p>函数可以向调用它的代码返回值。我们并不对返回值命名，但要在<strong>箭头（-&gt;）</strong>后声明它的类型。在 Rust 中，函数的返回值等同于函数体<strong>最后一个表达式</strong>(表达式不带分号)的值。使用 <code>return</code> 关键字和指定值，可从函数中提前返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    (&quot;x: &#123;&#125;&quot;, another_fn() + 1);</span><br><span class="line">    println!(&quot;y: &#123;&#125;&quot;, another_fn() + 2);</span><br><span class="line">&#125;</span><br><span class="line">fn another_fn() -&gt; u32 &#123;</span><br><span class="line">    5</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>another_fn()</code>里面的5就是一个表达式,作为返回值返回,但是如果在5后面加一个<code>;</code>就变成一个语句,就不是返回值了,如果这时候运行,会报错,提示删除;<br>也可以带参数进行返回  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;x: &#123;&#125;&quot;, another_fn(5) + 1);</span><br><span class="line">    println!(&quot;y: &#123;&#125;&quot;, another_fn(7) + 2);</span><br><span class="line">&#125;</span><br><span class="line">fn another_fn(x: u32) -&gt; u32 &#123;</span><br><span class="line">    x + 1</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="控制流"><a href="#控制流" class="headerlink" title="控制流"></a>控制流</h2><p>Rust 代码中最常见的用来控制执行流的结构是 if 表达式和循环。</p>
+<h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><p>要注意的是<code>if</code>和<code>else if</code>里面的判断值必须是<code>bool</code>值,如果是<code>int</code> 或者是其他则编译器会报错,比如下面这个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let x = 3;</span><br><span class="line">    if x &#123;          //这里的x是int型,所以编译器会报错</span><br><span class="line">        println!(&quot;x: &#123;&#125;&quot;, another_fn(5) + 1);   //这是一条语句,不是表达式</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        println!(&quot;y: &#123;&#125;&quot;, another_fn(7) + 2);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="在let语句里面使用if"><a href="#在let语句里面使用if" class="headerlink" title="在let语句里面使用if"></a>在let语句里面使用if</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let condition = true;</span><br><span class="line">    let x = if condition &#123; 5 &#125; else &#123; 6 &#125;;  //每一个大括号里面都是一个代码块,代码块的值是最后一个表达式的值</span><br><span class="line">    println!(&quot;x:,&#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>整个 <code>if</code> 表达式的值取决于哪个代码块被执行。这意味着 <code>if</code> 的每个分支的可能的返回值都必须是相同类型；<code>if</code> 分支和 <code>else</code> 分支的结果都是 <code>i32</code> 整型。如果它们的类型不匹配，如下面这个例子，则会出现一个错误：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let condition = true;</span><br><span class="line">    let x = if condition &#123; 5 &#125; else &#123; &quot;sx&quot; &#125;;</span><br><span class="line">    println!(&quot;x:,&#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>下面这种也是不行的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let condition = true;</span><br><span class="line">    let x: i64 = if condition &#123; 5.0 &#125; else &#123; 6.0 &#125;;</span><br><span class="line">    println!(&quot;x:,&#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Rust 需要在编译时就确切的知道 <code>x</code> 变量的类型，这样它就可以在编译时验证在每处使用的 <code>x</code> 变量的类型是有效的。</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><h4 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h4><p><code>loop</code> 关键字告诉 Rust 一遍又一遍地执行一段代码直到你明确要求停止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    loop &#123;</span><br><span class="line">        println!(&quot;again!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="从循环中返回"><a href="#从循环中返回" class="headerlink" title="从循环中返回"></a>从循环中返回</h4><p><code>loop</code> 的一个用例是重试可能会失败的操作，比如检查线程是否完成了任务。然而你可能会需要将操作的结果传递给其它的代码。如果将返回值加入你用来停止循环的 <code>break</code> 表达式，<strong>它会被停止的循环返回</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut counter = 0;</span><br><span class="line">    let x = loop &#123;</span><br><span class="line">        counter += 1;</span><br><span class="line">        if counter == 10 &#123;</span><br><span class="line">            break 2 * counter; //作为返回值返回到x,break表达式,最后有一个分号</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;; //不要忘了分号</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意作用域的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let counter = 0;</span><br><span class="line">    let x = loop &#123;   //这里的loop每执行完一次,counter的值不会变成上一次循环是时counter的值,而是会变成0</span><br><span class="line">        let counter = counter + 1;</span><br><span class="line">        println!(&quot;counter,&#123;&#125;&quot;, counter);</span><br><span class="line">        if counter == 10 &#123;</span><br><span class="line">            break 2 * counter; //作为返回值返回到x,break表达式,最后有一个分号</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;; //不要忘了分号</span><br><span class="line">    println!(&quot;x,&#123;&#125;&quot;, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="while循环"><a href="#while循环" class="headerlink" title="while循环"></a>while循环</h4><p>跟其他语言差不多,就不解释了</p>
+<h4 id="for循环"><a href="#for循环" class="headerlink" title="for循环"></a>for循环</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let a = [10, 20, 30, 40, 50];</span><br><span class="line">    for element in a.iter() &#123;</span><br><span class="line">        println!(&quot;element,&#123;&#125;&quot;, element);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里不需要考虑数组越界的问题,但是如果是用<code>while</code>循环的话就需要写出退出条件<br><code>for</code> 循环的安全性和简洁性使得它成为 Rust 中使用最多的循环结构。即使是在想要循环执行代码特定次数时，例如示例 3-3 中使用 while 循环的倒计时例子，大部分 Rustacean 也会使用 for 循环。这么做的方式是使用 <code>Range</code>，它是标准库提供的类型，用来生成从一个数字开始到另一个数字之前结束的所有数字的序列。</p>
+<p>下面是一个使用 <code>for</code> 循环来倒计时的例子，它还使用了一个我们还未讲到的方法，<code>rev</code>，用来反转</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    for element in (1..4).rev() &#123;   //(1..4)是一个range,包含了1,2,3三个元素,rev()是将这三个元素倒过来</span><br><span class="line">        println!(&quot;element,&#123;&#125;&quot;, element);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><h3 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">use std::io;</span><br><span class="line">fn main() &#123;</span><br><span class="line">    let mut fb_num = String::new();</span><br><span class="line">    io::stdin().read_line(&amp;mut fb_num).expect(&quot;read error&quot;);</span><br><span class="line">    let fb_num = fb_num.trim().parse().expect(&quot;please input anumber&quot;);</span><br><span class="line">    println!(&quot;result,&#123;&#125;&quot;, fb(fb_num));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn fb(x: u32) -&gt; u32 &#123;</span><br><span class="line">    if x == 1 || x == 0 &#123;</span><br><span class="line">        1</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        fb(x - 1) + fb(x - 2)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="转换华氏与摄氏"><a href="#转换华氏与摄氏" class="headerlink" title="转换华氏与摄氏"></a>转换华氏与摄氏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">use std::io;</span><br><span class="line">fn main() &#123;</span><br><span class="line">    println!(&quot;please input:&quot;);</span><br><span class="line">    let mut input = String::new();</span><br><span class="line">    io::stdin().read_line(&amp;mut input).expect(&quot;read error &quot;);</span><br><span class="line">    let (first, last) = input.split_at(input.len() - 2);</span><br><span class="line">    let input_number: f32 = first.trim().parse().expect(&quot;please input a number&quot;);</span><br><span class="line">    if last == &quot;c\n&quot; || last == &quot;C\n&quot; &#123;</span><br><span class="line">        println!(&quot;华氏,&#123;&#125;F&quot;, (input_number * 1.8) + 32.0);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        println!(&quot;摄氏,&#123;&#125;C&quot;, (input_number - 32.0) / 1.8)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+    
+      <div>
+	    <div>
+    
+        <div style="text-align:center;color: #847bb9;font-size:15px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  </div>
+    
+	
+
+    
+
+    
+
+    
+      <div>
+        <!--<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/01/11/Rust学习笔记-二/" title="Rust学习笔记(二)">http://yoursite.com/2019/01/11/Rust学习笔记-二/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>-->
+
+
+<div>    
+ 
+ 
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+      <strong>本文作者：</strong>converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/2019/01/11/Rust学习笔记-二/" title="Rust学习笔记(二)">2019/01/11/Rust学习笔记-二/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权： </strong>
+    本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+  </li>
+</ul>
+
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/兴趣/" rel="tag"><i class="fa fa-tag"></i> 兴趣</a>
+          
+            <a href="/tags/Rust/" rel="tag"><i class="fa fa-tag"></i> Rust</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/11/Rust学习笔记-一/" rel="next" title="Rust学习笔记(一)">
+                <i class="fa fa-chevron-left"></i> Rust学习笔记(一)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/11/哈希表详解/" rel="prev" title="哈希表详解">
+                哈希表详解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.png"
+                alt="converk" />
+            
+              <p class="site-author-name" itemprop="name">converk</p>
+              <p class="site-description motion-element" itemprop="description">一个很菜的coder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/converk" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:843951249@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1306503623&auto=1&height=66"></iframe>
+</div>
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310913720&auto=1&height=66"></iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rust学习笔记–第2天"><span class="nav-number">1.</span> <span class="nav-text">Rust学习笔记–第2天</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#变量与可变性"><span class="nav-number">1.1.</span> <span class="nav-text">变量与可变性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量与常量"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量与常量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隐藏"><span class="nav-number">1.1.2.</span> <span class="nav-text">隐藏</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#隐藏与mut的区别"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">隐藏与mut的区别</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据类型"><span class="nav-number">1.2.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标量"><span class="nav-number">1.2.1.</span> <span class="nav-text">标量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#整形"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">整形</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#溢出"><span class="nav-number">1.2.1.1.1.</span> <span class="nav-text">溢出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#浮点数"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">浮点数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔值"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">布尔值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#字符类型"><span class="nav-number">1.2.1.4.</span> <span class="nav-text">字符类型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复合"><span class="nav-number">1.2.2.</span> <span class="nav-text">复合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#元组"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">元组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">1.3.</span> <span class="nav-text">函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数的参数"><span class="nav-number">1.3.1.</span> <span class="nav-text">函数的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#包含语句和表达式的函数体-有点重要-理解一下"><span class="nav-number">1.3.2.</span> <span class="nav-text">包含语句和表达式的函数体(有点重要,理解一下)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#语句"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">语句</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表达式"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#具有返回值的函数"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">具有返回值的函数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#控制流"><span class="nav-number">1.4.</span> <span class="nav-text">控制流</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if"><span class="nav-number">1.4.1.</span> <span class="nav-text">if</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#在let语句里面使用if"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">在let语句里面使用if</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环"><span class="nav-number">1.4.2.</span> <span class="nav-text">循环</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#loop"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">loop</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从循环中返回"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">从循环中返回</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#while循环"><span class="nav-number">1.4.2.3.</span> <span class="nav-text">while循环</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#for循环"><span class="nav-number">1.4.2.4.</span> <span class="nav-text">for循环</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#练习"><span class="nav-number">1.5.</span> <span class="nav-text">练习</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#斐波那契数列"><span class="nav-number">1.5.1.</span> <span class="nav-text">斐波那契数列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转换华氏与摄氏"><span class="nav-number">1.5.2.</span> <span class="nav-text">转换华氏与摄氏</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">converk</span>
+
+  
+</div>
+
+
+
+  
+    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    <span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>
+    <!--<span class="post-meta-divider">|</span>-->
+
+  
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共16.6k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://converk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/01/11/Rust学习笔记-二/';
+          this.page.identifier = '2019/01/11/Rust学习笔记-二/';
+          this.page.title = 'Rust学习笔记(二)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://converk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
