@@ -87,13 +87,13 @@
 <meta property="og:site_name" content="converk">
 <meta property="og:description" content="面向对象设计隐藏细节并且创建公共接口在面向对象设计中模块化一个对象的主要目的是决定该对象的公共接口接口是其他对象可以和该对象交互的属性和方法的集合例子:  我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/国际象棋.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/棋子.jpg">
-<meta property="og:updated_time" content="2019-01-11T04:51:29.747Z">
+<meta property="og:image" content="http://yoursite.com/img/国际象棋.jpg">
+<meta property="og:image" content="http://yoursite.com/img/棋子.jpg">
+<meta property="og:updated_time" content="2019-01-11T04:59:13.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python面向对象理解(一)">
 <meta name="twitter:description" content="面向对象设计隐藏细节并且创建公共接口在面向对象设计中模块化一个对象的主要目的是决定该对象的公共接口接口是其他对象可以和该对象交互的属性和方法的集合例子:  我们电视的接口是遥控器。遥控器上的每一个开关代表了一个可以由电视对象调用的方法。当我们作为调用对象去访问这些方法的时候,我们不知道也不关心这个电视是从天线、电缆还是卫星天线获取信号的。我们不关心发送什么电子信号去调节音量,或者声音是输出到扬声器">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/11/python面向对象理解-一/img/国际象棋.jpg">
+<meta name="twitter:image" content="http://yoursite.com/img/国际象棋.jpg">
 
 
 
@@ -373,12 +373,12 @@
 <h4 id="组合与聚合"><a href="#组合与聚合" class="headerlink" title="组合与聚合"></a>组合与聚合</h4><p><strong>组合</strong>:是把一些对象收集在一起组成一个新对象。当一个对象是另一个对象的一部分的时候,组合是一个好的选择<br><strong>聚合</strong>: 象棋是由一个棋盘和32个棋子组成的。棋盘进一步由64个位置组成。你可能会争论说,棋子不是象棋的一部分,因为你可以在象棋里用其他一副棋子把棋子替换掉。虽然在一个计算机版本的象棋里,这是不可能的,但是它给我们引人了聚合。聚合几乎和组合一样,不同的地方是,<strong>聚合对象可以独立存在</strong>。把一个位置和不同的象棋棋盘相关联是不可能的,所以我们说,象棋棋盘是由位置组成的。但是对于棋子,它可以独立于象棋而存在,而被认为和一套象棋是一种聚合关系</p>
 <h5 id="区分组合与聚合的方法"><a href="#区分组合与聚合的方法" class="headerlink" title="区分组合与聚合的方法"></a>区分组合与聚合的方法</h5><p>当(内部)创建和销毁相应对象(比如:棋盘里一个位置)的时候,如果组合(外部)对象(比如:棋盘)控制着它们,那么组合就是最合适的。如果可以独立于组合对象去创建相关对象(比如:棋子),或者可以对比对象,一个聚合关系可能会有意义;<br>聚合是组合的—个更一般的形式。任何组合关系同时也是聚合关系</p>
 <p>下面来看一下一个国际象棋的UML图</p>
-<p><img src="./img/国际象棋.jpg" alt="国际象棋"></p>
+<p><img src="/img/国际象棋.jpg" alt="国际象棋"></p>
 <p>Player:玩家对象<br>Plece:棋子对象<br>Chess Set;象棋对象<br>Position:棋盘里面每个位置对象<br>Board:棋盘对象</p>
 <p>在UML图里 , <strong>一 个实心菱形</strong>代表了组合关系。<strong>空心菱形</strong>代了聚合关系。你会注意到棋盘和棋子作为象棋的一部分来存储,它们的引用也以同样的方式作为一个属性存储在象棋里</p>
 <h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>上面对于国际象棋的定义还不够完善,比如,没有定义什么是玩家,我们不能把一个玩家和一个人关联,或者人工智能是玩家对象的一部分,我们想做到的是: 能够说“深蓝是一位玩家”或者“加里•卡斯帕罗夫是一位玩家”.这是一种由继承形成的关系。继承是众所周知最著名的用于面向对象编程的一种关系</p>
 <h5 id="一个继承的例子"><a href="#一个继承的例子" class="headerlink" title="一个继承的例子"></a>一个继承的例子</h5><p><strong>32个棋子中不同棋子有不同的形状,移动方式,都可以从基类继承</strong><br>在我们的象棋中有32个棋子,但是只有6种不同的类型(兵、车、象、马、王和后),每种类型当它们移动的时候会有不同的行为。所有这些棋子都有如颜色、属于哪副棋的厲性,但是它们在棋盘上也有独特的形状、不同的移动。看一下这6种棋子如何从一个Piece类继承:</p>
-<p><img src="./img/棋子.jpg" alt="棋子"></p>
+<p><img src="/img/棋子.jpg" alt="棋子"></p>
 <p>空心箭头指明从<code>Piece类</code><strong>继承</strong>来的单个棋子类。所有子类都会自动从基类继承一个<code>chess_set</code>和<code>color</code>厲性。每一个棋子提供了一个不同的形状属性(当渲染棋盘时会在屏幕上画出这个形状),以及一个不同的<code>move</code>方法,每一轮在棋盘上移动这个棋子到一个新的位置.<br>我们可以在Piece类里创建一个虚拟的移动方法来实现。子类可以用更具体的实现来<strong>重写</strong>这个方法.例如,默认的实现可能会弹出一个错误消息,提示<strong>这个棋子不能移动</strong>(这个在基类里面实现)。在子类里重写方法允许实现强大的面向对象的系统<br>如果要实现一个带有人T:智能的<br>玩家类,我们可能需要提供一个叫<code>calculate_move</code>的方法,这个方法<strong>接收一个棋盘对象</strong>,然后决定哪个棋子要移动到哪里去。一个非常基础的类可能会随机地选择一个棋子和方向(比如上面的piece类),然后移动。然后我们可以在子类里重写这个方法,来实现深蓝。第一个类可能比较适合跟初学选手比赛.其后的可以挑战一位大师(每一个子类的移动方法)</p>
 <h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p><code>多态</code>是依据一个类的不同子类的实现而区别对待这个类的能力<br>我们可能会看到棋盘对象可以从玩家那里接收一个移动请求,并且调用这个棋子的 <code>move</code> 函数。棋盘不需要知道与之交互的棋子是什么类型的。它所需要做的只是调用 <code>move</code> 方法,然后适当的子类会去考虑是要按照车还是兵移动它<br>在 Python 中这种多态性通常称为<code>鸭子类型</code>: “如果它像鸭子一样走路,像鸭子一样游泳,那么它就是一只鸭子”。我们不关心它是否真的是一只鸭子(继承),只要它可以游泳或者走路。鹅和天鹅很容易能够提供我们正在寻找的像鸭子那样的行为。这允许未来的设计师可以创建新种类的鸟,而不需要真正指定水生鸟类的继承层次结构。这也允许他们创建完全不同的插人式行为,这些行为传统的设计师从没有计划过。例如,未来的设计师可能可以创建一个能走路游泳的企鹅,它具有和鸭子相同的接口而不需要任何建议</p>
 
@@ -664,7 +664,8 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -675,13 +676,13 @@
 
 
 
-  
-    <script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-    <span id="busuanzi_container_site_pv">总访问量: <span id="busuanzi_value_site_pv"></span>次</span>
-    <!--<span class="post-meta-divider">|</span>-->
 
   
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
 
 
 
