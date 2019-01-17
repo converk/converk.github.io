@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C语言,笔记,Data Structure," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="优先队列模型与应用优先队列最少有两种操作,一种是插入一个进程(Insert)相当于入队,另外一种是删除最小的(DeleteMin)相当于出队  操作系统的调度程序,操作系统必须使用一种数据结构来调度进程,调度的方法,要取决于进程占用的时间,进程的重要性等等`因素,不能光依赖于先进先出的队列原则 对于之后的一些排序算法也很重要 对于一些重要的算法,比如贪婪算法,很重要  实现可以选择使用链表,二叉查">
+<meta name="keywords" content="C语言,笔记,Data Structure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="优先队列">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/优先队列/index.html">
+<meta property="og:site_name" content="converk">
+<meta property="og:description" content="优先队列模型与应用优先队列最少有两种操作,一种是插入一个进程(Insert)相当于入队,另外一种是删除最小的(DeleteMin)相当于出队  操作系统的调度程序,操作系统必须使用一种数据结构来调度进程,调度的方法,要取决于进程占用的时间,进程的重要性等等`因素,不能光依赖于先进先出的队列原则 对于之后的一些排序算法也很重要 对于一些重要的算法,比如贪婪算法,很重要  实现可以选择使用链表,二叉查">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-17T12:29:53.610Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="优先队列">
+<meta name="twitter:description" content="优先队列模型与应用优先队列最少有两种操作,一种是插入一个进程(Insert)相当于入队,另外一种是删除最小的(DeleteMin)相当于出队  操作系统的调度程序,操作系统必须使用一种数据结构来调度进程,调度的方法,要取决于进程占用的时间,进程的重要性等等`因素,不能光依赖于先进先出的队列原则 对于之后的一些排序算法也很重要 对于一些重要的算法,比如贪婪算法,很重要  实现可以选择使用链表,二叉查">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/优先队列/"/>
+
+
+
+
+
+  <title>优先队列 | converk</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">converk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要努力学习啊!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/优先队列/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="converk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="converk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">优先队列</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T20:18:27+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/17/优先队列/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/17/优先队列/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="优先队列"><a href="#优先队列" class="headerlink" title="优先队列"></a>优先队列</h1><h2 id="模型与应用"><a href="#模型与应用" class="headerlink" title="模型与应用"></a>模型与应用</h2><p><strong>优先队列</strong>最少有两种操作,一种是插入一个进程(<em>Insert</em>)相当于入队,另外一种是删除最小的(<em>DeleteMin</em>)相当于出队</p>
+<ol>
+<li>操作系统的调度程序,操作系统必须使用一种数据结构来调度进程,调度的方法,要取决于进程占用的时间,进程的重要性等等`因素,不能光依赖于先进先出的队列原则</li>
+<li>对于之后的一些排序算法也很重要</li>
+<li>对于一些重要的算法,比如<strong>贪婪算法</strong>,很重要</li>
+</ol>
+<h2 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h2><p>可以选择使用链表,二叉查找树实现,但是二叉查找树太过繁琐,它支持的功能对于优先队列来说有点多余,因此,这里采用一种在最坏的情况下<strong>插入和查找</strong>的复杂度都是<strong>O(logN)</strong>的数据结构</p>
+<h2 id="二叉堆"><a href="#二叉堆" class="headerlink" title="二叉堆"></a>二叉堆</h2><p>一般简称为<strong>堆</strong>,它具有两个性质: <strong>结以至于不需要使用指针就可以实现构性</strong>和<strong>堆序性</strong>,与AVL树一样,对堆的插入和删除操作都可能破坏上面两个性质,同样,对堆的操作只有上面两个性质完全满足之后才会停止</p>
+<h3 id="结构性质"><a href="#结构性质" class="headerlink" title="结构性质"></a>结构性质</h3><p>二叉堆是一个被完全填满的二叉树,最有可能例外的是在最后一层,最后一层可能不是满的,但必须是从左到右插入元素,即,如果最后一层的一个节点为空,那么它右边(同一层的右边)一定不能有节点.<br>堆的分布很有规律,,可以简单的使用一个数组来实现一棵完全二叉树:</p>
+<blockquote>
+<p>对于一个根节点位于一个数组索引为1的完全二叉树,假设一个节点的索引为<strong>i</strong>,那么它的左儿子的索引为<code>2*i</code>,右儿子的索引为<code>2*i+1</code>,它的父亲的位置在<code>i/2</code>(整除)</p>
+</blockquote>
+<p>上面的规律只限于对堆进行<strong>层序遍历存储</strong>,但是有一个缺点就是堆的大小必须事先给定,但是这个无伤大雅.</p>
+<h3 id="堆序性质"><a href="#堆序性质" class="headerlink" title="堆序性质"></a>堆序性质</h3><p>如果想要最快的找到最小值,最好的办法就是把最小值放在根节点上,那如果我们再假设,一个堆的任意子树也是一个堆那么就有:</p>
+<blockquote>
+<p>在一个堆中,任意节点X的父亲的关键字的值总是节点节点X的关键字值</p>
+</blockquote>
+<h2 id="各种操作"><a href="#各种操作" class="headerlink" title="各种操作"></a>各种操作</h2><h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><p>对于二叉堆的插入算法很简单,就是在整个堆的最后面新建一个空穴,然后拿这个空穴的父亲与要插入的元素进行比较,如果要插入的元素要小一点,那么这个空穴的父亲与空穴互换位置,一直进行,直到有一个数小于要插入元素或者空穴到达根节点,那么就将要插入元素插入到空穴所在位置,这种方法叫做<strong>上滤法</strong>,对于在索引为0的地方存储一个<strong>足够小的值</strong>,以至于堆里面任何一个值都大于它,当空穴到达索引为1的地方时,会与这个值进行比较,由于InsertElement大于这个值,所以循环会退出.然后再将新的最小值赋给索引为1的位置<br>其实还有一种方法就是直接先把InsertElemnet赋给新开的空穴,但这样的话,每次向上交换时会产生三次赋值操作,如果使用空穴的话就只会有一次赋值.而且,数组第一个元素足够小保证了不需要判断条件就可以退出<br>平均时间复杂度为O(logN)</p>
+<h3 id="删除最小元素"><a href="#删除最小元素" class="headerlink" title="删除最小元素"></a>删除最小元素</h3><p>与插入的思想差不多,找到最小元素是很容易的,将根节点视为空穴,并且提取出最后一个元素lastkey,作为插入在最终空穴的位置上.进行下滤,每次下滤都是走两个儿子中小的那一边,然后将小儿子的关键字和该节点的关键字进行互换,然后就是判断提取出来的最后一个元素能不能插入在当前位置,也就是lastkey的值一定要比两个儿子的值都要小,否则就继续下滤.<br>有一个麻烦的地方在于,有可能删除lastkey之后,有一个节点只有一个儿子,无法进行左右儿子的比较,解决的办法是:</p>
+<blockquote>
+<p>如果需要用到这个节点的儿子,那么一定是左儿子,而且,一定是这个堆的最后一个元素,所以就可以通过判断是不是最后一个元素,来决定要不要进行左右儿子的比较,不进行比较的话,也就是说默认走的路就是左儿子那条路,也就是child的默认值是2*i</p>
+</blockquote>
+<h3 id="减小一个位置上的关键字的值"><a href="#减小一个位置上的关键字的值" class="headerlink" title="减小一个位置上的关键字的值"></a>减小一个位置上的关键字的值</h3><p>就先减小一个位子上的值,然后进行上滤</p>
+<h3 id="增大一个位置上的关键字的值"><a href="#增大一个位置上的关键字的值" class="headerlink" title="增大一个位置上的关键字的值"></a>增大一个位置上的关键字的值</h3><p>增大一个位子上的值,然后进行下滤</p>
+<h3 id="给一个用数组表示的完全二叉树-将其变成二叉堆"><a href="#给一个用数组表示的完全二叉树-将其变成二叉堆" class="headerlink" title="给一个用数组表示的完全二叉树,将其变成二叉堆"></a>给一个用数组表示的完全二叉树,将其变成二叉堆</h3><p>主要就是从中间节点开始下滤,一直进行到这个节点满足堆的堆序型,然后接着堆中间节点的下一个元素重复之前的下滤过程,直至遍历到数组的第一个元素</p>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h3 id="选择问题–找出N个数中第k个最大的数"><a href="#选择问题–找出N个数中第k个最大的数" class="headerlink" title="选择问题–找出N个数中第k个最大的数"></a>选择问题–找出N个数中第k个最大的数</h3><p>这里给出两种算法,当k=N/2的时候,二者的复杂度均为O(NlogN),相比于一般解法的O(N^2)有了不小的改进</p>
+<h4 id="算法一"><a href="#算法一" class="headerlink" title="算法一"></a>算法一</h4><p>先将N个元素放入数组中,之后进行<strong>buildheap</strong>操作建立堆,这个操作最长时间是<strong>O(NlogN)</strong>,之后对这个堆进行k次<strong>deletemin</strong>操作,每次操作的时间是O(logN),所以总时间为<strong>O(NlogN+klogN)</strong>,</p>
+<h4 id="算法二"><a href="#算法二" class="headerlink" title="算法二"></a>算法二</h4><p>一直维护一个含有k个元素的堆,这个堆里面最小的元素是<strong>S(k)</strong>,建立这样一个堆所需要的时间是 <strong>O(klogk)</strong> ,对于剩下的<strong>N-k</strong>个元素进行分别一个一个处理,对于每一个元素,都要比较与S(k)的关系,如果小于S(k),那么就舍弃,如果大于S(k),那么就删除原来的S(k)(进行一次<strong>deletemin</strong>操作),然后再把这个元素插入到堆中,更新S(k),总的操作时间为<strong>O((N-k)logN)</strong>,这样,当数组完全处理完之后,S(K)的值就是结果</p>
+<h2 id="左式堆"><a href="#左式堆" class="headerlink" title="左式堆"></a>左式堆</h2><p>对于二叉堆而言,支持一次两个堆的合并操作所需要的时间是O(N),也就是将一个数组拷贝到另外一个数组中,但是这样有点慢了,但是基本上所有的高效的合并操作,都要用到指针,但是对指针的操作,又会使得堆对其他的操作变慢,最起码比对2做乘除法要慢<br>对于左式堆,也有<strong>结构特性和堆序性</strong>,但是它不是平衡的,确切的说是非常不平衡<br>左式堆的结构性质: 任意节点的NPL比它诸儿子的NPL的最小值多1,对于任意节点,其左儿子的NPL至少要跟右儿子的NPL一样大</p>
+<blockquote>
+<p>NPL就是当前节点到一个没有两个儿子的节点的最短路径,NULL节点的NPL是-1,只有一个儿子的节点或者没有儿子节点的NPL是0,</p>
+</blockquote>
+<p>左式堆的特点:</p>
+<ol>
+<li>左儿子的NPL大于等于右儿子的NPL,</li>
+<li>不是平衡二叉树</li>
+<li>不能用数组来存储,</li>
+<li>也是一棵二叉树</li>
+</ol>
+<h3 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h3><h4 id="合并-Merge"><a href="#合并-Merge" class="headerlink" title="合并-Merge"></a>合并-Merge</h4><p>合并两个堆的操作一般都是使用递归实现,首先比较两个堆的根节点的大小,选择小的那个作为合并之后的堆的根节点,然后让小的根节点的右子树与大的根节点进行合并,小的根节点的左子树就是合并之后的左子树,之后又是上述过程,每次合并完成后,都要检查当前节点是不是满足左式堆的条件,不满足的话,一般让该节点的左右子树对调就行,然后再执行上一次递归,直至到达根节点.<br>写递归的时候只需要考虑一般的情况和如何让递归退出</p>
+<h4 id="插入-Insert"><a href="#插入-Insert" class="headerlink" title="插入-Insert"></a>插入-Insert</h4><p>将插入看做一次合并,直接调用合并的函数就行</p>
+<h4 id="删除最小-DeleteMIn"><a href="#删除最小-DeleteMIn" class="headerlink" title="删除最小-DeleteMIn"></a>删除最小-DeleteMIn</h4><p>删除最小可以看成除去了根节点的两个堆的合并</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+    
+      <div>
+	    <div>
+    
+        <div style="text-align:center;color: #847bb9;font-size:15px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  </div>
+    
+	
+
+    
+
+    
+
+    
+      <div>
+        <!--<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/01/17/优先队列/" title="优先队列">http://yoursite.com/2019/01/17/优先队列/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>-->
+
+
+<div>    
+ 
+ 
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+      <strong>本文作者：</strong>converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/2019/01/17/优先队列/" title="优先队列">2019/01/17/优先队列/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权： </strong>
+    本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+  </li>
+</ul>
+
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/C语言实现tcp连接/" rel="next" title="C语言实现tcp连接">
+                <i class="fa fa-chevron-left"></i> C语言实现tcp连接
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.png"
+                alt="converk" />
+            
+              <p class="site-author-name" itemprop="name">converk</p>
+              <p class="site-description motion-element" itemprop="description">一个很菜的coder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/converk" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:843951249@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1306503623&auto=1&height=66"></iframe>
+</div>
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310913720&auto=1&height=66"></iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优先队列"><span class="nav-number">1.</span> <span class="nav-text">优先队列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模型与应用"><span class="nav-number">1.1.</span> <span class="nav-text">模型与应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现"><span class="nav-number">1.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二叉堆"><span class="nav-number">1.3.</span> <span class="nav-text">二叉堆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#结构性质"><span class="nav-number">1.3.1.</span> <span class="nav-text">结构性质</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆序性质"><span class="nav-number">1.3.2.</span> <span class="nav-text">堆序性质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#各种操作"><span class="nav-number">1.4.</span> <span class="nav-text">各种操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入"><span class="nav-number">1.4.1.</span> <span class="nav-text">插入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除最小元素"><span class="nav-number">1.4.2.</span> <span class="nav-text">删除最小元素</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#减小一个位置上的关键字的值"><span class="nav-number">1.4.3.</span> <span class="nav-text">减小一个位置上的关键字的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#增大一个位置上的关键字的值"><span class="nav-number">1.4.4.</span> <span class="nav-text">增大一个位置上的关键字的值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给一个用数组表示的完全二叉树-将其变成二叉堆"><span class="nav-number">1.4.5.</span> <span class="nav-text">给一个用数组表示的完全二叉树,将其变成二叉堆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">1.5.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择问题–找出N个数中第k个最大的数"><span class="nav-number">1.5.1.</span> <span class="nav-text">选择问题–找出N个数中第k个最大的数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#算法一"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">算法一</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算法二"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">算法二</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#左式堆"><span class="nav-number">1.6.</span> <span class="nav-text">左式堆</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#操作"><span class="nav-number">1.6.1.</span> <span class="nav-text">操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#合并-Merge"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">合并-Merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入-Insert"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">插入-Insert</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除最小-DeleteMIn"><span class="nav-number">1.6.1.3.</span> <span class="nav-text">删除最小-DeleteMIn</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">converk</span>
+
+  
+</div>
+
+
+
+
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共28.3k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://converk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/01/17/优先队列/';
+          this.page.identifier = '2019/01/17/优先队列/';
+          this.page.title = '优先队列';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://converk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C语言,笔记,Data Structure," />
+  <meta name="keywords" content="C语言,笔记,实践," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
-<meta name="keywords" content="C语言,笔记,Data Structure">
+<meta name="description" content="C语言Socket编程实现TCP面向连接的套接字Socket通信工作流程为了实现服务器与客户端的通信过程,两端都要建立套接字,二者的工作原理描述如下  服务器先用 socket 函数来建立一个套接字,用这个套接字完成通信的监听,它是系统分配给该服务器进程的类似文件描述符的资源，不能与其他进程共享 用 bind 函数来绑定一个端口号和 IP 地址, 服务器进程使用bind系统调用给套接字命名。本地套">
+<meta name="keywords" content="C语言,笔记,实践">
 <meta property="og:type" content="article">
-<meta property="og:title" content="哈希表详解">
-<meta property="og:url" content="http://yoursite.com/2019/01/11/哈希表详解/index.html">
+<meta property="og:title" content="C语言实现tcp连接">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/C语言实现tcp连接/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
+<meta property="og:description" content="C语言Socket编程实现TCP面向连接的套接字Socket通信工作流程为了实现服务器与客户端的通信过程,两端都要建立套接字,二者的工作原理描述如下  服务器先用 socket 函数来建立一个套接字,用这个套接字完成通信的监听,它是系统分配给该服务器进程的类似文件描述符的资源，不能与其他进程共享 用 bind 函数来绑定一个端口号和 IP 地址, 服务器进程使用bind系统调用给套接字命名。本地套">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-11T04:53:11.774Z">
+<meta property="og:updated_time" content="2019-01-17T12:30:28.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="哈希表详解">
-<meta name="twitter:description" content="散列(哈希表)介绍理想的散列表数据结构只不过是一个包含有关键字的具有固定大小的数组(假大小为tableSize)每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做散列函数,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字当两个关键字映射到同一个位置的时候,这种情况称为冲突 散列函数(哈希函数)1typedef un">
+<meta name="twitter:title" content="C语言实现tcp连接">
+<meta name="twitter:description" content="C语言Socket编程实现TCP面向连接的套接字Socket通信工作流程为了实现服务器与客户端的通信过程,两端都要建立套接字,二者的工作原理描述如下  服务器先用 socket 函数来建立一个套接字,用这个套接字完成通信的监听,它是系统分配给该服务器进程的类似文件描述符的资源，不能与其他进程共享 用 bind 函数来绑定一个端口号和 IP 地址, 服务器进程使用bind系统调用给套接字命名。本地套">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/11/哈希表详解/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/C语言实现tcp连接/"/>
 
 
 
 
 
-  <title>哈希表详解 | converk</title>
+  <title>C语言实现tcp连接 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/11/哈希表详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/C语言实现tcp连接/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">哈希表详解</h1>
+          <h1 class="post-title" itemprop="name headline">C语言实现tcp连接</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-11T12:43:45+08:00">
-                2019-01-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T20:17:15+08:00">
+                2019-01-17
               </time>
             
 
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
-                    <span itemprop="name">Data Structure</span>
+                  <a href="/categories/C语言/" itemprop="url" rel="index">
+                    <span itemprop="name">C语言</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/01/11/哈希表详解/#comments" itemprop="discussionUrl">
+                <a href="/2019/01/17/C语言实现tcp连接/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/01/11/哈希表详解/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/01/17/C语言实现tcp连接/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,38 +353,35 @@
       
 
       
-        <h1 id="散列-哈希表"><a href="#散列-哈希表" class="headerlink" title="散列(哈希表)"></a>散列(哈希表)</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>理想的散列表数据结构只不过是一个包含有<em><strong>关键字</strong></em>的具有固定大小的<strong>数组</strong>(假大小为tableSize)<br>每一个关键字被映射到从0到tablesize-1这个范围中的某个数,这个映射就叫做<em><strong>散列函数</strong></em>,理想的散列函数应该把不同的关键字映射到不同单元,但这是不可能的,因此只可能做到尽可能均匀的分配关键字<br>当两个关键字映射到同一个位置的时候,这种情况称为<em><strong>冲突</strong></em></p>
-<h2 id="散列函数-哈希函数"><a href="#散列函数-哈希函数" class="headerlink" title="散列函数(哈希函数)"></a>散列函数(哈希函数)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">typedef unsigned int Index</span><br></pre></td></tr></table></figure>
-<p>几种常见的哈希函数</p>
+        <h1 id="C语言Socket编程实现TCP"><a href="#C语言Socket编程实现TCP" class="headerlink" title="C语言Socket编程实现TCP"></a>C语言Socket编程实现TCP</h1><h2 id="面向连接的套接字Socket通信工作流程"><a href="#面向连接的套接字Socket通信工作流程" class="headerlink" title="面向连接的套接字Socket通信工作流程"></a>面向连接的套接字Socket通信工作流程</h2><p>为了实现服务器与客户端的通信过程,两端都要建立套接字,二者的工作原理描述如下</p>
 <ol>
-<li>如果关键字是数字,一般可以将<strong>key mod tablesize</strong>来作为该关键词的索引,但是这样和容易重复和空间浪费</li>
-<li><p>如果关键词是字符串,那么可以讲字符串各个字符的ascii码值加在一起然后 mod tablesize, 但是这种哈希函数的缺点是如果表特别大,不会很好的分配关键字,</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Index Hash(const char *str, int tablesize)&#123;</span><br><span class="line">    unsigned int HashVal=0;</span><br><span class="line"></span><br><span class="line">    while(*str!=&apos;\0)</span><br><span class="line">        HashVal+=*str++;</span><br><span class="line">    return HashVal % tablesize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>设计一个散列函数涉及到关键字的所有字符,并且可以分布的很好(但不一定是分布的最好的),但下面这种情况,如果关键字过长可以不使用全部字符,比如只使用奇数字</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Index Hash(const char *str, int tablesize)&#123;</span><br><span class="line">    unsigned int HashVal=0;</span><br><span class="line"></span><br><span class="line">    while(*str!=&apos;\0)</span><br><span class="line">        HashVal=(HashVal&lt;&lt;5)+*str++;</span><br><span class="line">    return HashVal % tablesize;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
+<li>服务器先用 socket 函数来建立一个套接字,用这个套接字完成通信的监听,它是系统分配给该服务器进程的类似文件描述符的资源，不能与其他进程共享</li>
+<li>用 <code>bind</code> 函数来绑定一个端口号和 IP 地址, 服务器进程使用bind系统调用给套接字命名。本地套接字的名字是linux文件系统的文件名，一般放在/tmp或者/usr/tmp 目录下,因为一个计算机下有多个进程,每个进程对应着一个或者多个端口,必须指定一个端口进行监听客户机的数据</li>
+<li>服务器调用 <code>listen</code> 函数,使服务器的这个端口和 IP 处于监听状态,等待客户机的连接</li>
+<li>客户机用 <code>socket</code> 函数建立一个套接字,设定远程 IP 和端口</li>
+<li>客户机调用 <code>connect</code> 函数连接远程计算机指定的端口</li>
+<li>服务器用 <code>accept</code> 函数来接受远程计算机的连接,建立起与客户机之间的通信</li>
+<li>建立连接以后,客户机用 <code>write</code> 函数向 socket 中写入数据。也可以用 <code>read</code> 函数读取服务器发送来的数据.</li>
+<li>服务器用 <code>read</code> 函数读取客户机发送来的数据,也可以用 <code>write</code> 函数来发送数据.</li>
+<li>完成通信以后,用 <code>close</code> 函数关闭 socket 连接.</li>
 </ol>
-<p>剩下的问题就是解决当一个元素插入的时候,另外一个元素已经存在(两个元素的散列值相同),那么就产生一个冲突,冲突解决有两种方法:<strong>分离链接法和开放定址法</strong></p>
-<h2 id="分离链接法"><a href="#分离链接法" class="headerlink" title="分离链接法"></a>分离链接法</h2><p>做法是将散列值相同的元素都保存到一个表里面,这些表是 _链表_,这些表都有表头,<br>为了执行find:使用哈希函数找出应该查找哪个链表<br>为了执行insert:使用Insert链表的方法,可以将新元素插入到一个链表的末位或者最前面,一般插入在最前面,因为最近插入的元素有可能最先被访问<br>除了使用链表来解决冲突,还可以使用<strong>二叉查找树</strong>或者另外一个<strong>哈希表</strong></p>
-<h3 id="装填因子"><a href="#装填因子" class="headerlink" title="装填因子"></a>装填因子</h3><p>我们定义散列表的元素个数和散列表的大小的比值为装填因子(k),其实也就是哈希表每一个位置的<strong>链表的平均长度</strong>,<br>一次成功的查找花费的时间为(k/2)+1<br>一次不成功的查找花费时间为k,<br>也就是说明链表的长度并不重要,装填因子才是最重要的,一般让<strong>k尽可能等于1</strong>才是最好的,因为这样查找的时间变得很短,而又不至于哈希表里有大量的空位,节省了空间<br>其实也就是尽可能做到哈希表里面的元素尽可能<strong>均匀分布</strong></p>
-<h2 id="开放定址法"><a href="#开放定址法" class="headerlink" title="开放定址法"></a>开放定址法</h2><p>分离链接法的主要缺点是需要用到指针,给指针分配空间会消耗时间,减慢算法速度<br>所以这时就需要一个新的方法来解决冲突–开放定址法<br>在这个方法里面,所有的数据都要存放在表里面,而不像上面那个方法,可以另外开一个链表,因此需要的空间很大<br>对于这种方法,装添因子的大小应该低于k=0.5  </p>
-<h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><p>一个关键字在哈希表里面的索引值: h(X)=(Hash(X)+F(i)) mod tablesize<br>Hash(X)是哈希函数<br>F(i)就是解决冲突的办法,下面来讨论几种</p>
-<h3 id="线性探测法"><a href="#线性探测法" class="headerlink" title="线性探测法"></a>线性探测法</h3><p>也就是F(i)是i的线性函数,最简单的就是H(i)=i,<br>如果要插入的地方已经有元素,那么一直往这个索引后面的索引找(当查找到末尾的时候返回到最开始),直到找到一个不为空的位置,然后插入,虽然这样总能找到一个空单元去插入,但是所消耗的时间很多,并且如果表很空,那么元素所占据的单元也只会集中在很小的一块,这叫做 <em>一次聚集</em>,<br><strong>随机冲突解决</strong>: 对于查找,一次成功的查找消耗的时间比一次不成功查找消耗的时间要少,一次成功的查找可以看做是插入这个元素的时候一次不成功的查找,当一个哈希表从空一直插入的时候,装填因子是一直在上升的,随着装填因子的上升,后面的元素进行查找也就越来越难,哈希表里面空所占的比例为1-k,那么查找一个空单元预计的探测次数为1/(1-k),然后通过积分求平均的方式来得到平均值,<br>对比随机冲突解决和线性探测法可以发现,线性探测法一般都要比随机冲突解决消耗的时间要更大</p>
-<h3 id="平方探测法"><a href="#平方探测法" class="headerlink" title="平方探测法"></a>平方探测法</h3><p>F(i)=i*i,对于线性探测,让表填满不是一个好主意,因为k越大,后面的查找和插入操作也就消耗的更长的时间,对于平方探测,当表的元素不是素数的时候,一旦表被填超过一半,平方探测可能找不到一个空位去插入,因此就有了下面的定理<br><strong>定理</strong>:如果使用平方探测,并且表的大小是<strong>素数</strong>,那么当表<strong>至少有一半是空</strong>的时候,我们总能找到一个空位去插入<br>对于这种解决冲突的方法,删除不能够用一般的删除,因为这个位置可能已经引起过其他元素的冲突,其他元素绕过他存在了别处,如果按照一般的删除,对于那些绕过他的元素查找就会出现问题,所以这里对于一个元素的删除是<strong>懒惰删除</strong></p>
-<h3 id="双散列"><a href="#双散列" class="headerlink" title="双散列"></a>双散列</h3><p>就是把一个哈希表的散列函数应用到另外一个哈希表里面,即<code>F(i)=i*hash2(X)</code>,也就是下一步探测的是加上i乘以关键字在另外一个哈希函数上的返回值<br>在这种情况下,散列表的大小是<strong>素数</strong>很关键,</p>
-<ul>
-<li>因为要保证所有单元都可以被检测到,</li>
-<li>保证当一个位置产生冲突后,备选的位置不止一个</li>
-</ul>
-<p>一个好的第二个哈希函数的例子是:<code>hash(X)=R-(X mod R)</code>,R可以取整数</p>
-<h2 id="再散列"><a href="#再散列" class="headerlink" title="再散列"></a>再散列</h2><p>对于使用平方探测法的开放定址散列法,如果哈希表过满(填充超过一半),那么插入一个元素就有可能不成功,或者花费的时间过长  </p>
-<h3 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h3><p>我们可以建立一个大小是原来两倍的哈希表(这里的两倍指的是原来表大小两倍后的第一个素数,因为要保证表的大小是一个素数),然后遍历原来的表,并计算原来表中所有未删除的值在新表中的散列值(使用新表的散列函数),然后将这些元素放进新的表中,这个过程就叫做<strong>再散列</strong><br>这个算法的运行时间大约为O(N),因为有N个元素要再散列(考虑原始表的最大值)<br>还有在再散列之前,已经对老表进行了N/2次插入,这之后,将老表的元素添加到新表里面的时候,每个元素所消耗的时间大约都是常数时间,因为TableSize变大,可能造成的冲突被减少了<br><strong>有三种选择进行再散列</strong></p>
-<ul>
-<li>当一次插入失败的时候</li>
-<li>当插入到表元素一半的时候</li>
-<li>当装填因子k达到某个值的时候</li>
-</ul>
+<h2 id="实现过程中的困难"><a href="#实现过程中的困难" class="headerlink" title="实现过程中的困难"></a>实现过程中的困难</h2><h3 id="struct-sockaddr-in"><a href="#struct-sockaddr-in" class="headerlink" title="struct sockaddr_in"></a>struct sockaddr_in</h3><p>struct sockaddr_in这个结构体用来处理网络通信的地址<br>内容:</p>
+<ol>
+<li>sin_family: 地址族,AF_INET表示IP地址族</li>
+<li>sin_port: 16位TCP/UDP端口号</li>
+<li>sin_addr.s_addr:32位ipv4地址</li>
+</ol>
+<h3 id="htons"><a href="#htons" class="headerlink" title="htons"></a>htons</h3><p>把主机字节转换为网络字节,用于初始化网络地址结构体</p>
+<h3 id="socket-函数"><a href="#socket-函数" class="headerlink" title="socket()函数"></a>socket()函数</h3><p>在头文件sys/types.h和sys/socket.h里面<br>原型声明:<code>int socket(int domain, int type, int protocol);</code></p>
+<h4 id="domain"><a href="#domain" class="headerlink" title="domain"></a>domain</h4><p>PF_UNIX/PF_LOCAL/AF_UNIX/AF_LOCAL UNIX 进程通信协议<br>PF_INET?AF_INET Ipv4 网络协议<br>PF_INET6/AF_INET6 Ipv6 网络协议</p>
+<h4 id="type"><a href="#type" class="headerlink" title="type"></a>type</h4><p>SOCK_STREAM 提供双向连续且可信赖的数据流, 即TCP. 支持 OOB 机制, 在所有数据传送前必须使用connect()来建立连线状态.<br>2、SOCK_DGRAM 使用不连续不可信赖的数据包连接<br>3、SOCK_SEQPACKET 提供连续可信赖的数据包连接<br>4、SOCK_RAW 提供原始网络协议存取<br>5、SOCK_RDM 提供可信赖的数据包连接</p>
+<h4 id="protocol"><a href="#protocol" class="headerlink" title="protocol"></a>protocol</h4><p>protocol 用来指定socket 所使用的传输协议编号, 通常此参考不用管它, 设为0 即可.</p>
+<h3 id="bind"><a href="#bind" class="headerlink" title="bind()"></a>bind()</h3><p>int bind(int sock, struct sockaddr *addr, socklen_t addrlen);  //Linux</p>
+<p><code>sock</code> 为 socket <code>文件描述符，addr</code> 为 sockaddr <code>结构体变量的指针，addrlen</code> 为 addr 变量的大小，可由 sizeof() 计算得出。</p>
+<h3 id="send"><a href="#send" class="headerlink" title="send()"></a>send()</h3><p>int send(int s, const void * msg, int len, unsigned int falgs);</p>
+<p>send()用来将数据由指定的socket 传给对方主机: 参数 <code>s</code> 为已建立好连接的socket(客户机socket). 参数 <code>msg</code> 指向欲连线的数据内容, 参数 <code>len</code> 则为数据长度. <code>参数flags</code> 一般设0,</p>
+<p>返回值：成功则返回实际传送出去的字符数, 失败返回-1. 错误原因存于errno</p>
+<h4 id="recv"><a href="#recv" class="headerlink" title="recv()"></a>recv()</h4><p>int recv(int s, void *buf, int len, unsigned int flags);<br>函数说明：recv()用来接收远端主机经指定的socket 传来的数据, 并把数据存到由参数buf 指向的内存空间, 参数len 为可接收数据的最大长度.<br>返回值：成功则返回实际接受的字符数</p>
 
       
     </div>
@@ -418,7 +415,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2019/01/11/哈希表详解/" title="哈希表详解">http://yoursite.com/2019/01/11/哈希表详解/</a>
+    <a href="http://yoursite.com/2019/01/17/C语言实现tcp连接/" title="C语言实现tcp连接">http://yoursite.com/2019/01/17/C语言实现tcp连接/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -436,7 +433,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2019/01/11/哈希表详解/" title="哈希表详解">2019/01/11/哈希表详解/</a>
+    <a href="/2019/01/17/C语言实现tcp连接/" title="C语言实现tcp连接">2019/01/17/C语言实现tcp连接/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -457,7 +454,7 @@
           
             <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
-            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+            <a href="/tags/实践/" rel="tag"><i class="fa fa-tag"></i> 实践</a>
           
         </div>
       
@@ -470,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/11/Rust学习笔记-二/" rel="next" title="Rust学习笔记(二)">
-                <i class="fa fa-chevron-left"></i> Rust学习笔记(二)
+              <a href="/2019/01/17/C语言实现ls命令/" rel="next" title="C语言实现ls命令">
+                <i class="fa fa-chevron-left"></i> C语言实现ls命令
               </a>
             
           </div>
@@ -480,8 +477,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/11/python面向对象理解-一/" rel="prev" title="python面向对象理解(一)">
-                python面向对象理解(一) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/17/优先队列/" rel="prev" title="优先队列">
+                优先队列 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -650,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#散列-哈希表"><span class="nav-number">1.</span> <span class="nav-text">散列(哈希表)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#散列函数-哈希函数"><span class="nav-number">1.2.</span> <span class="nav-text">散列函数(哈希函数)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分离链接法"><span class="nav-number">1.3.</span> <span class="nav-text">分离链接法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#装填因子"><span class="nav-number">1.3.1.</span> <span class="nav-text">装填因子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开放定址法"><span class="nav-number">1.4.</span> <span class="nav-text">开放定址法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#计算方法"><span class="nav-number">1.4.1.</span> <span class="nav-text">计算方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性探测法"><span class="nav-number">1.4.2.</span> <span class="nav-text">线性探测法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平方探测法"><span class="nav-number">1.4.3.</span> <span class="nav-text">平方探测法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双散列"><span class="nav-number">1.4.4.</span> <span class="nav-text">双散列</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#再散列"><span class="nav-number">1.5.</span> <span class="nav-text">再散列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方法"><span class="nav-number">1.5.1.</span> <span class="nav-text">解决方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言Socket编程实现TCP"><span class="nav-number">1.</span> <span class="nav-text">C语言Socket编程实现TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#面向连接的套接字Socket通信工作流程"><span class="nav-number">1.1.</span> <span class="nav-text">面向连接的套接字Socket通信工作流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现过程中的困难"><span class="nav-number">1.2.</span> <span class="nav-text">实现过程中的困难</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#struct-sockaddr-in"><span class="nav-number">1.2.1.</span> <span class="nav-text">struct sockaddr_in</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#htons"><span class="nav-number">1.2.2.</span> <span class="nav-text">htons</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#socket-函数"><span class="nav-number">1.2.3.</span> <span class="nav-text">socket()函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#domain"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">domain</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#type"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">type</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#protocol"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">protocol</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bind"><span class="nav-number">1.2.4.</span> <span class="nav-text">bind()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#send"><span class="nav-number">1.2.5.</span> <span class="nav-text">send()</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#recv"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">recv()</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -831,9 +828,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2019/01/11/哈希表详解/';
-          this.page.identifier = '2019/01/11/哈希表详解/';
-          this.page.title = '哈希表详解';
+          this.page.url = 'http://yoursite.com/2019/01/17/C语言实现tcp连接/';
+          this.page.identifier = '2019/01/17/C语言实现tcp连接/';
+          this.page.title = 'C语言实现tcp连接';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';
