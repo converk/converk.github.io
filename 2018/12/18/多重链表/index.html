@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C语言,笔记," />
+  <meta name="keywords" content="C语言,笔记,Data Structure," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="C语言实现touch命令基础一getopt使用来解决参数处理的函数,包含在头文档 #include &amp;lt;unistd.h&amp;gt; 。一般形式如下： 1int getopt(int argc, char *const argv[], const char *optstring) 作用： 分析命令行参数。 返回值：参数字符。  参数argc 和argv 是由main()传递的参数个数和内容。 参数">
-<meta name="keywords" content="C语言,笔记">
+<meta name="description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
+<meta name="keywords" content="C语言,笔记,Data Structure">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C语言实现touch命令">
-<meta property="og:url" content="http://yoursite.com/2018/12/18/C-touch/index.html">
+<meta property="og:title" content="C语言多重链表">
+<meta property="og:url" content="http://yoursite.com/2018/12/18/多重链表/index.html">
 <meta property="og:site_name" content="converk">
-<meta property="og:description" content="C语言实现touch命令基础一getopt使用来解决参数处理的函数,包含在头文档 #include &amp;lt;unistd.h&amp;gt; 。一般形式如下： 1int getopt(int argc, char *const argv[], const char *optstring) 作用： 分析命令行参数。 返回值：参数字符。  参数argc 和argv 是由main()传递的参数个数和内容。 参数">
+<meta property="og:description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-18T07:47:00.347Z">
+<meta property="og:updated_time" content="2019-01-17T12:08:10.553Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C语言实现touch命令">
-<meta name="twitter:description" content="C语言实现touch命令基础一getopt使用来解决参数处理的函数,包含在头文档 #include &amp;lt;unistd.h&amp;gt; 。一般形式如下： 1int getopt(int argc, char *const argv[], const char *optstring) 作用： 分析命令行参数。 返回值：参数字符。  参数argc 和argv 是由main()传递的参数个数和内容。 参数">
+<meta name="twitter:title" content="C语言多重链表">
+<meta name="twitter:description" content="多重链表多重链表: 链表中的节点可能同时属于多个链  多重链表的指针域可能会有多个 但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表  多重链表有广泛的用途:基本上像树,图这样复杂的数据结构都可以使用多重链表来存储 矩阵的存储矩阵可以使用二维数组表示,但数组表示有两个缺点:  数组的大小必须事先知道 对于稀疏矩阵,会造成大量的空间浪费  采用一种典型的多">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/18/C-touch/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/18/多重链表/"/>
 
 
 
 
 
-  <title>C语言实现touch命令 | converk</title>
+  <title>C语言多重链表 | converk</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/C-touch/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/18/多重链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="converk">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C语言实现touch命令</h1>
+          <h1 class="post-title" itemprop="name headline">C语言多重链表</h1>
         
 
         <div class="post-meta">
@@ -282,7 +282,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T10:41:00+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-18T11:45:00+08:00">
                 2018-12-18
               </time>
             
@@ -305,8 +305,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C语言/" itemprop="url" rel="index">
-                    <span itemprop="name">C语言</span>
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
                   </a>
                 </span>
 
@@ -323,9 +323,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/18/C-touch/#comments" itemprop="discussionUrl">
+                <a href="/2018/12/18/多重链表/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/12/18/C-touch/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/12/18/多重链表/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -353,34 +353,26 @@
       
 
       
-        <h1 id="C语言实现touch命令"><a href="#C语言实现touch命令" class="headerlink" title="C语言实现touch命令"></a>C语言实现touch命令</h1><h2 id="基础一"><a href="#基础一" class="headerlink" title="基础一"></a>基础一</h2><p>getopt使用来解决参数处理的函数,包含在头文档 <code>#include &lt;unistd.h&gt;</code> 。一般形式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int getopt(int argc, char *const argv[], const char *optstring)</span><br></pre></td></tr></table></figure>
-<p>作用： 分析命令行参数。 返回值：参数字符。</p>
-<ol>
-<li>参数argc 和argv 是由main()传递的参数个数和内容。</li>
-<li>参数optstring 则代表欲处理的选项字符串。</li>
-</ol>
-<p>此函数会返回在argv 中下一个的选项字母，此字母会对应参数optstring 中的字母。<br>如果找到符合的参数则返回此参数字母, 如果参数不包含在参数optstring 的选项字母则返回”?”字符,分析结束则返回-1.</p>
-<h2 id="基础二"><a href="#基础二" class="headerlink" title="基础二"></a>基础二</h2><p>函数<code>open</code>是 UNIX 系统的系统调用函数，区别于 C 语言库函数 <code>fopen</code> 。包含在头文档 <code>#include &lt;fcntl.h&gt;</code> ，一般形式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int open(constchar *pathname, int flags);</span><br><span class="line">int open(constchar *pathname, int flags, mode_t mode);</span><br></pre></td></tr></table></figure>
-<p>作用：打开和创建文档。返回值：成功则返回文档描述符，否则返回 -1<br>对于 open 函数来说，第三个参数仅当创建新文档时（即使用了 O_CREAT 时）才使用，用于指定文档的访问权限位（access permission bits）.<code>pathname</code> 是待打开/创建文档的 POSIX 路径（如/home/user/a.cpp);<code>flags</code> 用于指定文档的打开/创建模式，这个参数可由以下常量（定义于fcntl.h）通过逻辑位或逻辑构成。</p>
-<blockquote>
-<p>O_RDONLY 只读模式<br>O_WRONLY 只写模式<br>O_RDWR 读写模式<br>参数 mode 只有在创建新文档时才会生效</p>
-</blockquote>
-<p>对于 open 函数来说， file 是用户输入的文档名字。 O_CREAT | O_WRONLY 代表该函数的选项是文档不存在则创建和只写打开。最后一个参数指定创建的文档的权限是所有用户可读可写。</p>
-<p><code>fd = open(file, O_CREAT | O_WRONLY, MODE_RW_UGO);</code></p>
-<h2 id="基础三"><a href="#基础三" class="headerlink" title="基础三"></a>基础三</h2><p>函数 <code>utimensat</code> 以纳秒级的精度改变文档的 时间戳.包含在 <code>#include &lt;sys/stat.h&gt;</code> ，一般形式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int utimensat(int dirfd, const char *pathname,const struct timespec times[2], intflags);</span><br></pre></td></tr></table></figure>
-<p>作用： <code>utimensat</code> 是以纳秒级的精度改变文档的时间戳.<code>utimensat()</code> 通过文档的路径（ pathname ）获得文档。<br>这个系统调用函数都是通过一个时间数组 times 来改变时间戳的， <code>times[0]</code> 修改最后一次访问的时间(access time)， <code>times[1]</code> 修改最后修改的时间 (modify time)。该时间数组是由秒和纳秒两个部分组成，数据结构如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct timespec &#123;</span><br><span class="line">time_t tv_sec; /* 秒 */  </span><br><span class="line">long tv_nsec; /* 纳秒 */</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>特别注意：<br>当 <code>times[x].tv_sec = UTIME_OMIT</code>; 相应的时间戳不变， <code>times[x].tv_sec = UTIME_NOW</code>; 相应的时间戳编程当前时间</p>
-<p><code>int dirfd</code>一般为 <code>AT_FDCWD</code>，其定义在 include/uapi/linux/fcntl.h，是一个特殊值（-100），该值表明当 filename 为相对路径的情况下将当前进程的工作目录设置为起始路径</p>
-<h2 id="基础四"><a href="#基础四" class="headerlink" title="基础四"></a>基础四</h2><p><code>touch file1.txt</code> 更新 file1.txt 的访问和修改时间</p>
-<p><code>touch -a file1.txt</code> 改变 file1.txt 的读取时间记录</p>
-<p><code>touch -c file1.txt</code> 如果 file1.txt 不存在，不创建文档</p>
-<p><code>touch -m file1.txt</code> 改变 file1.txt 的修改时间记录</p>
-<h2 id="基础五"><a href="#基础五" class="headerlink" title="基础五"></a>基础五</h2><p><code>int argc, char **argv</code></p>
-<p><code>argc</code>是命令行总的参数个数<br><code>argv[]</code>是argc个参数，其中第0个参数是程序的全名，以后的参数<br>命令行后面跟的用户输入的参数<br><code>char *argv[]</code>是一个字符数组,其大小是int argc,主要用于命令行参数argv[]参数，数组里每个元素代表一个参数;</p>
+        <h1 id="多重链表"><a href="#多重链表" class="headerlink" title="多重链表"></a>多重链表</h1><p><strong>多重链表</strong>: 链表中的节点可能同时属于多个链</p>
+<ul>
+<li>多重链表的指针域可能会有多个</li>
+<li>但并不是包含多个指针域的都叫多重链表,比如双向链表,它的正向和反向的指针所连接的是同一个链表</li>
+</ul>
+<p>多重链表有广泛的用途:<br>基本上像<strong>树,图</strong>这样复杂的数据结构都可以使用多重链表来存储</p>
+<h2 id="矩阵的存储"><a href="#矩阵的存储" class="headerlink" title="矩阵的存储"></a>矩阵的存储</h2><p>矩阵可以使用二维数组表示,但数组表示有两个缺点:</p>
+<ul>
+<li>数组的大小必须事先知道</li>
+<li>对于<strong>稀疏矩阵</strong>,会造成大量的空间浪费</li>
+</ul>
+<p>采用一种典型的多重链表—-<strong>十字链表</strong>来存储稀疏矩阵</p>
+<ul>
+<li>只存储矩阵非0元素项. 节点的<strong>数据域</strong>: 行坐标Row,列坐标: Col, 数值: Value</li>
+<li>每个节点通过两个指针域把同行和同列连接起来<ul>
+<li>行指针(从左指向右):Right</li>
+<li>列指针(从上到下):Down</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
@@ -414,7 +406,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/12/18/C-touch/" title="C语言实现touch命令">http://yoursite.com/2018/12/18/C-touch/</a>
+    <a href="http://yoursite.com/2018/12/18/多重链表/" title="C语言多重链表">http://yoursite.com/2018/12/18/多重链表/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -432,7 +424,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="/2018/12/18/C-touch/" title="C语言实现touch命令">2018/12/18/C-touch/</a>
+    <a href="/2018/12/18/多重链表/" title="C语言多重链表">2018/12/18/多重链表/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权： </strong>
@@ -453,6 +445,8 @@
           
             <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
           
+            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+          
         </div>
       
 
@@ -464,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/09/28/git-1/" rel="next" title="git学习">
-                <i class="fa fa-chevron-left"></i> git学习
+              <a href="/2018/12/18/C语言中预处理器基本概念/" rel="next" title="C语言中的预处理器基本概念">
+                <i class="fa fa-chevron-left"></i> C语言中的预处理器基本概念
               </a>
             
           </div>
@@ -474,8 +468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/18/多重链表(少)/" rel="prev" title="C语言多重链表">
-                C语言多重链表 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/01/11/Rust学习笔记-一/" rel="prev" title="Rust学习笔记(一)">
+                Rust学习笔记(一) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -567,7 +561,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -578,7 +572,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -589,7 +583,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -644,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#C语言实现touch命令"><span class="nav-number">1.</span> <span class="nav-text">C语言实现touch命令</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础一"><span class="nav-number">1.1.</span> <span class="nav-text">基础一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础二"><span class="nav-number">1.2.</span> <span class="nav-text">基础二</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础三"><span class="nav-number">1.3.</span> <span class="nav-text">基础三</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础四"><span class="nav-number">1.4.</span> <span class="nav-text">基础四</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础五"><span class="nav-number">1.5.</span> <span class="nav-text">基础五</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#多重链表"><span class="nav-number">1.</span> <span class="nav-text">多重链表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#矩阵的存储"><span class="nav-number">1.1.</span> <span class="nav-text">矩阵的存储</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -693,7 +687,7 @@
 
 
 <div class="theme-info">
-  <span class="post-count">博客全站共16.6k字</span>
+  <span class="post-count">博客全站共23.7k字</span>
 </div>
 
         
@@ -825,9 +819,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/12/18/C-touch/';
-          this.page.identifier = '2018/12/18/C-touch/';
-          this.page.title = 'C语言实现touch命令';
+          this.page.url = 'http://yoursite.com/2018/12/18/多重链表/';
+          this.page.identifier = '2018/12/18/多重链表/';
+          this.page.title = 'C语言多重链表';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://converk.disqus.com/embed.js';

@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="C语言,笔记,Data Structure," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="排序概念不能够在主存中进行排序,而必须要在磁盘上进行的排序叫做–外部排序,这里主要讨论在主存上进行的排序–内部排序 几种排序算法插入排序这个方法从数组的开始遍历到结尾,从0,到N.算法保证,当遍历到一个元素的时候,其前面的几个元素都是已经排好序的,只需要把当前元素插入到前面排好序的序列中就行了,当数组遍历完成,那么排序也完成了时间复杂度: O(N^2) 12345678910111213void">
+<meta name="keywords" content="C语言,笔记,Data Structure">
+<meta property="og:type" content="article">
+<meta property="og:title" content="几种排序算法">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/几种排序算法/index.html">
+<meta property="og:site_name" content="converk">
+<meta property="og:description" content="排序概念不能够在主存中进行排序,而必须要在磁盘上进行的排序叫做–外部排序,这里主要讨论在主存上进行的排序–内部排序 几种排序算法插入排序这个方法从数组的开始遍历到结尾,从0,到N.算法保证,当遍历到一个元素的时候,其前面的几个元素都是已经排好序的,只需要把当前元素插入到前面排好序的序列中就行了,当数组遍历完成,那么排序也完成了时间复杂度: O(N^2) 12345678910111213void">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-17T12:19:47.503Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="几种排序算法">
+<meta name="twitter:description" content="排序概念不能够在主存中进行排序,而必须要在磁盘上进行的排序叫做–外部排序,这里主要讨论在主存上进行的排序–内部排序 几种排序算法插入排序这个方法从数组的开始遍历到结尾,从0,到N.算法保证,当遍历到一个元素的时候,其前面的几个元素都是已经排好序的,只需要把当前元素插入到前面排好序的序列中就行了,当数组遍历完成,那么排序也完成了时间复杂度: O(N^2) 12345678910111213void">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/几种排序算法/"/>
+
+
+
+
+
+  <title>几种排序算法 | converk</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">converk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要努力学习啊!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/几种排序算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="converk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="converk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">几种排序算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T20:02:55+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Data-Structure/" itemprop="url" rel="index">
+                    <span itemprop="name">Data Structure</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/17/几种排序算法/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/17/几种排序算法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>不能够在主存中进行排序,而必须要在磁盘上进行的排序叫做–<strong>外部排序</strong>,这里主要讨论在主存上进行的排序–<strong>内部排序</strong></p>
+<h2 id="几种排序算法"><a href="#几种排序算法" class="headerlink" title="几种排序算法"></a>几种排序算法</h2><h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>这个方法从数组的开始遍历到结尾,从0,到N.算法保证,当遍历到一个元素的时候,其前面的几个元素都是已经排好序的,只需要把当前元素插入到前面排好序的序列中就行了,当数组遍历完成,那么排序也完成了<br>时间复杂度: O(N^2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">void InsertSort(int A[], int N)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;</span><br><span class="line">    int j;</span><br><span class="line">    for (int i = 0; i &lt; N; i++) &#123;</span><br><span class="line">        temp = A[i];</span><br><span class="line">        for (j = i; j &gt; 0 &amp;&amp; A[j - 1] &gt; temp; j--) &#123;</span><br><span class="line">            A[j] = A[j - 1];</span><br><span class="line">        &#125;</span><br><span class="line">        A[j] = temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="希尔排序-缩小增量排序"><a href="#希尔排序-缩小增量排序" class="headerlink" title="希尔排序(缩小增量排序)"></a>希尔排序(缩小增量排序)</h3><p>希尔排序使用了一个增量序列<code>[h1,h2,h3,...,ht]</code>,<code>ht</code>是增量序列的最大值,当然增量序列不是固定的,只要<code>h1=1</code>,那么就可以成为一个增量序列,而且增量序列的选择对于算法的性能有很大影响,<br>写一种流行的增量序列是:  ht=N/2,h(k+1)=h(k)/2,h(k)是第k个增量<br>具体做法就是: 我们在使用了h(k)增量进行了一个排序之后(称为h(k)-排序),对于每一个i,都有<code>A[i]&lt;=A[i+h(k)]</code>,当h(k)从大到小遍历完成,数组的排序完成<br>希尔排序有一个性质就是: h(k)的排序性不会受到之后排序的影响,即如果一次h(k)排序之后,那么<code>A[i]&lt;=A[i+h(k)]</code>,就一直成立,不会受到h(k-1)排序的影响<br>如果使用上面的增量序列的话,最坏时间为: O(N^2)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void ShellSort(int A[], int N)</span><br><span class="line">&#123;</span><br><span class="line">    int IncreaseMent, i, j;</span><br><span class="line">    int temp;</span><br><span class="line"></span><br><span class="line">    for (IncreaseMent = N / 2; IncreaseMent &gt; 0; IncreaseMent /= 2) &#123;</span><br><span class="line">        for (i = IncreaseMent; i &lt; N; i++) &#123; //对每隔InCreaseMent个进行插入排序</span><br><span class="line">            temp = A[i];</span><br><span class="line">            for (j = i; j &gt;= IncreaseMent; j -= IncreaseMent) &#123; //这里的思想其实和堆差不多</span><br><span class="line">                if (temp &lt; A[j - IncreaseMent])</span><br><span class="line">                    A[j] = A[j - IncreaseMent];</span><br><span class="line">                else</span><br><span class="line">                    break;</span><br><span class="line">            &#125;</span><br><span class="line">            A[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>可以通过改变增量序列来提高算法的性能,比如:Hibbard,希尔排序由于很简单,现在很多大型的数据输入也会使用</p>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><p>首先将输入的数组构建为一个堆,然后再逐次删除最小值或者最大值(看是最小堆还是最大堆),当把堆删除完成之后,排序就完成了,为了避免使用一个新的数组,可以将删除的数据存储在堆的后面,当删除一个元素时,可以将这个值与堆的最后一个值进行交换,然后再下滤,再删除最大值,但是这里与堆有个不同的地方,这里的数组是从下标0开始的,所以左儿子就变为了2*i+1  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">void PcrDown(int A[], int i, int N) //i是下滤第几个元素,N是堆一共几个元素</span><br><span class="line">&#123;</span><br><span class="line">    int temp, child;</span><br><span class="line">    for (temp = A[i]; LeftChild(i) &lt; N; i = child) &#123;</span><br><span class="line">        child = LeftChild(i);</span><br><span class="line">        if (child != N - 1 &amp;&amp; A[child] &lt; A[child + 1])</span><br><span class="line">            child++;</span><br><span class="line">        if (temp &lt; A[child])</span><br><span class="line">            A[i] = A[child];</span><br><span class="line">        else</span><br><span class="line">            break;</span><br><span class="line">    &#125;</span><br><span class="line">    A[i] = temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void HeapSort(int A[], int N)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;</span><br><span class="line">    for (int i = N / 2; i &gt;= 0; i--)</span><br><span class="line">        PcrDown(A, i, N); //创建堆</span><br><span class="line">    for (int i = N - 1; i &gt; 0; i--) &#123;</span><br><span class="line">        temp = A[0];</span><br><span class="line">        A[0] = A[i];</span><br><span class="line">        A[i] = temp;</span><br><span class="line">        PcrDown(A, 0, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>堆排序是一种很稳定的算法,复杂度为O(NlogN),即平均情景与最坏情景差不多</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>归并排序就是将一个待排序的数组,分成几部分,分别排序后,再合并到一起,比如一个数组有八个元素,我们可以先排序前四个和后四个,再合起来,如果我们要排序前四个,那么我们可以先排序前四个的前两个和后两个,之后合并起来,这也是典型的分治算法,也是递归的一种使用,但是这种算法有一个缺点,就是每一次排序之后都把从之前分配的一个空间里面的数,拷贝到原数组,这个操作会严重放慢排序的速度,所以在主存中进行排序的时候不会使用这种算法,但是大多数外部排序都会有使用归并的思想</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">void MergeSort(int A[], int N)</span><br><span class="line">&#123;</span><br><span class="line">    int* TmpArray = malloc(N * sizeof(int));</span><br><span class="line">    if (!TmpArray) &#123;</span><br><span class="line">        Msort(A, TmpArray, 0, N - 1);</span><br><span class="line">        free(TmpArray);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Msort(int A[], int TmpArray[], int left, int rigth)</span><br><span class="line">&#123;</span><br><span class="line">    int cerent;</span><br><span class="line"></span><br><span class="line">    if (left &lt; rigth) &#123;</span><br><span class="line">        cerent = (left + rigth) / 2;</span><br><span class="line">        Msort(A, TmpArray, left, cerent);</span><br><span class="line">        Msort(A, TmpArray, cerent + 1, rigth);</span><br><span class="line">        Merge(A, TmpArray, left, cerent + 1, rigth);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void Merge(int A[], int TmpArray[], int left, int cerent, int rigth)</span><br><span class="line">&#123;</span><br><span class="line">    int A_left = left;</span><br><span class="line">    int A_rigth = cerent;</span><br><span class="line">    int B_left = cerent + 1;</span><br><span class="line">    int B_rigth = rigth;</span><br><span class="line">    int C_begin = left;</span><br><span class="line">    int C_end = rigth;</span><br><span class="line"></span><br><span class="line">    int C_index = left; //c中的当前索引</span><br><span class="line">    while (A_left &lt;= A_rigth &amp;&amp; B_left &lt;= B_rigth) &#123;</span><br><span class="line">        if (A[A_left] &gt; A[B_left])</span><br><span class="line">            TmpArray[C_index++] = A[B_left++];</span><br><span class="line">        else</span><br><span class="line">            TmpArray[C_index++] = A[A_left++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    while (A_left &lt;= A_rigth) //清除剩余的</span><br><span class="line">        TmpArray[C_index++] = A[A_left++];</span><br><span class="line"></span><br><span class="line">    while (B_left &lt;= B_rigth)</span><br><span class="line">        TmpArray[C_index++] = A[B_left++];</span><br><span class="line"></span><br><span class="line">    for (int i = left; i &lt;= rigth; i++) //将tmp中的元素在拷贝到A中,这个过程会减慢算法速度</span><br><span class="line">        A[i] = TmpArray[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这种算法的复杂度为O(NlogN),</p>
+<h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>这个是在实践中已知的最快的排序算法,平均运行时间为O(NlogN),之所以很快,是因为内部高度优化的结构,算法的具体流程如下:</p>
+<ol>
+<li>如果数组中只有0或1个元素,那么直接返回</li>
+<li>在数组中选择任意元素v作为 <em>枢纽元</em></li>
+<li>将数组的其余元素分为小于枢纽元和大于枢纽元的两部分,S1和S2</li>
+<li>分别再对S1和S2进行快排,然后与枢纽元的合并</li>
+</ol>
+<p>如上述描述可以看到,快速排序也是一种递归的算法,它的高效主要体现在将数组分为两部分的步骤上,确切的说也就是<strong>枢纽元</strong>的选择,一个好的枢纽元可以大大提高算法的速度</p>
+<h4 id="枢纽元的选择"><a href="#枢纽元的选择" class="headerlink" title="枢纽元的选择"></a>枢纽元的选择</h4><h5 id="随机"><a href="#随机" class="headerlink" title="随机"></a>随机</h5><p>随机挑选数组里面的一个元素作为枢纽元是可以接受的,因为他不可能连续多次都导致坏的情况,但是一个随机数的生成可能要消耗带昂的时间</p>
+<h5 id="三数中值"><a href="#三数中值" class="headerlink" title="三数中值"></a>三数中值</h5><p>一般取一个数组的中值是最好的分割方法,因为这个时候两边都是相同个数的元素,但是计算中值的时间是十分巨大的,因此采用一个简单的方法,如果一个数组左边第一个索引为left,右边最后一个索引为rigth,中值索引为(left+rigth)/2,选择三个索引中值为中间的为索引</p>
+<h4 id="分割策略"><a href="#分割策略" class="headerlink" title="分割策略"></a>分割策略</h4><p>在我们选出了枢纽元之后,下一步要做的就是根据枢纽元将数组分成两个部分,做法就是,先将枢纽元与最后一个元素进行交换,然后同时将两个索引i和j分别放到数组的开头与倒数第二个元素(忽略枢纽元),然后通过两个索引进行分割</p>
+<ol>
+<li>如果a[i] &lt; v,a[j]&gt;v,则i++,j++</li>
+<li>如果a[i]&gt; v,a[j]&lt; v 则i与j都停止,二者交换元素,然后i++,j++</li>
+<li>如果a[i],a[j]&lt; v,i++,j不变</li>
+<li>如果a[i],a[j]&gt; v,j++,i不变</li>
+</ol>
+<p>当两个索引交错的时候,把i出索引的值与最后一个元素枢纽元进行交换,就完成了分割</p>
+<h4 id="数组中与枢纽元相等的元素的处理"><a href="#数组中与枢纽元相等的元素的处理" class="headerlink" title="数组中与枢纽元相等的元素的处理"></a>数组中与枢纽元相等的元素的处理</h4><p>我们采用的办法是i与j都停止,然后交换元素,这样虽然会有多次不必要的交换,但是避免了二次运行时间</p>
+<h4 id="使用情况"><a href="#使用情况" class="headerlink" title="使用情况"></a>使用情况</h4><p>快排虽然有效,但是不适合用于小数组,因为递归的使用很浪费时间,对于小数组(N&lt;15),使用插入排序这种更好</p>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>在实现中,我们通常将left,rigth,mid三个值进行排序,最小值放在left,因为它小于枢纽元,最大值放在rigth,枢纽元放在mid,然后交换的时候就可以直接将枢纽元与<strong>rigth-1</strong>进行交换,i与j的开始索引就变成了<strong>left+1</strong>和<strong>rigth-2</strong>,之后再进行上述的分割操作,然后递归调用此函数,直到不可以再分割为止</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">void QuickSort(int A[], int N)</span><br><span class="line">&#123;</span><br><span class="line">    QSort(A, 0, N - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int Median3(int A[], int left, int rigth)</span><br><span class="line">&#123;</span><br><span class="line">    int mid = (left + rigth) / 2;</span><br><span class="line">    if (A[left] &gt; A[mid])</span><br><span class="line">        swap(A + left, A + mid);</span><br><span class="line">    if (A[left] &gt; A[rigth])</span><br><span class="line">        swap(A + left, A + rigth);</span><br><span class="line">    if (A[mid] &gt; A[rigth])</span><br><span class="line">        swap(A + mid, A + rigth);</span><br><span class="line"></span><br><span class="line">    swap(&amp;A[mid], &amp;A[rigth - 1]); //将枢纽元交换到后面</span><br><span class="line">    return A[rigth - 1];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void QSort(int A[], int left, int rigth)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;</span><br><span class="line">    int i = left + 1, j = rigth - 2;</span><br><span class="line"></span><br><span class="line">    if (rigth - left &gt;= Cutoff) &#123; //快速排序</span><br><span class="line">        temp = Median3(A, left, rigth); //返回索引</span><br><span class="line"></span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            while (A[i++] &lt; temp) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            while (A[j--] &gt; temp) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            if (i &lt; j)</span><br><span class="line">                swap(&amp;A[i], &amp;A[j]);</span><br><span class="line">            else</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(&amp;A[rigth - 1], &amp;A[i]); //把枢纽元交换回来</span><br><span class="line"></span><br><span class="line">        QSort(A, left, i - 1);</span><br><span class="line">        QSort(A, i + 1, rigth);</span><br><span class="line">    &#125; else</span><br><span class="line">        InsertSort(A, rigth - left + 1); //使用插入排序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>正常情况的复杂度是O(NlogN),但是最坏情况可以达到O(N^2),</p>
+<h4 id="使用快排的方法解决第k个最小值问题"><a href="#使用快排的方法解决第k个最小值问题" class="headerlink" title="使用快排的方法解决第k个最小值问题"></a>使用快排的方法解决第k个最小值问题</h4><p>这个算法称为快速选择,当做算法结束的时候,第k个最小元就在位置k上,思想与快速排序几乎一样</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">void QSelect(int A[],int k, int left, int rigth)</span><br><span class="line">&#123;</span><br><span class="line">    int temp;</span><br><span class="line">    int i = left + 1, j = rigth - 2;</span><br><span class="line"></span><br><span class="line">    if (rigth - left &gt;= Cutoff) &#123; //快速排序</span><br><span class="line">        temp = Median3(A, left, rigth); //返回索引</span><br><span class="line"></span><br><span class="line">        for (;;) &#123;</span><br><span class="line">            while (A[i++] &lt; temp) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            while (A[j--] &gt; temp) &#123;</span><br><span class="line">            &#125;</span><br><span class="line">            if (i &lt; j)</span><br><span class="line">                swap(&amp;A[i], &amp;A[j]);</span><br><span class="line">            else</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">        swap(&amp;A[rigth - 1], &amp;A[i]); //把枢纽元交换回来</span><br><span class="line"></span><br><span class="line">        if(k&lt;=i)</span><br><span class="line">            QSelect(A,k,left,i-1);</span><br><span class="line">        else</span><br><span class="line">            QSelect(A,k-i-1,i+1,rigth);</span><br><span class="line">    &#125; else</span><br><span class="line">        InsertSort(A, rigth - left + 1); //使用插入排序</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+    
+      <div>
+	    <div>
+    
+        <div style="text-align:center;color: #847bb9;font-size:15px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  </div>
+    
+	
+
+    
+
+    
+
+    
+      <div>
+        <!--<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/01/17/几种排序算法/" title="几种排序算法">http://yoursite.com/2019/01/17/几种排序算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>-->
+
+
+<div>    
+ 
+ 
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+      <strong>本文作者：</strong>converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/2019/01/17/几种排序算法/" title="几种排序算法">2019/01/17/几种排序算法/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权： </strong>
+    本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+  </li>
+</ul>
+
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C语言/" rel="tag"><i class="fa fa-tag"></i> C语言</a>
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/Data-Structure/" rel="tag"><i class="fa fa-tag"></i> Data Structure</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/Linux我不太知道的东西/" rel="next" title="Linux一些我不太了解的东西">
+                <i class="fa fa-chevron-left"></i> Linux一些我不太了解的东西
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/01/17/Rust学习笔记-三/" rel="prev" title="Rust学习笔记(三)">
+                Rust学习笔记(三) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.png"
+                alt="converk" />
+            
+              <p class="site-author-name" itemprop="name">converk</p>
+              <p class="site-description motion-element" itemprop="description">一个很菜的coder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/converk" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:843951249@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1306503623&auto=1&height=66"></iframe>
+</div>
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310913720&auto=1&height=66"></iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#排序"><span class="nav-number">1.</span> <span class="nav-text">排序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种排序算法"><span class="nav-number">1.2.</span> <span class="nav-text">几种排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">1.2.1.</span> <span class="nav-text">插入排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#希尔排序-缩小增量排序"><span class="nav-number">1.2.2.</span> <span class="nav-text">希尔排序(缩小增量排序)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆排序"><span class="nav-number">1.2.3.</span> <span class="nav-text">堆排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">1.2.4.</span> <span class="nav-text">归并排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">1.2.5.</span> <span class="nav-text">快速排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#枢纽元的选择"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">枢纽元的选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#随机"><span class="nav-number">1.2.5.1.1.</span> <span class="nav-text">随机</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#三数中值"><span class="nav-number">1.2.5.1.2.</span> <span class="nav-text">三数中值</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分割策略"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">分割策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数组中与枢纽元相等的元素的处理"><span class="nav-number">1.2.5.3.</span> <span class="nav-text">数组中与枢纽元相等的元素的处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用情况"><span class="nav-number">1.2.5.4.</span> <span class="nav-text">使用情况</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">1.2.5.5.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用快排的方法解决第k个最小值问题"><span class="nav-number">1.2.5.6.</span> <span class="nav-text">使用快排的方法解决第k个最小值问题</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">converk</span>
+
+  
+</div>
+
+
+
+
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共23.7k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://converk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/01/17/几种排序算法/';
+          this.page.identifier = '2019/01/17/几种排序算法/';
+          this.page.title = '几种排序算法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://converk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

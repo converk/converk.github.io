@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon_16.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="笔记,兴趣,Rust," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Rust学习笔记–所有权系统(owership)其令 Rust 无需垃圾回收（garbage collector）即可保障内存安全 什么是所有权堆与栈对于rust,编译时数据的存放位置是很重要的,    对于栈的操作是十分快速的,因为栈的存储数据的位置总是在栈顶,并且,栈里面存储的数据必须是大小已知的,并且固定的数据 在编译时大小未知或大小可能变化的数据，要改为存储在堆上。堆是缺乏组织的：当向堆放">
+<meta name="keywords" content="笔记,兴趣,Rust">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Rust学习笔记(三)">
+<meta property="og:url" content="http://yoursite.com/2019/01/17/Rust学习笔记-三/index.html">
+<meta property="og:site_name" content="converk">
+<meta property="og:description" content="Rust学习笔记–所有权系统(owership)其令 Rust 无需垃圾回收（garbage collector）即可保障内存安全 什么是所有权堆与栈对于rust,编译时数据的存放位置是很重要的,    对于栈的操作是十分快速的,因为栈的存储数据的位置总是在栈顶,并且,栈里面存储的数据必须是大小已知的,并且固定的数据 在编译时大小未知或大小可能变化的数据，要改为存储在堆上。堆是缺乏组织的：当向堆放">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-01-17T12:15:00.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rust学习笔记(三)">
+<meta name="twitter:description" content="Rust学习笔记–所有权系统(owership)其令 Rust 无需垃圾回收（garbage collector）即可保障内存安全 什么是所有权堆与栈对于rust,编译时数据的存放位置是很重要的,    对于栈的操作是十分快速的,因为栈的存储数据的位置总是在栈顶,并且,栈里面存储的数据必须是大小已知的,并且固定的数据 在编译时大小未知或大小可能变化的数据，要改为存储在堆上。堆是缺乏组织的：当向堆放">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/01/17/Rust学习笔记-三/"/>
+
+
+
+
+
+  <title>Rust学习笔记(三) | converk</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">converk</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">要努力学习啊!</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/Rust学习笔记-三/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="converk">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/touxiang.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="converk">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Rust学习笔记(三)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-17T20:03:55+08:00">
+                2019-01-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Rust/" itemprop="url" rel="index">
+                    <span itemprop="name">Rust</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/01/17/Rust学习笔记-三/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/01/17/Rust学习笔记-三/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Rust学习笔记–所有权系统-owership"><a href="#Rust学习笔记–所有权系统-owership" class="headerlink" title="Rust学习笔记–所有权系统(owership)"></a>Rust学习笔记–所有权系统(owership)</h1><p>其令 <strong>Rust</strong> 无需垃圾回收（garbage collector）即可保障内存安全</p>
+<h2 id="什么是所有权"><a href="#什么是所有权" class="headerlink" title="什么是所有权"></a>什么是所有权</h2><h3 id="堆与栈"><a href="#堆与栈" class="headerlink" title="堆与栈"></a>堆与栈</h3><p>对于rust,编译时数据的存放位置是很重要的,  </p>
+<ol>
+<li>对于栈的操作是十分快速的,因为栈的存储数据的位置总是在栈顶,并且,栈里面存储的数据必须是大小已知的,并且固定的数据</li>
+<li>在编译时大小未知或大小可能变化的数据，要改为存储在堆上。<strong>堆是缺乏组织的</strong>：当向堆放入数据时，你要请求一定大小的空间。操作系统在堆的某处找到一块足够大的空位，把它标记为已使用，并返回一个表示该位置地址的 指针（pointer）。这个过程称作 <strong>在堆上分配内存</strong></li>
+</ol>
+<p>跟踪哪部分代码正在使用堆上的哪些数据，最大限度的减少堆上的重复数据的数量，以及清理堆上不再使用的数据确保不会耗尽空间，这些问题正是所有权系统要处理的。</p>
+<h3 id="所有权规则"><a href="#所有权规则" class="headerlink" title="所有权规则"></a>所有权规则</h3><ol>
+<li>Rust里面每一个值都有一个被称为其<strong>所有者</strong>的变量</li>
+<li>值有且只有一个所有者</li>
+<li>当所有者(变量)离开作用域之后,这个值会被丢弃</li>
+</ol>
+<h3 id="变量作用域"><a href="#变量作用域" class="headerlink" title="变量作用域"></a>变量作用域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#![allow(unused_variables)]</span><br><span class="line">fn main() &#123;</span><br><span class="line">&#123;                      // s 在这里无效, 它尚未声明</span><br><span class="line">    let s = &quot;hello&quot;;   // 从此处起，s 是有效的</span><br><span class="line"></span><br><span class="line">    // 使用 s</span><br><span class="line">&#125;                      // 此作用域已结束，s 不再有效</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个作用域和其他语言好像是类似的</p>
+<h3 id="String类型"><a href="#String类型" class="headerlink" title="String类型"></a>String类型</h3><p>这个类型比之前讲的那几种标量和复合类型都要复杂,这个类型的数据是存放在堆上而不是栈,以此来说明rust是如何知道在何时清理数据的<br>对于上例中的<code>let s = &quot;hello&quot;;</code>里面的<code>&quot;hello&quot;</code>是一个字符串字面值,不可改变,其数据存放在栈上,因此这样也就造成了一个缺点.对于如果想要读取用户的输入就不能使用这种类型.<br>因此,<code>String</code>类型就解决了这个问题,这个类型被分配到<code>堆</code>上，所以能够存储在编译时未知大小的文本。可以使用 from 函数基于字符串字面值来创建 <code>String</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let s=String::from(&quot;hello&quot;);</span><br></pre></td></tr></table></figure>
+<p>这句话把s初始化为值为<code>&quot;hello&quot;</code>的<code>String</code>类型,并且这个字符串s的值是可以修改的:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">let mut s = String::from(&quot;hello&quot;);   //要修改,必须命名时加上mut关键字</span><br><span class="line"></span><br><span class="line">s.push_str(&quot;, world!&quot;); // push_str() 在字符串后追加字面值</span><br><span class="line"></span><br><span class="line">println!(&quot;&#123;&#125;&quot;, s); // 将打印 `hello, world!`</span><br></pre></td></tr></table></figure>
+<h3 id="String类型与字符串字面值在内存分配上的区别"><a href="#String类型与字符串字面值在内存分配上的区别" class="headerlink" title="String类型与字符串字面值在内存分配上的区别"></a>String类型与字符串字面值在内存分配上的区别</h3><ol>
+<li>就字符串字面值来说，我们在编译时就知道其内容，所以文本被直接硬编码进最终的可执行文件中。这使得字符串字面值快速且高效</li>
+<li><p>对于 <code>String</code> 类型，为了支持一个可变，可增长的文本片段，需要在堆上分配一块在编译时未知大小的内存来存放内容。这意味着：</p>
+<blockquote>
+<ol>
+<li>必须在运行时向操作系统请求内存。</li>
+<li>需要一个当我们处理完 String 时将内存返回给操作系统的方法。</li>
+</ol>
+</blockquote>
+<p> 对于将内存返回给操作系统的方法,Rust采用了一个不同的策略:内存在拥有它的变量离开作用域后就被自动释放。</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    let s = String::from(&quot;hello&quot;); // 从此处起，s 是有效的</span><br><span class="line"></span><br><span class="line">    // 使用 s</span><br><span class="line">&#125;                                  // 此作用域已结束，</span><br><span class="line">                                // s 不再有效</span><br></pre></td></tr></table></figure>
+<p> 这是一个将 <code>String</code> 需要的内存返回给操作系统的很自然的位置：当 s 离开作用域的时候。当变量离开作用域，Rust 为我们调用一个特殊的函数。这个函数叫做 <code>drop</code>，在这里 <code>String</code> 的作者可以放置释放内存的代码。Rust 在结尾的 <code>}</code> 处自动调用 <code>drop。</code></p>
+</li>
+</ol>
+<h3 id="变量与数据的交互方式-移动"><a href="#变量与数据的交互方式-移动" class="headerlink" title="变量与数据的交互方式(移动)"></a>变量与数据的交互方式(移动)</h3><p>来观察两行代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s1=String::from(&quot;hello&quot;);</span><br><span class="line">let s2=s1;</span><br></pre></td></tr></table></figure>
+<p>首先第一行是初始化一个String类型的值,第二行将s1的值”拷贝到”s2里面,但是这里要注意,String类型的值是储存在堆上的,如果第二行再在堆上面拷贝相同的数据就没有任何意义,会影响到程序访问数据的速度,所以对于Rust来说,第二行并不是一个拷贝数据的操作,而是将s2的指针直接指向s1的数据在堆上的位置,但是如果只是这样的话,那么在s1和s2的作用域结束之后就会释放两次一模一样的堆空间,这样做显然是错的,因此,rust规定,如果对于存放在堆上面的数据进行像上述<code>let s2=s1</code>这样的操作之后,那么第一个变量<code>s1</code>就变无效,在其(s1)的作用域结束之后也不会对其进行drop操作,只会对s2进行drop来释放在堆里面的空间,也就是说,上面的代码,实际上把s1的值移动到了s2上面<br>对于String的存储方式:指针存储在栈里面,二指针指向的数据存储在堆里面,栈里面还有长度和最大长度等数据</p>
+<h3 id="变量与数据的交互方式-克隆"><a href="#变量与数据的交互方式-克隆" class="headerlink" title="变量与数据的交互方式(克隆)"></a>变量与数据的交互方式(克隆)</h3><p>对于上面的移动操作,如果想继续保持s1有效,那么第二行代码可以变为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let s2=s1.clone()</span><br></pre></td></tr></table></figure>
+<p>但是这样会消耗资源,而且运行速度也会变慢</p>
+<h3 id="只在栈上的数据–拷贝"><a href="#只在栈上的数据–拷贝" class="headerlink" title="只在栈上的数据–拷贝"></a>只在栈上的数据–拷贝</h3><p>如果一个变量的数据存放在栈上的话,那么进行下面的操作:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let x=5;</span><br><span class="line">let y=x;</span><br></pre></td></tr></table></figure>
+<p>就不会删除x,也就是在<code>let y=x</code>之后,x依然有效</p>
+<h3 id="所有权与函数"><a href="#所有权与函数" class="headerlink" title="所有权与函数"></a>所有权与函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let s = String::from(&quot;hello&quot;);  // s 进入作用域</span><br><span class="line"></span><br><span class="line">    takes_ownership(s);             // s 的值移动到函数里 ...</span><br><span class="line">                                    // ... 所以到这里不再有效</span><br><span class="line"></span><br><span class="line">    let x = 5;                      // x 进入作用域</span><br><span class="line"></span><br><span class="line">    makes_copy(x);                  // x 应该移动函数里，</span><br><span class="line">                                    // 但 i32 是 Copy 的，所以在后面可继续使用 x</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, x);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, s);  //这里会报错</span><br><span class="line"></span><br><span class="line">&#125; // 这里, x 先移出了作用域，然后是 s。但因为 s 的值已被移走，</span><br><span class="line">  // 所以不会有特殊操作</span><br><span class="line"></span><br><span class="line">fn takes_ownership(some_string: String) &#123; // some_string 进入作用域</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, some_string);</span><br><span class="line">&#125; // 这里，some_string 移出作用域并调用 `drop` 方法。占用的内存被释放</span><br><span class="line"></span><br><span class="line">fn makes_copy(some_integer: i32) &#123; // some_integer 进入作用域</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, some_integer);</span><br><span class="line">&#125; // 这里，some_integer 移出作用域。不会有特殊操作</span><br></pre></td></tr></table></figure>
+<h3 id="返回值与作用域"><a href="#返回值与作用域" class="headerlink" title="返回值与作用域"></a>返回值与作用域</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let s1 = gives_ownership();         // gives_ownership 将返回值</span><br><span class="line">                                        // 移给 s1</span><br><span class="line"></span><br><span class="line">    let s2 = String::from(&quot;hello&quot;);     // s2 进入作用域</span><br><span class="line"></span><br><span class="line">    let s3 = takes_and_gives_back(s2);  // s2 被移动到</span><br><span class="line">                                        // takes_and_gives_back 中,</span><br><span class="line">                                        // 它也将返回值移给 s3</span><br><span class="line">&#125; // 这里, s3 移出作用域并被丢弃。s2 也移出作用域，但已被移走，</span><br><span class="line">  // 所以什么也不会发生。s1 移出作用域并被丢弃</span><br><span class="line"></span><br><span class="line">fn gives_ownership() -&gt; String &#123;             // gives_ownership 将返回值移动给</span><br><span class="line">                                             // 调用它的函数</span><br><span class="line"></span><br><span class="line">    let some_string = String::from(&quot;hello&quot;); // some_string 进入作用域.</span><br><span class="line"></span><br><span class="line">    some_string                              // 返回 some_string 并移出给调用的函数</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// takes_and_gives_back 将传入字符串并返回该值</span><br><span class="line">fn takes_and_gives_back(a_string: String) -&gt; String &#123; // a_string 进入作用域</span><br><span class="line"></span><br><span class="line">    a_string  // 返回 a_string 并移出给调用的函数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>有时候会考虑,当我们传入一个变量,就丢掉了它的所有权,但是如果我们接下来还要继续使用这个变量呢?,那么我们必须让这个变量从我们调用的函数中返回,但是这样难免有点麻烦,所以就有了<strong>引用</strong>,让一个函数只使用这个变量,但不获得其所有权</p>
+<h2 id="引用与借用"><a href="#引用与借用" class="headerlink" title="引用与借用"></a>引用与借用</h2><h3 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h3><p>引用的符号是<code>&amp;</code>,就是C语言里面的取地址,在rust里面的含义也差不多是取地址,</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let s1 = String::from(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">    //&amp;s1 语法让我们创建一个 指向 值 s1 的引用，但是并不拥有它。</span><br><span class="line">    //因为并不拥有这个值，当引用离开作用域时其指向的值也不会被丢弃。</span><br><span class="line">    let len = calculate_length(&amp;s1);</span><br><span class="line"></span><br><span class="line">    println!(&quot;The length of &apos;&#123;&#125;&apos; is &#123;&#125;.&quot;, s1, len);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn calculate_length(s: &amp;String) -&gt; usize &#123;  //这里的s是对String的引用</span><br><span class="line">    s.len()</span><br><span class="line">&#125;   // 这里，s 离开了作用域。但因为它并不拥有引用值的所有权，</span><br><span class="line">    // 所以什么也不会发生</span><br></pre></td></tr></table></figure>
+<p>事实上,在上述代码中,s是直接指向s1的存储地址的,相当于一个指向s1的指针,但是s并不能改变s1的值,只是可以使用s1的值,在函数<code>calculate_length</code>结束之后,s也就离开了作用域,但是它并不拥有引用值的所有权,所以,不会对s进行任何操作,下面来看一下对引用值进行改变会怎么样:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    change_string(&amp;s1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn change_string(s: &amp;String) &#123;</span><br><span class="line">    s.push_str(&quot;world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们将获取引用作为函数参数称为 <strong>借用</strong><br>这个时候编译器会提示,<code>cannot borrow as mutable</code>,也就是不可改变借用变量的值</p>
+<h3 id="可变引用"><a href="#可变引用" class="headerlink" title="可变引用"></a>可变引用</h3><p>可以通过将<strong>引用</strong>和<strong>变量</strong>都声明为可变的(mut),这样引用的值就可以修改原来的值了</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    change_string(&amp;mut s1);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, s1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn change_string(s: &amp;mut String) &#123;</span><br><span class="line">    s.push_str(&quot;world&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不过可变引用有一个很大的限制：<strong>在特定作用域中的特定数据有且只有一个可变引用</strong>。这些代码会失败:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let mut s = String::from(&quot;hello&quot;);</span><br><span class="line"></span><br><span class="line">let r1 = &amp;mut s;</span><br><span class="line">let r2 = &amp;mut s;</span><br><span class="line"></span><br><span class="line">println!(&quot;&#123;&#125;, &#123;&#125;&quot;, r1, r2);</span><br></pre></td></tr></table></figure>
+<p>因为这样可能会导致多个指针同时修改同一块内存中的数据,可能会造成数据竞争,会造成多个指针的数据不同步(类似于git里面的冲突),但是我们可以使用一个大括号来声明一个新的作用域,在这个作用域里可以再次进行可变引用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    &#123;</span><br><span class="line">        let s2 = &amp;mut s1;</span><br><span class="line">        change_string(s2);</span><br><span class="line">        println!(&quot;&#123;&#125;&quot;, s2);</span><br><span class="line">    &#125;</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, s1);</span><br><span class="line">    let s3 = &amp;mut s1;</span><br><span class="line">    change_string_2(s3);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, s3);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn change_string(s: &amp;mut String) &#123;</span><br><span class="line">    s.push_str(&quot;world&quot;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn change_string_2(s: &amp;mut String) &#123;</span><br><span class="line">    s.push_str(&quot;world_1&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打印输出为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">helloworld</span><br><span class="line">helloworld</span><br><span class="line">helloworldworld_1</span><br></pre></td></tr></table></figure>
+<p>我们也不可以同时拥有<strong>可变引用</strong>和<strong>不可变引用</strong>(即使不在同一个作用域里面),因为不可变引用可不想在他们不知情的情况下,指向的值发生了改变,<br>但是我们可以同时拥有两个不可变引用,因为没有哪个只能读取数据的人有能力影响其他人读取到的数据。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    let s2 = &amp;mut s1;  //错误</span><br><span class="line">    let s3 = &amp;s1;</span><br><span class="line">    println!(&quot;&#123;&#125;,&#123;&#125;&quot;, s3, s2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    let s2 = &amp;s1;   //可以</span><br><span class="line">    let s3 = &amp;s1;</span><br><span class="line">    println!(&quot;&#123;&#125;,&#123;&#125;&quot;, s3, s2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    let s2 = &amp;s1;</span><br><span class="line">    let s3 = &amp;s1;</span><br><span class="line">    s1.push_str(&quot;,world&quot;); //不可以,在有不可变引用的时候,即使原变量是可变的,那么也不可以改变</span><br><span class="line">    println!(&quot;&#123;&#125;,&#123;&#125;,&#123;&#125;&quot;, s1, s3, s2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut s1 = String::from(&quot;hello&quot;);</span><br><span class="line">    let s2 = &amp;s1;  //可变引用与不可变引用不在同一个作用域,但是还会报错</span><br><span class="line">    &#123;</span><br><span class="line">        let s3 = &amp;mut s1;</span><br><span class="line">        change_string(s3);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    println!(&quot;&#123;&#125;,&#123;&#125;&quot;, s1, s2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>总而言之,在任意给定时间，要么 只能有一个可变引用，要么 只能有多个不可变引用。</p>
+<h2 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h2><h3 id="字符串slice"><a href="#字符串slice" class="headerlink" title="字符串slice"></a>字符串slice</h3><p>字符串 <code>slice（string slice）</code>是 <code>String</code> 中一部分值的引用，它看起来像这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#![allow(unused_variables)]</span><br><span class="line">fn main() &#123;</span><br><span class="line">let s = String::from(&quot;hello world&quot;);</span><br><span class="line"></span><br><span class="line">let hello = &amp;s[0..5];</span><br><span class="line">let world = &amp;s[6..11];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&amp;s[0..5]的类型就是字符串slice,如果要返回这一类型,那么返回值就是<code>&amp;str</code>,注意,slice所取的索引必须是在有效的范围之内,否则就会报错,注意:<code>&amp;str</code>也就是字符串slice是<code>String</code>的<strong>不可变引用</strong><br>之前说字符串字面值是不可变的,因为<strong>字符串字面值</strong>的本质类型就是<code>&amp;str</code>,即字符串slice,<br><code>let s=&quot;hello, world&quot;</code>,s就是一个指向二进制程序特定位置的slice;</p>
+<blockquote>
+<p>[0..5]语法:相当于range(0,5),不包含5,如果想要包含5,那么就<code>[0..=5]</code></p>
+</blockquote>
+<p>下面这段代码展示区别:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">fn main() &#123;</span><br><span class="line">    let mut input = String::from(&quot;hello world&quot;);</span><br><span class="line"></span><br><span class="line">    let input1 = &amp;input[..]; //这里input1的类型是&amp;str</span><br><span class="line">    let input2 = &amp;input1[..]; //input2的类型也是&amp;str</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, input2);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, input1 == input2); //结果为true</span><br><span class="line">    println!(&quot;&#123;&#125;,&#123;&#125;&quot;, input1 == input, input2 == input); //两个也全是true</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, &amp;input == &amp;input[..]); //这个也是true</span><br><span class="line"></span><br><span class="line">    let word = first_world(&amp;input[..]);</span><br><span class="line"></span><br><span class="line">    let input_strs = &quot;hello world&quot;;</span><br><span class="line">    let output = first_world(input_strs); //可以直接使用字符串字面量作为参数,因为其本质就是&amp;str</span><br><span class="line"></span><br><span class="line">    //input.clear(); //这里会提示,由于有input的不可变引用存在,那么不可以改变input的值</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, word);</span><br><span class="line">    println!(&quot;&#123;&#125;&quot;, output);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fn first_world(some_words: &amp;str) -&gt; &amp;str &#123;</span><br><span class="line">    //接受不可变引用,返回不可变引用,</span><br><span class="line">    //接受的和返回的全都是对input的不可变引用</span><br><span class="line">    let bytes = some_words.as_bytes(); //先转换成byte</span><br><span class="line"></span><br><span class="line">    for (i, &amp;byte) in bytes.iter().enumerate() &#123;</span><br><span class="line">        if byte == b&apos; &apos; &#123;</span><br><span class="line">            return &amp;some_words[..i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    &amp;some_words[..]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+    
+      <div>
+	    <div>
+    
+        <div style="text-align:center;color: #847bb9;font-size:15px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+	  </div>
+    
+	
+
+    
+
+    
+
+    
+      <div>
+        <!--<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/01/17/Rust学习笔记-三/" title="Rust学习笔记(三)">http://yoursite.com/2019/01/17/Rust学习笔记-三/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>-->
+
+
+<div>    
+ 
+ 
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+      <strong>本文作者：</strong>converk
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="/2019/01/17/Rust学习笔记-三/" title="Rust学习笔记(三)">2019/01/17/Rust学习笔记-三/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权： </strong>
+    本站文章均采用 <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0 CN</a> 许可协议，请勿用于商业，转载注明出处！
+  </li>
+</ul>
+
+</div>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/笔记/" rel="tag"><i class="fa fa-tag"></i> 笔记</a>
+          
+            <a href="/tags/兴趣/" rel="tag"><i class="fa fa-tag"></i> 兴趣</a>
+          
+            <a href="/tags/Rust/" rel="tag"><i class="fa fa-tag"></i> Rust</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/17/几种排序算法/" rel="next" title="几种排序算法">
+                <i class="fa fa-chevron-left"></i> 几种排序算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/touxiang.png"
+                alt="converk" />
+            
+              <p class="site-author-name" itemprop="name">converk</p>
+              <p class="site-description motion-element" itemprop="description">一个很菜的coder</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/converk" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:843951249@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-globe"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          <div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1306503623&auto=1&height=66"></iframe>
+</div>
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1310913720&auto=1&height=66"></iframe>
+</div>
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Rust学习笔记–所有权系统-owership"><span class="nav-number">1.</span> <span class="nav-text">Rust学习笔记–所有权系统(owership)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是所有权"><span class="nav-number">1.1.</span> <span class="nav-text">什么是所有权</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#堆与栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">堆与栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有权规则"><span class="nav-number">1.1.2.</span> <span class="nav-text">所有权规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量作用域"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型"><span class="nav-number">1.1.4.</span> <span class="nav-text">String类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#String类型与字符串字面值在内存分配上的区别"><span class="nav-number">1.1.5.</span> <span class="nav-text">String类型与字符串字面值在内存分配上的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量与数据的交互方式-移动"><span class="nav-number">1.1.6.</span> <span class="nav-text">变量与数据的交互方式(移动)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量与数据的交互方式-克隆"><span class="nav-number">1.1.7.</span> <span class="nav-text">变量与数据的交互方式(克隆)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#只在栈上的数据–拷贝"><span class="nav-number">1.1.8.</span> <span class="nav-text">只在栈上的数据–拷贝</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有权与函数"><span class="nav-number">1.1.9.</span> <span class="nav-text">所有权与函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#返回值与作用域"><span class="nav-number">1.1.10.</span> <span class="nav-text">返回值与作用域</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用与借用"><span class="nav-number">1.2.</span> <span class="nav-text">引用与借用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#引用"><span class="nav-number">1.2.1.</span> <span class="nav-text">引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可变引用"><span class="nav-number">1.2.2.</span> <span class="nav-text">可变引用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slice"><span class="nav-number">1.3.</span> <span class="nav-text">slice</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串slice"><span class="nav-number">1.3.1.</span> <span class="nav-text">字符串slice</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">converk</span>
+
+  
+</div>
+
+
+
+
+  
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+    <span class="post-meta-divider">|</span>
+    <span id="busuanzi_container_site_uv">本站访客数<span id="busuanzi_value_site_uv"></span>人</span>
+
+
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+
+<div class="theme-info">
+  <span class="post-count">博客全站共23.7k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://converk.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2019/01/17/Rust学习笔记-三/';
+          this.page.identifier = '2019/01/17/Rust学习笔记-三/';
+          this.page.title = 'Rust学习笔记(三)';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://converk.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
